@@ -176,50 +176,6 @@
     #ab-coll .ab-fav.on svg { fill: currentColor; }
     #ab-coll .ab-fav svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-    #ab-coll .ab-quick {
-      position: absolute;
-      left: var(--space-sm);
-      right: var(--space-sm);
-      bottom: var(--space-sm);
-      display: flex;
-      gap: var(--space-xs);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity var(--duration-medium) var(--ease-standard), transform var(--duration-medium) var(--ease-standard);
-      pointer-events: none;
-    }
-
-    @media (hover: hover) {
-      #ab-coll .ab-card:hover .ab-quick {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-    }
-
-    @media (hover: none) {
-      #ab-coll .ab-quick { opacity: 1; transform: none; pointer-events: auto; }
-    }
-
-    #ab-coll .ab-add {
-      flex: 1;
-      padding: var(--space-sm) var(--space-md);
-      border: none;
-      border-radius: var(--radius-full);
-      background: var(--color-on-surface);
-      color: var(--color-background);
-      font: inherit;
-      font-size: 0.8125rem;
-      font-weight: var(--font-weight-bold);
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      transition: background var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard);
-    }
-
-    #ab-coll .ab-add:hover { background: var(--color-primary); color: var(--color-on-primary); }
-    #ab-coll .ab-add[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
-
     /* ---------- Body ---------- */
     #ab-coll .ab-body {
       padding-top: var(--space-sm);
@@ -351,7 +307,6 @@
         var handle = product.handle || '';
         var available = product.available !== false;
         var pUrl = 'https://' + DOMAIN + '/products/' + handle;
-        var bUrl = 'https://' + DOMAIN + '/cart/' + v.id + ':1';
 
         var tags = '';
         var oldHtml = '';
@@ -372,9 +327,6 @@
           +       '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
           +     '</button>'
           +     (img ? '<img src="' + img + '" alt="' + title + '" loading="lazy" onerror="this.onerror=null;this.removeAttribute(\'src\');">' : '')
-          +     '<div class="ab-quick">'
-          +       '<a class="ab-add" href="' + bUrl + '"' + (available ? '' : ' aria-disabled="true" tabindex="-1"') + '>' + (available ? 'Add to bag' : 'Unavailable') + '</a>'
-          +     '</div>'
           +   '</a>'
           +   '<div class="ab-body">'
           +     '<a class="ab-name" href="' + pUrl + '">' + title + '</a>'
