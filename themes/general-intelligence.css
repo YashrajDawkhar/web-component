@@ -1,0 +1,138 @@
+/* General Intelligence — Technical Brutalism theme
+   Notes:
+   - This codebase expects the `--color-*` token family (background/surface/outline/etc).
+   - Brand fonts like `ppmondwest` and `af` may not be available on Google Fonts;
+     we provide strong fallbacks and let host apps swap in the exact fonts later. */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Press+Start+2P&display=swap");
+
+:root {
+  color-scheme: light;
+
+  /* Core canvas */
+  --color-background: #fff;
+  --color-on-background: #171717;
+  --color-surface: #fff;
+  --color-on-surface: #171717;
+  --color-on-surface-variant: #646464;
+
+  /* Neutral surfaces */
+  --color-surface-container-lowest: #fff;
+  --color-surface-container-low: #f9faf7;   /* neutral-100 */
+  --color-surface-container: #eef1ed;       /* neutral-300-ish hover surface */
+  --color-surface-container-high: #e9ece8;
+
+  /* Borders */
+  --color-outline: #dee2de;
+  --color-outline-variant: #b4b8b4;
+
+  /* Accents (keep neutral-first) */
+  --color-primary: #171717;
+  --color-on-primary: #fff;
+  --color-primary-container: #f9faf7;
+  --color-primary-container-dim: #eef1ed;
+  --color-on-primary-container: #171717;
+  --color-primary-hover: #2c2c2c;
+
+  /* Secondary / tertiary remain understated */
+  --color-secondary: #2c2c2c;
+  --color-on-secondary: #fff;
+  --color-secondary-container: #f9faf7;
+  --color-on-secondary-container: #2c2c2c;
+
+  --color-tertiary: oklch(62.7% .194 149.214); /* success green as system accent */
+  --color-on-tertiary: #fff;
+  --color-tertiary-container: color-mix(in oklch, oklch(62.7% .194 149.214) 14%, #fff);
+  --color-on-tertiary-container: #171717;
+
+  /* Links */
+  --color-link: oklch(21% .034 264.665);
+  --color-link-hover: #171717;
+
+  /* Semantic */
+  --color-error: oklch(57.7% .245 27.325);
+  --color-on-error: #fff;
+  --color-success: oklch(62.7% .194 149.214);
+  --color-on-success: #fff;
+  --color-warning: #171717;
+  --color-on-warning: #fff;
+  --color-info: #171717;
+  --color-on-info: #fff;
+
+  --color-disabled: #eef1ed;
+  --color-on-disabled: #646464;
+
+  /* Inputs */
+  --color-input-background: #fff;
+  --color-input-border: #b4b8b4;
+  --color-input-placeholder: #646464;
+
+  --color-inverse-surface: #171717;
+  --color-on-inverse-surface: #fff;
+
+  /* Typography */
+  --font-display: "ppmondwest", "Press Start 2P", ui-monospace, monospace;
+  --font-sans: "af", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-title: 1.5rem;
+  --font-size-display: clamp(2rem, 4vw, 4rem);
+  --line-height-body: 1.5;
+  --line-height-tight: 1.2;
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing: 0.25rem base unit (4px) */
+  --space-unit: 4px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+  --space-2xl: 72px;
+  --space-page-x: clamp(16px, 4vw, 32px);
+  --space-section-y: clamp(56px, 7vw, 96px);
+
+  /* Radii */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Elevation: flat */
+  --shadow-sm: 0 0 #0000;
+  --shadow-md: 0 0 #0000;
+  --shadow-lg: 0 0 #0000;
+
+  --color-scrim: rgba(0, 0, 0, 0.28);
+
+  /* Motion */
+  --duration-short: 0.15s;
+  --duration-medium: 0.15s;
+  --ease-standard: cubic-bezier(.4, 0, .2, 1);
+  --focus-ring-color: rgba(59, 130, 246, 0.5);
+  --focus-ring-width: 2px;
+
+  /* Wider reading surfaces */
+  --container-max-width: 80rem;
+
+  --glass-surface: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(222, 226, 222, 0.9);
+}
+
+/* Optional helpers for the system's typographic split */
+.gi-display,
+[data-gi="display"] {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+}
+
+.gi-mono,
+[data-gi="mono"] {
+  font-family: var(--font-mono);
+}
+

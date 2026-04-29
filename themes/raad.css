@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&family=Syncopate:wght@400;700&display=swap");
+
+:root {
+  color-scheme: light;
+
+  /* --- Raad: clinical, high-contrast minimal --- */
+  --color-background: hsl(0 0% 100%);
+  --color-on-background: hsl(222.2 84% 4.9%);
+  --color-surface: hsl(0 0% 100%);
+  --color-on-surface: hsl(222.2 84% 4.9%);
+  --color-on-surface-variant: hsl(215.4 16.3% 46.9%);
+
+  --color-surface-container-lowest: hsl(0 0% 100%);
+  --color-surface-container-low: hsl(210 40% 98%);
+  --color-surface-container: hsl(210 40% 96%);
+  --color-surface-container-high: hsl(210 40% 94%);
+
+  --color-outline: hsl(214.3 31.8% 91.4%);
+  --color-outline-variant: hsl(214.3 31.8% 88%);
+
+  /* Brand */
+  --color-primary: #041614; /* deep teal-black */
+  --color-on-primary: hsl(210 40% 98%);
+  --color-primary-container: rgba(4, 22, 20, 0.08);
+  --color-primary-container-dim: rgba(4, 22, 20, 0.14);
+  --color-on-primary-container: #041614;
+  --color-primary-hover: color-mix(in srgb, #041614 88%, #0000);
+
+  /* Secondary / tertiary stay conservative */
+  --color-secondary: hsl(222.2 47.4% 11.2%);
+  --color-on-secondary: hsl(210 40% 98%);
+  --color-secondary-container: hsl(210 40% 96%);
+  --color-on-secondary-container: hsl(222.2 47.4% 11.2%);
+
+  --color-tertiary: hsl(173 58% 39%);
+  --color-on-tertiary: hsl(210 40% 98%);
+  --color-tertiary-container: hsl(173 58% 95%);
+  --color-on-tertiary-container: hsl(173 58% 22%);
+
+  --color-link: #041614;
+  --color-link-hover: color-mix(in srgb, #041614 76%, #0000);
+
+  /* Semantic */
+  --color-error: hsl(0 84.2% 60.2%);
+  --color-on-error: hsl(210 40% 98%);
+  --color-success: hsl(173 58% 39%);
+  --color-on-success: hsl(210 40% 98%);
+  --color-warning: hsl(38.9 100% 42.9%);
+  --color-on-warning: hsl(222.2 84% 4.9%);
+  --color-info: hsl(173 58% 39%);
+  --color-on-info: hsl(210 40% 98%);
+
+  --color-disabled: hsl(214.3 31.8% 91.4%);
+  --color-on-disabled: hsl(215.4 16.3% 46.9%);
+
+  /* Inputs */
+  --color-input-background: hsl(0 0% 100%);
+  --color-input-border: hsl(214.3 31.8% 91.4%);
+  --color-input-placeholder: hsl(215.4 16.3% 46.9%);
+
+  --color-inverse-surface: hsl(222.2 47.4% 11.2%);
+  --color-on-inverse-surface: hsl(210 40% 98%);
+
+  /* Typography triad */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Syncopate", "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-title: 1.5rem;
+  --font-size-display: clamp(2rem, 4vw, 4rem);
+  --line-height-body: 1.5;
+  --line-height-tight: 1.2;
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing / radius */
+  --space-unit: 4px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+  --space-page-x: clamp(16px, 4vw, 32px);
+  --space-section-y: clamp(56px, 8vw, 112px);
+
+  /* Strict 0.5rem radius system */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 9999px;
+
+  /* No shadows — depth via blur, border, opacity */
+  --shadow-sm: 0 0 #0000;
+  --shadow-md: 0 0 #0000;
+  --shadow-lg: 0 0 #0000;
+
+  --color-scrim: rgba(4, 22, 20, 0.28);
+
+  /* Motion */
+  --duration-short: 0.12s;
+  --duration-medium: 0.2s;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --focus-ring-color: rgba(59, 130, 246, 0.5);
+  --focus-ring-width: 2px;
+
+  --container-max-width: 1128px;
+
+  /* Glass surfaces (heavy blur aesthetic) */
+  --glass-surface: rgba(255, 255, 255, 0.66);
+  --glass-border: rgba(232, 234, 238, 0.82);
+}
+
+/* Utility: technical labels in Manrope */
+.raad-label,
+[data-raad="label"] {
+  font-family: "Manrope", var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
