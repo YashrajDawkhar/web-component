@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+
+<section id="vsc-tabs" aria-labelledby="vsc-tabs-title">
+  <style>
+    #vsc-tabs, #vsc-tabs * { box-sizing: border-box; }
+    #vsc-tabs { padding: var(--space-section-y) var(--space-page-x); background: var(--color-background); color: var(--color-on-surface); font-family: var(--font-sans); }
+    #vsc-tabs .wrap { max-width: var(--container-max-width); margin: 0 auto; }
+    #vsc-tabs h2 { margin: 0 0 var(--space-md); font-size: clamp(1.5rem, 3vw, 2.25rem); }
+    #vsc-tabs .tabs { display: flex; gap: var(--space-xs); margin-bottom: var(--space-md); flex-wrap: wrap; }
+    #vsc-tabs .tab { border: 1px solid var(--color-outline); background: transparent; color: var(--color-on-surface); border-radius: var(--radius-full); padding: 8px 14px; cursor: pointer; font: inherit; font-size: .8125rem; }
+    #vsc-tabs .tab.active { background: var(--color-primary); color: var(--color-on-primary); border-color: var(--color-primary); }
+    #vsc-tabs .grid { display: grid; gap: var(--space-sm); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: 900px) { #vsc-tabs .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-md); } }
+    #vsc-tabs .card { border: 1px solid var(--color-outline); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface-container); }
+    #vsc-tabs video { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; background: #000; }
+    #vsc-tabs .body { padding: var(--space-sm); display: flex; justify-content: space-between; gap: var(--space-sm); font-size: .8125rem; color: var(--color-on-surface-variant); }
+  </style>
+  <div class="wrap">
+    <h2 id="vsc-tabs-title">Category tabs</h2>
+    <div class="tabs">
+      <button class="tab active" data-cat="all">All</button>
+      <button class="tab" data-cat="before-after">Before/After</button>
+      <button class="tab" data-cat="routine">Routine</button>
+      <button class="tab" data-cat="ugc">UGC</button>
+    </div>
+    <div class="grid" id="vsc-tabs-grid">
+      <article class="card" data-cat="routine"><video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4" type="video/mp4"></video><div class="body"><span>Morning use</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card" data-cat="before-after"><video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4" type="video/mp4"></video><div class="body"><span>Results</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card" data-cat="ugc"><video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4" type="video/mp4"></video><div class="body"><span>Creator clip</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card" data-cat="ugc"><video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4" type="video/mp4"></video><div class="body"><span>Unfiltered</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('#vsc-tabs .tab');
+      var cards = document.querySelectorAll('#vsc-tabs .card');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var cat = tab.getAttribute('data-cat');
+          tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+          cards.forEach(function (c) {
+            var show = cat === 'all' || c.getAttribute('data-cat') === cat;
+            c.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</section>

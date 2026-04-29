@@ -1,396 +1,418 @@
 <link rel="stylesheet" href="../themes/supabase.css">
 
+<section id="video-showcase-section" aria-labelledby="vshow-title">
+  <style>
+    #video-showcase-section,
+    #video-showcase-section *,
+    #video-showcase-section *::before,
+    #video-showcase-section *::after { box-sizing: border-box; }
 
-<section id="video-showcase-section">
-    <style>
-        #video-showcase-section {
-            width: 100%;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: var(--font-sans, sans-serif);
-            background-color: var(--color-background, #ffffff);
-            padding: clamp(24px, 4vw, 40px) 0;
-            color: var(--color-on-surface, #1a1a1a);
-            overflow: hidden;
-        }
+    #video-showcase-section {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+      overflow: hidden;
+    }
 
-        #video-showcase-section .container {
-            max-width: var(--container-max-width, 1280px);
-            margin: 0 auto;
-            padding: 0 clamp(20px, 4vw, 48px);
-        }
+    #video-showcase-section .vshow-wrap {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+    }
 
-        #video-showcase-section .header {
-            margin-bottom: 32px;
-            text-align: center;
-            padding: 0 20px;
-        }
+    #video-showcase-section .vshow-head {
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-outline);
+    }
 
-        #video-showcase-section .header h2 {
-            font-family: var(--font-display, serif);
-            font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
-            margin: 0;
-            color: var(--color-on-surface, #1a1a1a);
-        }
+    #video-showcase-section .vshow-eyebrow {
+      margin: 0 0 var(--space-xs);
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
 
-        #video-showcase-section .video-wrapper {
-            width: 100%;
-        }
+    #vshow-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+      letter-spacing: -0.02em;
+      color: var(--color-on-background);
+    }
 
-        #video-showcase-section .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            width: 100%;
-        }
+    #video-showcase-section .vshow-sub {
+      margin: var(--space-xs) 0 0;
+      max-width: 46ch;
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
 
-        #video-showcase-section .video-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            aspect-ratio: 9 / 16;
-            background-color: #000;
-            box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.08));
-            transition: transform var(--duration-medium) var(--ease-standard), box-shadow var(--duration-medium) var(--ease-standard);
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-        }
+    #video-showcase-section .vshow-meta {
+      display: inline-flex;
+      gap: var(--space-sm);
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--color-on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
 
-        #video-showcase-section .video-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
+    #video-showcase-section .vshow-meta strong {
+      color: var(--color-on-surface);
+      font-weight: var(--font-weight-bold);
+    }
 
-        #video-showcase-section video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    #video-showcase-section .vshow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
 
-        #video-showcase-section .play-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.1);
-            transition: opacity var(--duration-medium) var(--ease-standard);
-            pointer-events: none;
-            z-index: 1;
-        }
+    @media (min-width: 720px) {
+      #video-showcase-section .vshow-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-md); }
+    }
+    @media (min-width: 1024px) {
+      #video-showcase-section .vshow-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
 
-        #video-showcase-section .video-card.is-playing .play-overlay {
-            opacity: 0;
-        }
+    #video-showcase-section .vshow-card {
+      position: relative;
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-container);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      transition: border-color var(--duration-medium) var(--ease-standard);
+      isolation: isolate;
+    }
 
-        #video-showcase-section .play-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
+    #video-showcase-section .vshow-card:hover {
+      border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-outline));
+    }
 
-        #video-showcase-section .play-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: #000;
-            margin-left: 2px;
-        }
+    #video-showcase-section .vshow-media {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      background: #000;
+      display: block;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        #video-showcase-section .cta-container {
-            position: absolute;
-            bottom: 16px;
-            left: 12px;
-            right: 12px;
-            z-index: 3;
-        }
+    #video-showcase-section .vshow-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 600ms var(--ease-standard);
+    }
 
-        #video-showcase-section .shop-now-btn {
-            display: flex;
-            width: 100%;
-            height: 48px;
-            background-color: var(--color-surface-container-lowest, #ffffff);
-            color: #000000;
-            text-decoration: none;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.875rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: background-color var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+    @media (hover: hover) {
+      #video-showcase-section .vshow-card:hover .vshow-media video {
+        transform: scale(1.03);
+      }
+    }
 
-        #video-showcase-section .shop-now-btn:hover {
-            background-color: var(--color-primary, #000);
-            color: var(--color-on-primary, #fff);
-        }
+    #video-showcase-section .vshow-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.08) 54%, rgba(0, 0, 0, 0.22));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity var(--duration-medium) var(--ease-standard);
+      pointer-events: none;
+      z-index: 2;
+    }
 
-        #video-showcase-section .shop-now-btn:focus-visible {
-            outline: 3px solid var(--color-primary, #000);
-            outline-offset: 3px;
-        }
+    #video-showcase-section .vshow-card.is-playing .vshow-overlay {
+      opacity: 0;
+    }
 
-        @media (max-width: 640px) {
-            #video-showcase-section .container {
-                padding: 0;
-            }
+    #video-showcase-section .vshow-play {
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: var(--radius-full);
+      border: 1px solid color-mix(in srgb, var(--color-outline) 70%, transparent);
+      background: color-mix(in srgb, var(--color-background) 78%, transparent);
+      backdrop-filter: blur(6px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-on-surface);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard), border-color var(--duration-medium) var(--ease-standard);
+    }
 
-            #video-showcase-section .header {
-                padding: 0 20px;
-            }
+    #video-showcase-section .vshow-play svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: currentColor;
+      margin-left: 2px;
+    }
 
-            #video-showcase-section .video-grid {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                padding: 0 20px 20px 20px;
-                gap: 12px;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                /* Firefox */
-            }
+    #video-showcase-section .vshow-card:hover .vshow-play {
+      color: var(--color-primary);
+      border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-outline));
+      transform: scale(1.04);
+    }
 
-            #video-showcase-section .video-grid::-webkit-scrollbar {
-                display: none;
-                /* Chrome/Safari */
-            }
+    #video-showcase-section .vshow-foot {
+      position: absolute;
+      left: var(--space-sm);
+      right: var(--space-sm);
+      bottom: var(--space-sm);
+      z-index: 3;
+    }
 
-            #video-showcase-section .video-card {
-                flex: 0 0 82%;
-                scroll-snap-align: center;
-            }
-        }
+    #video-showcase-section .vshow-shop {
+      width: 100%;
+      min-height: 2.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-outline);
+      background: color-mix(in srgb, var(--color-background) 86%, transparent);
+      color: var(--color-on-surface);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+      transition: background var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard), border-color var(--duration-medium) var(--ease-standard);
+    }
 
-        /* Dark Mode */
-        @media (prefers-color-scheme: dark) {
-            #video-showcase-section {
-                background-color: var(--color-surface-container-low, #111111);
-            }
+    #video-showcase-section .vshow-shop:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: var(--color-on-primary);
+    }
 
-            #video-showcase-section .header h2 {
-                color: var(--color-on-inverse-surface, #ffffff);
-            }
-        }
+    #video-showcase-section .vshow-shop:focus-visible,
+    #video-showcase-section .vshow-media:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 3px;
+    }
 
-        .dark #video-showcase-section {
-            background-color: var(--color-surface-container-low, #111111);
-        }
+    #video-showcase-section .vshow-scroll {
+      display: none;
+      margin-top: var(--space-sm);
+      justify-content: center;
+      font-size: 0.6875rem;
+      color: var(--color-on-surface-variant);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
 
-        .dark #video-showcase-section .header h2 {
-            color: var(--color-on-inverse-surface, #ffffff);
-        }
+    @media (max-width: 640px) {
+      #video-showcase-section {
+        padding-left: 0;
+        padding-right: 0;
+      }
 
-        /* Ensure button text stays dark unless hovered in dark mode */
-        .dark #video-showcase-section .shop-now-btn {
-            color: #000000;
-            background-color: #ffffff;
-        }
+      #video-showcase-section .vshow-head {
+        margin-left: var(--space-page-x);
+        margin-right: var(--space-page-x);
+      }
 
-        .dark #video-showcase-section .shop-now-btn:hover {
-            background-color: var(--color-primary, #ffffff);
-            color: var(--color-on-primary, #000000);
-        }
-    </style>
-    <div class="container">
-        <div class="header">
-            <h2>Real Results</h2>
-        </div>
+      #video-showcase-section .vshow-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: var(--space-sm);
+        padding: 0 var(--space-page-x) var(--space-sm);
+        scrollbar-width: none;
+      }
 
-        <div class="video-wrapper">
-            <div class="video-grid">
-                <!-- Card 1 -->
-                <div class="video-card">
-                    <video muted loop playsinline
-                        poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg">
-                        <source
-                            src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
-                    </div>
-                    <div class="cta-container"><a href="" class="shop-now-btn">Shop Now</a></div>
-                </div>
+      #video-showcase-section .vshow-grid::-webkit-scrollbar { display: none; }
 
-                <!-- Card 2 -->
-                <div class="video-card">
-                    <video muted loop playsinline
-                        poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg">
-                        <source
-                            src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
-                    </div>
-                    <div class="cta-container"><a href="" class="shop-now-btn">Shop Now</a></div>
-                </div>
+      #video-showcase-section .vshow-card {
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+      }
 
-                <!-- Card 3 -->
-                <div class="video-card">
-                    <video muted loop playsinline
-                        poster="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg">
-                        <source
-                            src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
-                    </div>
-                    <div class="cta-container"><a href="" class="shop-now-btn">Shop Now</a></div>
-                </div>
+      #video-showcase-section .vshow-scroll { display: flex; }
+    }
 
-                <!-- Card 4 -->
-                <div class="video-card">
-                    <video muted loop playsinline
-                        poster="https://www.mywelme.com/cdn/shop/files/481350845_18058039202067012_1867895927660531913_n.jpg">
-                        <source
-                            src="https://www.mywelme.com/cdn/shop/videos/c/vp/38aa4c866e8a477caec6f5e0a84941be/38aa4c866e8a477caec6e5e0a84941be.SD-480p-0.9Mbps-53365485.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
-                    </div>
-                    <div class="cta-container"><a href="" class="shop-now-btn">Shop Now</a></div>
-                </div>
+    @media (prefers-reduced-motion: reduce) {
+      #video-showcase-section *,
+      #video-showcase-section *::before,
+      #video-showcase-section *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 
-                <!-- Card 5 -->
-                <div class="video-card">
-                    <video muted loop playsinline
-                        poster="https://www.mywelme.com/cdn/shop/files/502769666_18505277539006394_1291801384940855221_n.jpg">
-                        <source
-                            src="https://www.mywelme.com/cdn/shop/videos/c/vp/ba935dc6e1614b588cf3973a6e9c1c34/ba935dc6e1614b588cf3973a6e9c1c34.HD-1080p-2.5Mbps-53365482.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
-                    </div>
-                    <div class="cta-container"><a href="" class="shop-now-btn">Shop Now</a></div>
-                </div>
+  <div class="vshow-wrap">
+    <header class="vshow-head">
+      <div>
+        <p class="vshow-eyebrow">Video proof</p>
+        <h2 id="vshow-title">Real results</h2>
+        <p class="vshow-sub">Tap to play customer clips and see outcomes in motion. Hover previews on desktop, swipe carousel on mobile.</p>
+      </div>
+      <div class="vshow-meta">
+        <span><strong id="vshow-count">0</strong> clips</span>
+      </div>
+    </header>
 
-                <!-- Card 6 -->
-                <div class="video-card">
-                    <video muted loop playsinline
-                        poster="https://www.mywelme.com/cdn/shop/files/503079994_554460557734015_5869296644913052603_n.jpg">
-                        <source
-                            src="https://www.mywelme.com/cdn/shop/videos/c/vp/3b59093e6cfb4e6398a560e226fdf6d0/3b59093e6cfb4e6398a560e226fdf6d0.HD-1080p-2.5Mbps-53365487.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
-                    </div>
-                    <div class="cta-container"><a href="" class="shop-now-btn">Shop Now</a></div>
-                </div>
+    <div class="vshow-grid" id="vshow-grid">
+      <article class="vshow-card">
+        <button class="vshow-media" type="button" aria-label="Play clip 1">
+          <video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg">
+            <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4" type="video/mp4">
+          </video>
+          <span class="vshow-overlay"><span class="vshow-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></span>
+        </button>
+        <div class="vshow-foot"><a href="https://www.mywelme.com/" target="_blank" rel="noopener" class="vshow-shop">Shop now</a></div>
+      </article>
 
-                <!-- Card 7 -->
-                <div class="video-card">
-                    <video muted loop playsinline
-                        poster="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg">
-                        <source
-                            src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <div class="play-icon"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
-                    </div>
-                    <div class="cta-container"><a href="" class="shop-now-btn"></a></div>
-                </div>
-            </div>
-        </div>
+      <article class="vshow-card">
+        <button class="vshow-media" type="button" aria-label="Play clip 2">
+          <video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg">
+            <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4" type="video/mp4">
+          </video>
+          <span class="vshow-overlay"><span class="vshow-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></span>
+        </button>
+        <div class="vshow-foot"><a href="https://www.mywelme.com/" target="_blank" rel="noopener" class="vshow-shop">Shop now</a></div>
+      </article>
+
+      <article class="vshow-card">
+        <button class="vshow-media" type="button" aria-label="Play clip 3">
+          <video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg">
+            <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4" type="video/mp4">
+          </video>
+          <span class="vshow-overlay"><span class="vshow-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></span>
+        </button>
+        <div class="vshow-foot"><a href="https://www.mywelme.com/" target="_blank" rel="noopener" class="vshow-shop">Shop now</a></div>
+      </article>
+
+      <article class="vshow-card">
+        <button class="vshow-media" type="button" aria-label="Play clip 4">
+          <video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/481350845_18058039202067012_1867895927660531913_n.jpg">
+            <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/38aa4c866e8a477caec6f5e0a84941be/38aa4c866e8a477caec6f5e0a84941be.SD-480p-0.9Mbps-53365485.mp4" type="video/mp4">
+          </video>
+          <span class="vshow-overlay"><span class="vshow-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></span>
+        </button>
+        <div class="vshow-foot"><a href="https://www.mywelme.com/" target="_blank" rel="noopener" class="vshow-shop">Shop now</a></div>
+      </article>
+
+      <article class="vshow-card">
+        <button class="vshow-media" type="button" aria-label="Play clip 5">
+          <video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/502769666_18505277539006394_1291801384940855221_n.jpg">
+            <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/ba935dc6e1614b588cf3973a6e9c1c34/ba935dc6e1614b588cf3973a6e9c1c34.HD-1080p-2.5Mbps-53365482.mp4" type="video/mp4">
+          </video>
+          <span class="vshow-overlay"><span class="vshow-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></span>
+        </button>
+        <div class="vshow-foot"><a href="https://www.mywelme.com/" target="_blank" rel="noopener" class="vshow-shop">Shop now</a></div>
+      </article>
+
+      <article class="vshow-card">
+        <button class="vshow-media" type="button" aria-label="Play clip 6">
+          <video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/503079994_554460557734015_5869296644913052603_n.jpg">
+            <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/3b59093e6cfb4e6398a560e226fdf6d0/3b59093e6cfb4e6398a560e226fdf6d0.HD-1080p-2.5Mbps-53365487.mp4" type="video/mp4">
+          </video>
+          <span class="vshow-overlay"><span class="vshow-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></span>
+        </button>
+        <div class="vshow-foot"><a href="https://www.mywelme.com/" target="_blank" rel="noopener" class="vshow-shop">Shop now</a></div>
+      </article>
+
+      <article class="vshow-card">
+        <button class="vshow-media" type="button" aria-label="Play clip 7">
+          <video muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg">
+            <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4" type="video/mp4">
+          </video>
+          <span class="vshow-overlay"><span class="vshow-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></span>
+        </button>
+        <div class="vshow-foot"><a href="https://www.mywelme.com/" target="_blank" rel="noopener" class="vshow-shop">Shop now</a></div>
+      </article>
     </div>
-    <script>
-        (function () {
-            var root = document.getElementById('video-showcase-section');
-            var cards = root.querySelectorAll('.video-card');
 
-            cards.forEach(function (card) {
-                var video = card.querySelector('video');
-                var btn = card.querySelector('.shop-now-btn');
+    <div class="vshow-scroll">Swipe for more</div>
+  </div>
 
-                // Logic to hide CTA container if no label or href
-                if (btn && (!btn.textContent.trim() || !btn.getAttribute('href'))) {
-                    btn.parentElement.style.display = 'none';
-                }
+  <script>
+    (function () {
+      var root = document.getElementById('video-showcase-section');
+      if (!root) return;
 
-                // Toggle playback on card click
-                card.addEventListener('click', function (e) {
-                    if (e.target.classList.contains('shop-now-btn')) return;
+      var cards = root.querySelectorAll('.vshow-card');
+      var count = root.querySelector('#vshow-count');
+      if (count) count.textContent = cards.length;
 
-                    if (video.paused) {
-                        // Pause others
-                        cards.forEach(function (other) {
-                            var otherVid = other.querySelector('video');
-                            otherVid.pause();
-                            other.classList.remove('is-playing');
-                        });
+      function pauseAll(except) {
+        cards.forEach(function (card) {
+          if (card === except) return;
+          var otherVid = card.querySelector('video');
+          if (otherVid) otherVid.pause();
+          card.classList.remove('is-playing');
+        });
+      }
 
-                        video.play().then(function () {
-                            card.classList.add('is-playing');
-                        }).catch(function (err) { });
-                    } else {
-                        video.pause();
-                        card.classList.remove('is-playing');
-                    }
-                });
+      cards.forEach(function (card) {
+        var video = card.querySelector('video');
+        var mediaBtn = card.querySelector('.vshow-media');
+        if (!video || !mediaBtn) return;
 
-                // Autoplay on hover (Desktop only)
-                card.addEventListener('mouseenter', function () {
-                    if (window.innerWidth > 640 && video.paused) {
-                        video.play().then(function () {
-                            card.classList.add('is-playing');
-                        }).catch(function () { });
-                    }
-                });
+        mediaBtn.addEventListener('click', function () {
+          if (video.paused) {
+            pauseAll(card);
+            video.play().then(function () {
+              card.classList.add('is-playing');
+            }).catch(function () { });
+            return;
+          }
+          video.pause();
+          card.classList.remove('is-playing');
+        });
 
-                card.addEventListener('mouseleave', function () {
-                    if (window.innerWidth > 640 && !video.paused) {
-                        video.pause();
-                        card.classList.remove('is-playing');
-                    }
-                });
-            });
+        card.addEventListener('mouseenter', function () {
+          if (window.innerWidth <= 640 || !video.paused) return;
+          pauseAll(card);
+          video.play().then(function () {
+            card.classList.add('is-playing');
+          }).catch(function () { });
+        });
 
-            // Optional: Pause videos when they scroll out of view on mobile
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (!entry.isIntersecting) {
-                            var v = entry.target.querySelector('video');
-                            if (v) {
-                                v.pause();
-                                entry.target.classList.remove('is-playing');
-                            }
-                        }
-                    });
-                }, { threshold: 0.5 });
+        card.addEventListener('mouseleave', function () {
+          if (window.innerWidth <= 640 || video.paused) return;
+          video.pause();
+          card.classList.remove('is-playing');
+        });
+      });
 
-                cards.forEach(function (card) { observer.observe(card); });
-            }
-        })();
-    </script>
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) return;
+            var v = entry.target.querySelector('video');
+            if (!v) return;
+            v.pause();
+            entry.target.classList.remove('is-playing');
+          });
+        }, { threshold: 0.5 });
+
+        cards.forEach(function (card) { observer.observe(card); });
+      }
+    })();
+  </script>
 </section>

@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+
+<section id="vsc-bento" aria-labelledby="vsc-bento-title">
+  <style>
+    #vsc-bento, #vsc-bento * { box-sizing: border-box; }
+    #vsc-bento { padding: var(--space-section-y) var(--space-page-x); background: var(--color-background); color: var(--color-on-surface); font-family: var(--font-sans); }
+    #vsc-bento .wrap { max-width: var(--container-max-width); margin: 0 auto; }
+    #vsc-bento .head { margin-bottom: var(--space-lg); }
+    #vsc-bento h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.4rem); }
+    #vsc-bento p { margin: var(--space-xs) 0 0; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); }
+    #vsc-bento .grid { display: grid; gap: var(--space-sm); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: 900px) { #vsc-bento .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } #vsc-bento .feat { grid-column: span 2; grid-row: span 2; } }
+    #vsc-bento .card { border: 1px solid var(--color-outline); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface-container); }
+    #vsc-bento .media { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; background: #000; }
+    #vsc-bento .feat .media { aspect-ratio: 4/5; }
+    #vsc-bento .body { padding: var(--space-sm); display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); }
+    #vsc-bento .tag { font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--color-primary); font-weight: var(--font-weight-bold); }
+  </style>
+  <div class="wrap">
+    <header class="head">
+      <h2 id="vsc-bento-title">Bento video showcase</h2>
+      <p>Mixed-size layout to emphasize hero clips and supporting shorts.</p>
+    </header>
+    <div class="grid">
+      <article class="card feat"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/503079994_554460557734015_5869296644913052603_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/3b59093e6cfb4e6398a560e226fdf6d0/3b59093e6cfb4e6398a560e226fdf6d0.HD-1080p-2.5Mbps-53365487.mp4" type="video/mp4"></video><div class="body"><span class="tag">Featured</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4" type="video/mp4"></video><div class="body"><span>Glow</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4" type="video/mp4"></video><div class="body"><span>Routine</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4" type="video/mp4"></video><div class="body"><span>Story</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/502769666_18505277539006394_1291801384940855221_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/ba935dc6e1614b588cf3973a6e9c1c34/ba935dc6e1614b588cf3973a6e9c1c34.HD-1080p-2.5Mbps-53365482.mp4" type="video/mp4"></video><div class="body"><span>Review</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+    </div>
+  </div>
+</section>

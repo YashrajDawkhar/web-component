@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+
+<section id="vsc-carousel" aria-labelledby="vsc-carousel-title">
+  <style>
+    #vsc-carousel, #vsc-carousel * { box-sizing: border-box; }
+    #vsc-carousel { padding: var(--space-section-y) var(--space-page-x); background: var(--color-background); color: var(--color-on-surface); font-family: var(--font-sans); }
+    #vsc-carousel .wrap { max-width: var(--container-max-width); margin: 0 auto; }
+    #vsc-carousel .head { display: flex; justify-content: space-between; gap: var(--space-md); margin-bottom: var(--space-md); border-bottom: 1px solid var(--color-outline); padding-bottom: var(--space-md); }
+    #vsc-carousel h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.02em; }
+    #vsc-carousel .rail { display: flex; gap: var(--space-sm); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    #vsc-carousel .rail::-webkit-scrollbar { display: none; }
+    #vsc-carousel .card { flex: 0 0 min(72vw, 360px); scroll-snap-align: start; border: 1px solid var(--color-outline); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface-container); }
+    #vsc-carousel .media { aspect-ratio: 9/16; display: block; width: 100%; object-fit: cover; background: #000; }
+    #vsc-carousel .body { padding: var(--space-sm); display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); }
+    #vsc-carousel .title { font-size: .8125rem; color: var(--color-on-surface-variant); }
+    #vsc-carousel .btn { border: 1px solid var(--color-outline); border-radius: var(--radius-full); background: transparent; color: var(--color-on-surface); min-width: 2rem; height: 2rem; cursor: pointer; }
+    #vsc-carousel .btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  </style>
+  <div class="wrap">
+    <header class="head">
+      <h2 id="vsc-carousel-title">Video carousel</h2>
+      <div>
+        <button class="btn" id="vsc-prev" aria-label="Previous">‹</button>
+        <button class="btn" id="vsc-next" aria-label="Next">›</button>
+      </div>
+    </header>
+    <div class="rail" id="vsc-rail">
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4" type="video/mp4"></video><div class="body"><span class="title">Glow routine</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4" type="video/mp4"></video><div class="body"><span class="title">Before/after</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4" type="video/mp4"></video><div class="body"><span class="title">Daily essentials</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+      <article class="card"><video class="media" muted loop playsinline poster="https://www.mywelme.com/cdn/shop/files/481350845_18058039202067012_1867895927660531913_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/38aa4c866e8a477caec6f5e0a84941be/38aa4c866e8a477caec6f5e0a84941be.SD-480p-0.9Mbps-53365485.mp4" type="video/mp4"></video><div class="body"><span class="title">Customer proof</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop</a></div></article>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var rail = document.getElementById('vsc-rail');
+      var prev = document.getElementById('vsc-prev');
+      var next = document.getElementById('vsc-next');
+      function step(dir) { rail.scrollBy({ left: dir * Math.min(360, rail.clientWidth * 0.8), behavior: 'smooth' }); }
+      prev.addEventListener('click', function () { step(-1); });
+      next.addEventListener('click', function () { step(1); });
+    })();
+  </script>
+</section>

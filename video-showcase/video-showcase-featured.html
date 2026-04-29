@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+
+<section id="vsc-featured" aria-labelledby="vsc-featured-title">
+  <style>
+    #vsc-featured, #vsc-featured * { box-sizing: border-box; }
+    #vsc-featured { padding: var(--space-section-y) var(--space-page-x); background: var(--color-background); color: var(--color-on-surface); font-family: var(--font-sans); }
+    #vsc-featured .wrap { max-width: var(--container-max-width); margin: 0 auto; display: grid; gap: var(--space-md); }
+    @media (min-width: 960px) { #vsc-featured .wrap { grid-template-columns: minmax(0, 1.35fr) minmax(0, .85fr); } }
+    #vsc-featured .hero { border: 1px solid var(--color-outline); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface-container); }
+    #vsc-featured video { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; background: #000; }
+    #vsc-featured .hero-body { padding: var(--space-md); }
+    #vsc-featured h2 { margin: 0 0 var(--space-xs); font-size: clamp(1.4rem, 2.6vw, 2rem); }
+    #vsc-featured p { margin: 0; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); }
+    #vsc-featured .list { border: 1px solid var(--color-outline); border-radius: var(--radius-lg); background: var(--color-surface-container); padding: var(--space-sm); display: grid; gap: var(--space-xs); }
+    #vsc-featured .item { width: 100%; border: 1px solid var(--color-outline); background: var(--color-background); color: inherit; border-radius: var(--radius-md); padding: var(--space-xs); display: grid; grid-template-columns: 72px 1fr; gap: var(--space-sm); align-items: center; cursor: pointer; text-align: left; }
+    #vsc-featured .item img { width: 72px; aspect-ratio: 9/16; object-fit: cover; border-radius: var(--radius-sm); }
+    #vsc-featured .item strong { display: block; font-size: .8125rem; }
+    #vsc-featured .item span { font-size: .75rem; color: var(--color-on-surface-variant); }
+  </style>
+  <div class="wrap">
+    <article class="hero">
+      <video id="vsc-featured-player" controls playsinline poster="https://www.mywelme.com/cdn/shop/files/503079994_554460557734015_5869296644913052603_n.jpg">
+        <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/3b59093e6cfb4e6398a560e226fdf6d0/3b59093e6cfb4e6398a560e226fdf6d0.HD-1080p-2.5Mbps-53365487.mp4" type="video/mp4">
+      </video>
+      <div class="hero-body">
+        <h2 id="vsc-featured-title">Featured video + playlist</h2>
+        <p>Use this when one hero video needs context while secondary clips remain one click away.</p>
+      </div>
+    </article>
+    <aside class="list" id="vsc-featured-list">
+      <button class="item" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4"><img src="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg" alt=""><span><strong>Glow routine</strong><span>45 sec</span></span></button>
+      <button class="item" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4"><img src="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg" alt=""><span><strong>Before / after</strong><span>32 sec</span></span></button>
+      <button class="item" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4"><img src="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg" alt=""><span><strong>How to apply</strong><span>38 sec</span></span></button>
+      <button class="item" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4"><img src="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg" alt=""><span><strong>Customer story</strong><span>29 sec</span></span></button>
+    </aside>
+  </div>
+  <script>
+    (function () {
+      var list = document.getElementById('vsc-featured-list');
+      var player = document.getElementById('vsc-featured-player');
+      list.addEventListener('click', function (e) {
+        var item = e.target.closest('.item');
+        if (!item) return;
+        var src = item.getAttribute('data-src');
+        if (!src) return;
+        player.pause();
+        player.src = src;
+        player.play().catch(function () {});
+      });
+    })();
+  </script>
+</section>

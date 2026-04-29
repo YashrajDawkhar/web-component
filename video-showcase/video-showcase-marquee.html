@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+
+<section id="vsc-marquee" aria-labelledby="vsc-marquee-title">
+  <style>
+    #vsc-marquee, #vsc-marquee * { box-sizing: border-box; }
+    #vsc-marquee { padding: var(--space-section-y) 0; background: var(--color-background); color: var(--color-on-surface); font-family: var(--font-sans); overflow: hidden; }
+    #vsc-marquee .head { max-width: var(--container-max-width); margin: 0 auto var(--space-md); padding: 0 var(--space-page-x); }
+    #vsc-marquee h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.3rem); }
+    #vsc-marquee p { margin: var(--space-xs) 0 0; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); }
+    #vsc-marquee .lane { display: flex; gap: var(--space-sm); width: max-content; animation: vsc-scroll 26s linear infinite; padding-bottom: var(--space-sm); }
+    #vsc-marquee .lane.reverse { animation-direction: reverse; animation-duration: 32s; }
+    #vsc-marquee .track { overflow: hidden; }
+    #vsc-marquee .card { width: 190px; border: 1px solid var(--color-outline); border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface-container); }
+    #vsc-marquee video { width: 100%; aspect-ratio: 9/16; object-fit: cover; background: #000; display: block; }
+    @keyframes vsc-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { #vsc-marquee .lane { animation: none; } }
+  </style>
+  <div class="head">
+    <h2 id="vsc-marquee-title">Continuous video wall</h2>
+    <p>Best for social-proof strips or UGC-heavy landing pages.</p>
+  </div>
+  <div class="track">
+    <div class="lane">
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4" type="video/mp4"></video></article>
+    </div>
+  </div>
+  <div class="track">
+    <div class="lane reverse">
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/503079994_554460557734015_5869296644913052603_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/3b59093e6cfb4e6398a560e226fdf6d0/3b59093e6cfb4e6398a560e226fdf6d0.HD-1080p-2.5Mbps-53365487.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/481350845_18058039202067012_1867895927660531913_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/38aa4c866e8a477caec6f5e0a84941be/38aa4c866e8a477caec6f5e0a84941be.SD-480p-0.9Mbps-53365485.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/502769666_18505277539006394_1291801384940855221_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/ba935dc6e1614b588cf3973a6e9c1c34/ba935dc6e1614b588cf3973a6e9c1c34.HD-1080p-2.5Mbps-53365482.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/503079994_554460557734015_5869296644913052603_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/3b59093e6cfb4e6398a560e226fdf6d0/3b59093e6cfb4e6398a560e226fdf6d0.HD-1080p-2.5Mbps-53365487.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/481350845_18058039202067012_1867895927660531913_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/38aa4c866e8a477caec6f5e0a84941be/38aa4c866e8a477caec6f5e0a84941be.SD-480p-0.9Mbps-53365485.mp4" type="video/mp4"></video></article>
+      <article class="card"><video muted loop autoplay playsinline poster="https://www.mywelme.com/cdn/shop/files/502769666_18505277539006394_1291801384940855221_n.jpg"><source src="https://www.mywelme.com/cdn/shop/videos/c/vp/ba935dc6e1614b588cf3973a6e9c1c34/ba935dc6e1614b588cf3973a6e9c1c34.HD-1080p-2.5Mbps-53365482.mp4" type="video/mp4"></video></article>
+    </div>
+  </div>
+</section>

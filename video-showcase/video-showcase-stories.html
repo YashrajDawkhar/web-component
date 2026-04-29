@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+
+<section id="vsc-stories" aria-labelledby="vsc-stories-title">
+  <style>
+    #vsc-stories, #vsc-stories * { box-sizing: border-box; }
+    #vsc-stories { padding: var(--space-section-y) var(--space-page-x); background: var(--color-background); color: var(--color-on-surface); font-family: var(--font-sans); }
+    #vsc-stories .wrap { max-width: 900px; margin: 0 auto; }
+    #vsc-stories h2 { margin: 0 0 var(--space-md); font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    #vsc-stories .stories { display: flex; gap: var(--space-sm); overflow-x: auto; padding-bottom: var(--space-sm); }
+    #vsc-stories .story { border: 0; background: transparent; color: inherit; display: grid; gap: 6px; justify-items: center; cursor: pointer; }
+    #vsc-stories .ring { width: 68px; height: 68px; padding: 2px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); }
+    #vsc-stories .ring img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; border: 2px solid var(--color-background); display: block; }
+    #vsc-stories .story span { font-size: .75rem; color: var(--color-on-surface-variant); }
+    #vsc-stories .player { margin-top: var(--space-md); border: 1px solid var(--color-outline); border-radius: var(--radius-lg); overflow: hidden; background: #000; }
+    #vsc-stories video { width: 100%; aspect-ratio: 9/16; max-height: 70vh; object-fit: cover; display: block; margin: 0 auto; }
+    #vsc-stories .foot { padding: var(--space-sm); display: flex; justify-content: space-between; align-items: center; background: var(--color-surface-container); }
+  </style>
+  <div class="wrap">
+    <h2 id="vsc-stories-title">Stories showcase</h2>
+    <div class="stories" id="vsc-stories-nav">
+      <button class="story" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4"><span class="ring"><img src="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg" alt=""></span><span>Glow</span></button>
+      <button class="story" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4"><span class="ring"><img src="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg" alt=""></span><span>Proof</span></button>
+      <button class="story" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4"><span class="ring"><img src="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg" alt=""></span><span>Use</span></button>
+      <button class="story" data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4"><span class="ring"><img src="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg" alt=""></span><span>After</span></button>
+    </div>
+    <div class="player">
+      <video id="vsc-stories-player" controls playsinline poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg">
+        <source src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4" type="video/mp4">
+      </video>
+      <div class="foot"><span>Tap stories to switch clips</span><a href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop now</a></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var nav = document.getElementById('vsc-stories-nav');
+      var player = document.getElementById('vsc-stories-player');
+      nav.addEventListener('click', function (e) {
+        var btn = e.target.closest('.story');
+        if (!btn) return;
+        var src = btn.getAttribute('data-src');
+        if (!src) return;
+        player.pause();
+        player.src = src;
+        player.play().catch(function () {});
+      });
+    })();
+  </script>
+</section>

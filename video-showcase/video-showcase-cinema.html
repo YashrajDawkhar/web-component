@@ -1,0 +1,723 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+
+<section id="vsc-cinema" aria-labelledby="vsc-cinema-title">
+  <style>
+    #vsc-cinema,
+    #vsc-cinema *,
+    #vsc-cinema *::before,
+    #vsc-cinema *::after { box-sizing: border-box; }
+
+    #vsc-cinema {
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #vsc-cinema .wrap {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+    }
+
+    #vsc-cinema .head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-outline);
+      margin-bottom: var(--space-lg);
+    }
+
+    #vsc-cinema .eyebrow {
+      margin: 0 0 var(--space-xs);
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    #vsc-cinema-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+      letter-spacing: -0.02em;
+      color: var(--color-on-background);
+    }
+
+    #vsc-cinema .sub {
+      margin: var(--space-xs) 0 0;
+      max-width: 54ch;
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #vsc-cinema .meta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 0.75rem;
+      color: var(--color-on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+
+    #vsc-cinema .meta strong {
+      color: var(--color-on-surface);
+      font-weight: var(--font-weight-bold);
+    }
+
+    /* ---------- Grid ---------- */
+    #vsc-cinema .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+
+    @media (min-width: 720px) {
+      #vsc-cinema .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-md); }
+    }
+    @media (min-width: 1024px) {
+      #vsc-cinema .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    #vsc-cinema .card {
+      position: relative;
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-container);
+      overflow: hidden;
+      transition: border-color var(--duration-medium) var(--ease-standard), transform var(--duration-medium) var(--ease-standard);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @media (hover: hover) {
+      #vsc-cinema .card:hover {
+        border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-outline));
+        transform: translateY(-2px);
+      }
+    }
+
+    #vsc-cinema .poster {
+      aspect-ratio: 9 / 16;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #vsc-cinema .poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.92;
+      transform: scale(1.01);
+      transition: transform 700ms var(--ease-standard), opacity var(--duration-medium) var(--ease-standard);
+    }
+
+    @media (hover: hover) {
+      #vsc-cinema .card:hover .poster img { transform: scale(1.06); opacity: 0.98; }
+    }
+
+    #vsc-cinema .poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.58), rgba(0,0,0,.05) 56%, rgba(0,0,0,.35));
+      pointer-events: none;
+    }
+
+    #vsc-cinema .chip {
+      position: absolute;
+      top: var(--space-sm);
+      left: var(--space-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid color-mix(in srgb, var(--color-outline) 65%, transparent);
+      background: color-mix(in srgb, var(--color-background) 72%, transparent);
+      backdrop-filter: blur(8px);
+      color: var(--color-on-surface);
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: var(--font-weight-bold);
+      z-index: 2;
+    }
+
+    #vsc-cinema .chip svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    #vsc-cinema .play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    #vsc-cinema .play .btn {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: var(--radius-full);
+      border: 1px solid color-mix(in srgb, var(--color-outline) 70%, transparent);
+      background: color-mix(in srgb, var(--color-background) 80%, transparent);
+      backdrop-filter: blur(8px);
+      color: var(--color-on-surface);
+      box-shadow: var(--shadow-md);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(1);
+      transition: transform var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard), border-color var(--duration-medium) var(--ease-standard);
+    }
+
+    #vsc-cinema .play .btn svg { width: 18px; height: 18px; fill: currentColor; margin-left: 2px; }
+
+    @media (hover: hover) {
+      #vsc-cinema .card:hover .play .btn {
+        transform: scale(1.06);
+        color: var(--color-primary);
+        border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-outline));
+      }
+    }
+
+    #vsc-cinema .body {
+      padding: var(--space-sm);
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    #vsc-cinema .t {
+      min-width: 0;
+      display: grid;
+      gap: 2px;
+    }
+
+    #vsc-cinema .name {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      color: var(--color-on-surface);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #vsc-cinema .desc {
+      margin: 0;
+      font-size: 0.75rem;
+      color: var(--color-on-surface-variant);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #vsc-cinema .tag {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-outline);
+      color: var(--color-on-surface-variant);
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+      background: var(--color-surface-container-low);
+    }
+
+    /* ---------- Modal ---------- */
+    #vsc-cinema .modal[hidden] { display: none; }
+
+    #vsc-cinema .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    #vsc-cinema .scrim {
+      position: absolute;
+      inset: 0;
+      background: var(--color-scrim);
+    }
+
+    #vsc-cinema .dialog {
+      position: relative;
+      width: min(960px, calc(100vw - 40px));
+      background: var(--color-background);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    #vsc-cinema .dialog-head {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--color-outline);
+      background: var(--color-surface-container-low);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    #vsc-cinema .dialog-title {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      color: var(--color-on-background);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #vsc-cinema .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--color-on-surface-variant);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--duration-medium) var(--ease-standard), border-color var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard);
+    }
+
+    #vsc-cinema .icon-btn:hover {
+      background: var(--color-surface-container);
+      border-color: var(--color-outline);
+      color: var(--color-on-surface);
+    }
+
+    #vsc-cinema .icon-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    #vsc-cinema .stage {
+      background: #000;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    #vsc-cinema video.player {
+      width: 100%;
+      max-height: min(70vh, 640px);
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      display: block;
+      background: #000;
+    }
+
+    #vsc-cinema .controls {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      padding: 10px 10px 8px;
+      border-radius: var(--radius-lg);
+      border: 1px solid color-mix(in srgb, var(--color-outline) 65%, transparent);
+      background: color-mix(in srgb, var(--color-background) 70%, transparent);
+      backdrop-filter: blur(10px);
+      display: grid;
+      gap: 8px;
+    }
+
+    #vsc-cinema .bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #vsc-cinema .time {
+      font-size: 0.6875rem;
+      color: var(--color-on-surface-variant);
+      font-variant-numeric: tabular-nums;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    #vsc-cinema .range {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 10px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    #vsc-cinema .range:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 3px;
+    }
+
+    #vsc-cinema .track {
+      height: 2px;
+      background: color-mix(in srgb, var(--color-outline) 80%, transparent);
+      border-radius: 999px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #vsc-cinema .fill {
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      background: var(--color-primary);
+    }
+
+    #vsc-cinema .kbd {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 0.6875rem;
+      color: var(--color-on-surface-variant);
+      margin-top: 6px;
+    }
+
+    #vsc-cinema .kbd kbd {
+      border: 1px solid var(--color-outline);
+      background: var(--color-surface-container-low);
+      border-radius: 6px;
+      padding: 2px 6px;
+      font: inherit;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-on-surface);
+    }
+
+    #vsc-cinema .modal-actions {
+      padding: 12px 14px;
+      border-top: 1px solid var(--color-outline);
+      background: var(--color-surface-container-low);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    #vsc-cinema .a {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      color: var(--color-on-surface);
+      font-weight: var(--font-weight-medium);
+      border-bottom: 1px solid var(--color-outline);
+      transition: border-color var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard);
+    }
+
+    #vsc-cinema .a:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+    #vsc-cinema .nav {
+      display: inline-flex;
+      gap: 6px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #vsc-cinema * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+
+  <div class="wrap">
+    <header class="head">
+      <div>
+        <p class="eyebrow">Cinema mode</p>
+        <h2 id="vsc-cinema-title">Video gallery with themed player</h2>
+        <p class="sub">No “custom editor” UI — just a clean, token-driven player that feels native to your design system. Click a card, then use Space / ← / →.</p>
+      </div>
+      <div class="meta"><span><strong id="vsc-cinema-count">0</strong> clips</span></div>
+    </header>
+
+    <div class="grid" id="vsc-cinema-grid">
+      <article class="card" data-name="Glow routine" data-desc="Fast morning routine" data-tag="45s"
+        data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/0a47503fb2b6444bb84fc5d990f16865/0a47503fb2b6444bb84fc5d990f16865.SD-480p-0.9Mbps-62445915.mp4"
+        data-poster="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg"
+        data-link="https://www.mywelme.com/">
+        <div class="poster">
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/></svg>Routine</span>
+          <div class="play"><span class="btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          <img alt="" src="https://www.mywelme.com/cdn/shop/files/466784291_17988981368740692_830655821743188361_n.jpg" loading="lazy">
+        </div>
+        <div class="body">
+          <div class="t"><p class="name">Glow routine</p><p class="desc">Fast morning routine</p></div>
+          <span class="tag">45s</span>
+        </div>
+      </article>
+
+      <article class="card" data-name="Before / after" data-desc="Real customer results" data-tag="32s"
+        data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/bda979cc9e614ea3b6bf4a0532ca4dd2/bda979cc9e614ea3b6bf4a0532ca4dd2.SD-480p-0.9Mbps-62445916.mp4"
+        data-poster="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg"
+        data-link="https://www.mywelme.com/">
+        <div class="poster">
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v9h-9"/></svg>Results</span>
+          <div class="play"><span class="btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          <img alt="" src="https://www.mywelme.com/cdn/shop/files/503491142_1475626990484241_4406624121032325084_n.jpg" loading="lazy">
+        </div>
+        <div class="body">
+          <div class="t"><p class="name">Before / after</p><p class="desc">Real customer results</p></div>
+          <span class="tag">32s</span>
+        </div>
+      </article>
+
+      <article class="card" data-name="How to apply" data-desc="Quick demo clip" data-tag="38s"
+        data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/8427884821094b26adc1fcb8d9513b2f/8427884821094b26adc1fcb8d9513b2f.SD-480p-0.9Mbps-53365488.mp4"
+        data-poster="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg"
+        data-link="https://www.mywelme.com/">
+        <div class="poster">
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M3 12h7l3 8 4-16 3 8h1"/></svg>Demo</span>
+          <div class="play"><span class="btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          <img alt="" src="https://www.mywelme.com/cdn/shop/files/502968104_1061825752536212_7690913548659915629_n.jpg" loading="lazy">
+        </div>
+        <div class="body">
+          <div class="t"><p class="name">How to apply</p><p class="desc">Quick demo clip</p></div>
+          <span class="tag">38s</span>
+        </div>
+      </article>
+
+      <article class="card" data-name="Customer story" data-desc="Unfiltered reactions" data-tag="29s"
+        data-src="https://www.mywelme.com/cdn/shop/videos/c/vp/9b0594d03ba4463bb47ba4bbfe495684/9b0594d03ba4463bb47ba4bbfe495684.HD-1080p-2.5Mbps-53365484.mp4"
+        data-poster="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg"
+        data-link="https://www.mywelme.com/">
+        <div class="poster">
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>UGC</span>
+          <div class="play"><span class="btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+          <img alt="" src="https://www.mywelme.com/cdn/shop/files/492136897_1176329220462217_4004568769803341659_n.jpg" loading="lazy">
+        </div>
+        <div class="body">
+          <div class="t"><p class="name">Customer story</p><p class="desc">Unfiltered reactions</p></div>
+          <span class="tag">29s</span>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="modal" id="vsc-cinema-modal" hidden>
+    <div class="scrim" data-close></div>
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="vsc-cinema-modal-title">
+      <div class="dialog-head">
+        <p class="dialog-title" id="vsc-cinema-modal-title">Playing…</p>
+        <div style="display:flex;gap:6px;align-items:center">
+          <button type="button" class="icon-btn" id="vsc-cinema-prev" aria-label="Previous clip">
+            <svg viewBox="0 0 24 24"><path d="M15 18 9 12l6-6"/></svg>
+          </button>
+          <button type="button" class="icon-btn" id="vsc-cinema-next" aria-label="Next clip">
+            <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button type="button" class="icon-btn" id="vsc-cinema-close" aria-label="Close">
+            <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="stage">
+        <video class="player" id="vsc-cinema-player" playsinline></video>
+        <div class="controls" aria-label="Video controls">
+          <div class="track" aria-hidden="true"><span class="fill" id="vsc-cinema-fill"></span></div>
+          <input class="range" id="vsc-cinema-range" type="range" min="0" max="1000" value="0" aria-label="Seek">
+          <div class="bar">
+            <button type="button" class="icon-btn" id="vsc-cinema-toggle" aria-label="Play / pause">
+              <svg viewBox="0 0 24 24" id="vsc-cinema-ico"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button type="button" class="icon-btn" id="vsc-cinema-mute" aria-label="Mute / unmute">
+              <svg viewBox="0 0 24 24" id="vsc-cinema-mute-ico"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg>
+            </button>
+            <span class="time" id="vsc-cinema-time">0:00 / 0:00</span>
+          </div>
+          <div class="kbd" aria-hidden="true"><span>Tips:</span><kbd>Space</kbd><span>play</span><kbd>←</kbd><span>back</span><kbd>→</kbd><span>forward</span><kbd>Esc</kbd><span>close</span></div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <a class="a" id="vsc-cinema-link" href="https://www.mywelme.com/" target="_blank" rel="noopener">Shop this clip</a>
+        <div class="nav">
+          <button type="button" class="icon-btn" id="vsc-cinema-replay" aria-label="Replay">
+            <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('vsc-cinema');
+      if (!root) return;
+
+      var grid = root.querySelector('#vsc-cinema-grid');
+      var cards = Array.prototype.slice.call(root.querySelectorAll('.card'));
+      var countEl = root.querySelector('#vsc-cinema-count');
+      if (countEl) countEl.textContent = String(cards.length);
+
+      var modal = document.getElementById('vsc-cinema-modal');
+      var title = document.getElementById('vsc-cinema-modal-title');
+      var player = document.getElementById('vsc-cinema-player');
+      var range = document.getElementById('vsc-cinema-range');
+      var fill = document.getElementById('vsc-cinema-fill');
+      var time = document.getElementById('vsc-cinema-time');
+      var btnToggle = document.getElementById('vsc-cinema-toggle');
+      var btnMute = document.getElementById('vsc-cinema-mute');
+      var icoPlay = document.getElementById('vsc-cinema-ico');
+      var icoMute = document.getElementById('vsc-cinema-mute-ico');
+      var btnClose = document.getElementById('vsc-cinema-close');
+      var btnPrev = document.getElementById('vsc-cinema-prev');
+      var btnNext = document.getElementById('vsc-cinema-next');
+      var btnReplay = document.getElementById('vsc-cinema-replay');
+      var link = document.getElementById('vsc-cinema-link');
+
+      var active = 0;
+      var seeking = false;
+
+      function pad2(n) { return n < 10 ? '0' + n : String(n); }
+      function fmt(sec) {
+        sec = Math.max(0, sec || 0);
+        var m = Math.floor(sec / 60);
+        var s = Math.floor(sec % 60);
+        return m + ':' + pad2(s);
+      }
+
+      function setIconPlay(paused) {
+        icoPlay.innerHTML = paused ? '<path d=\"M8 5v14l11-7z\"/>' : '<path d=\"M7 6h3v12H7z\"/><path d=\"M14 6h3v12h-3z\"/>';
+      }
+
+      function setIconMute(muted) {
+        icoMute.innerHTML = muted
+          ? '<path d=\"M11 5 6 9H2v6h4l5 4V5z\"/><path d=\"M23 9l-6 6\"/><path d=\"M17 9l6 6\"/>'
+          : '<path d=\"M11 5 6 9H2v6h4l5 4V5z\"/><path d=\"M15.5 8.5a4 4 0 0 1 0 7\"/><path d=\"M18.5 5.5a8 8 0 0 1 0 13\"/>';
+      }
+
+      function openAt(idx) {
+        active = (idx + cards.length) % cards.length;
+        var c = cards[active];
+        var name = c.getAttribute('data-name') || 'Playing…';
+        var src = c.getAttribute('data-src') || '';
+        var poster = c.getAttribute('data-poster') || '';
+        var href = c.getAttribute('data-link') || 'https://www.mywelme.com/';
+
+        title.textContent = name;
+        link.href = href;
+
+        player.pause();
+        player.removeAttribute('src');
+        player.load();
+        player.src = src;
+        if (poster) player.poster = poster;
+        player.muted = true;
+        setIconMute(true);
+        setIconPlay(true);
+        range.value = '0';
+        fill.style.width = '0%';
+        time.textContent = '0:00 / 0:00';
+
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        player.play().then(function () { setIconPlay(false); }).catch(function () {});
+      }
+
+      function close() {
+        player.pause();
+        modal.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      function togglePlay() {
+        if (player.paused) {
+          player.play().then(function () { setIconPlay(false); }).catch(function () {});
+        } else {
+          player.pause();
+          setIconPlay(true);
+        }
+      }
+
+      function toggleMute() {
+        player.muted = !player.muted;
+        setIconMute(player.muted);
+      }
+
+      function seekTo(pct) {
+        if (!player.duration || !Number.isFinite(player.duration)) return;
+        var t = Math.max(0, Math.min(1, pct)) * player.duration;
+        player.currentTime = t;
+      }
+
+      // Grid click
+      grid.addEventListener('click', function (e) {
+        var card = e.target.closest('.card');
+        if (!card) return;
+        var idx = cards.indexOf(card);
+        if (idx === -1) return;
+        openAt(idx);
+      });
+
+      // Close handlers
+      modal.addEventListener('click', function (e) {
+        if (e.target && e.target.hasAttribute('data-close')) close();
+      });
+      btnClose.addEventListener('click', close);
+
+      btnPrev.addEventListener('click', function () { openAt(active - 1); });
+      btnNext.addEventListener('click', function () { openAt(active + 1); });
+      btnReplay.addEventListener('click', function () { player.currentTime = 0; player.play().catch(function () {}); });
+
+      btnToggle.addEventListener('click', togglePlay);
+      btnMute.addEventListener('click', toggleMute);
+
+      // Time / progress
+      player.addEventListener('loadedmetadata', function () {
+        time.textContent = fmt(player.currentTime) + ' / ' + fmt(player.duration);
+      });
+
+      player.addEventListener('timeupdate', function () {
+        if (seeking) return;
+        var d = player.duration || 0;
+        var p = d ? (player.currentTime / d) : 0;
+        range.value = String(Math.round(p * 1000));
+        fill.style.width = (p * 100) + '%';
+        time.textContent = fmt(player.currentTime) + ' / ' + fmt(player.duration);
+      });
+
+      player.addEventListener('pause', function () { setIconPlay(true); });
+      player.addEventListener('play', function () { setIconPlay(false); });
+
+      range.addEventListener('input', function () {
+        seeking = true;
+        var p = parseInt(range.value, 10) / 1000;
+        fill.style.width = (p * 100) + '%';
+      });
+      range.addEventListener('change', function () {
+        var p = parseInt(range.value, 10) / 1000;
+        seekTo(p);
+        seeking = false;
+      });
+
+      // Keyboard shortcuts when modal is open
+      window.addEventListener('keydown', function (e) {
+        if (modal.hidden) return;
+        if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+        if (e.key === ' ' || e.code === 'Space') { e.preventDefault(); togglePlay(); return; }
+        if (e.key === 'ArrowRight') { e.preventDefault(); player.currentTime = Math.min((player.duration || 0), player.currentTime + 5); return; }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); player.currentTime = Math.max(0, player.currentTime - 5); return; }
+        if (e.key === 'ArrowUp') { e.preventDefault(); openAt(active - 1); return; }
+        if (e.key === 'ArrowDown') { e.preventDefault(); openAt(active + 1); return; }
+        if (e.key === 'm' || e.key === 'M') { e.preventDefault(); toggleMute(); return; }
+      });
+    })();
+  </script>
+</section>
