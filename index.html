@@ -10,38 +10,149 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap"
     rel="stylesheet" />
-
   <link rel="stylesheet" href="./base.css" />
+  <script>
+    (function () {
+      var saved = localStorage.getItem('hub-ui-theme') || 'light';
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-hub-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 
 <body>
   <header class="hub-top">
-    <div>
-      <h1>Web components</h1>
-      <p>Pick a component and layout. Serve this folder with a static server for the best iframe experience.</p>
+    <div class="hub-brand">
+      <span class="hub-brand-mark" aria-hidden="true">WC</span>
+      <span class="hub-brand-name">Web components</span>
+      <span class="hub-brand-meta" id="hub-total-count">—</span>
     </div>
+
+    <div class="hub-search-wrap">
+      <svg class="hub-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+      <input id="hub-search" class="hub-search" type="search" placeholder="Search components" autocomplete="off"
+        spellcheck="false" aria-label="Search components" />
+      <span class="hub-search-kbd" aria-hidden="true"><kbd id="hub-kbd">⌘</kbd><kbd>K</kbd></span>
+      <button type="button" class="hub-search-clear" id="hub-search-clear" aria-label="Clear search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true" width="12" height="12">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+
     <div class="hub-top-actions">
-      <label class="hub-theme-field" for="hub-theme">
-        Theme
-        <select id="hub-theme">
-          <option value="">Supabase</option>
-        </select>
-      </label>
-      <button type="button" class="hub-btn-full" id="hub-toggle-full" aria-pressed="false"
-        aria-label="Full screen preview">Full screen</button>
+      <button type="button" class="hub-icon-btn" id="hub-toggle-ui-theme" aria-label="Toggle dashboard theme"
+        title="Toggle dashboard theme">
+        <svg class="hub-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+        <svg class="hub-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+      <button type="button" class="hub-icon-btn" id="hub-toggle-full" aria-pressed="false"
+        aria-label="Toggle full screen preview" title="Full screen (F)">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 7V3h4M21 7V3h-4M3 17v4h4M21 17v4h-4" />
+        </svg>
+      </button>
     </div>
   </header>
+
   <div class="hub-layout">
     <nav class="hub-nav" aria-label="Component demos">
-      <ul class="hub-root" id="hub-root"></ul>
+      <div class="hub-nav-pad">
+        <ul class="hub-root" id="hub-root"></ul>
+        <div class="hub-empty" role="status">No components match your search.</div>
+      </div>
     </nav>
+
     <div class="hub-frame-wrap">
-      <div class="hub-frame-header" id="hub-current">Loading…</div>
-      <iframe class="hub-iframe" id="hub-iframe" title="Layout preview" src="collection/collection.html"></iframe>
+      <div class="hub-bar">
+        <div class="hub-crumbs" id="hub-crumbs">
+          <span class="hub-crumb-leaf">Loading…</span>
+        </div>
+        <div class="hub-bar-actions">
+          <label class="hub-theme-field" for="hub-theme" style="display:contents">
+            <select id="hub-theme" class="hub-theme-select" aria-label="Iframe theme">
+              <option value="">Supabase</option>
+            </select>
+          </label>
+          <span class="hub-bar-divider" aria-hidden="true"></span>
+          <div class="hub-vp-group" role="group" aria-label="Viewport size">
+            <button type="button" class="hub-vp-btn" data-vp="desktop" aria-pressed="true" aria-label="Desktop"
+              title="Desktop">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="13" rx="1.5" />
+                <path d="M8 21h8M12 17v4" />
+              </svg>
+            </button>
+            <button type="button" class="hub-vp-btn" data-vp="tablet" aria-pressed="false" aria-label="Tablet (768px)"
+              title="Tablet (768px)">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <path d="M11 18h2" />
+              </svg>
+            </button>
+            <button type="button" class="hub-vp-btn" data-vp="mobile" aria-pressed="false" aria-label="Mobile (390px)"
+              title="Mobile (390px)">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="7" y="2" width="10" height="20" rx="2" />
+                <path d="M11 18h2" />
+              </svg>
+            </button>
+          </div>
+          <span class="hub-bar-divider" aria-hidden="true"></span>
+          <button type="button" class="hub-icon-btn" id="hub-copy" aria-label="Copy link" title="Copy link">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+          </button>
+          <a class="hub-icon-btn" id="hub-open" target="_blank" rel="noopener" href="#" aria-label="Open in new tab"
+            title="Open in new tab">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hub-stage" id="hub-stage" data-vp="desktop">
+        <iframe class="hub-iframe" id="hub-iframe" title="Layout preview" src="collection/collection.html"></iframe>
+      </div>
+
+      <div class="hub-status">
+        <span class="hub-status-item"><span class="hub-status-dot" aria-hidden="true"></span><span id="hub-status-vp">Desktop</span></span>
+        <span class="hub-status-item">Theme: <strong id="hub-status-theme">Supabase</strong></span>
+        <span class="hub-status-spacer"></span>
+        <span class="hub-status-item"><span id="hub-status-count">—</span> components · ⌘K to search</span>
+      </div>
     </div>
   </div>
-  <button type="button" class="hub-exit-full" id="hub-exit-full" aria-label="Exit full screen preview">Exit full
-    screen</button>
+
+  <button type="button" class="hub-exit-full" id="hub-exit-full" aria-label="Exit full screen preview">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+    Exit full screen <kbd style="margin-left:4px">Esc</kbd>
+  </button>
+
+  <div class="hub-toast" id="hub-toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m5 12 5 5L20 7" />
+    </svg>
+    <span id="hub-toast-msg">Link copied</span>
+  </div>
+
   <script>
     (function () {
       var groups = [
@@ -70,30 +181,6 @@
           ]
         },
         {
-          id: 'hub-group-video',
-          title: 'Video showcase',
-          dir: 'video-showcase/',
-          demos: [
-            { file: 'video-showcase.html', label: 'Default' }
-          ]
-        },
-        {
-          id: 'hub-group-review',
-          title: 'Review',
-          dir: 'review/',
-          demos: [
-            { file: 'review.html', label: 'Default' }
-          ]
-        },
-        {
-          id: 'hub-group-chat',
-          title: 'Chat',
-          dir: 'chat/',
-          demos: [
-            { file: 'chat.html', label: 'Default' }
-          ]
-        },
-        {
           id: 'hub-group-faq',
           title: 'FAQ',
           dir: 'faq/',
@@ -116,46 +203,69 @@
             { file: 'faq-categories.html', label: 'Categories' },
             { file: 'faq-inline.html', label: 'Inline (SEO)' }
           ]
+        },
+        {
+          id: 'hub-group-review',
+          title: 'Review',
+          dir: 'review/',
+          demos: [{ file: 'review.html', label: 'Default' }]
+        },
+        {
+          id: 'hub-group-video',
+          title: 'Video showcase',
+          dir: 'video-showcase/',
+          demos: [{ file: 'video-showcase.html', label: 'Default' }]
+        },
+        {
+          id: 'hub-group-chat',
+          title: 'Chat',
+          dir: 'chat/',
+          demos: [{ file: 'chat.html', label: 'Default' }]
         }
       ];
+
       var defaultSrc = 'collection/collection.html';
       var themes = [
         { id: '', label: 'Supabase', href: '' },
-        {
-          id: 'crappy-presentations',
-          label: 'Crappy Presentations',
-          href: 'themes/crappy-presentations.css'
-        },
-        {
-          id: 'huey-light-shop',
-          label: 'Huey Light Shop',
-          href: 'themes/huey-light-shop.css'
-        },
-        {
-          id: 'maps-music',
-          label: 'Maps Music',
-          href: 'themes/maps-music.css'
-        },
-        {
-          id: 'rollups',
-          label: 'Rollups',
-          href: 'themes/rollups.css'
-        },
-        {
-          id: 'talgh',
-          label: 'Talgh',
-          href: 'themes/talgh.css'
-        },
-        {
-          id: 'ava-protocol',
-          label: 'Ava Protocol',
-          href: 'themes/ava-protocol.css'
-        }
+        { id: 'crappy-presentations', label: 'Crappy Presentations', href: 'themes/crappy-presentations.css' },
+        { id: 'huey-light-shop', label: 'Huey Light Shop', href: 'themes/huey-light-shop.css' },
+        { id: 'maps-music', label: 'Maps Music', href: 'themes/maps-music.css' },
+        { id: 'rollups', label: 'Rollups', href: 'themes/rollups.css' },
+        { id: 'talgh', label: 'Talgh', href: 'themes/talgh.css' },
+        { id: 'ava-protocol', label: 'Ava Protocol', href: 'themes/ava-protocol.css' }
       ];
-      var root = document.getElementById('hub-root');
-      var iframe = document.getElementById('hub-iframe');
-      var currentEl = document.getElementById('hub-current');
-      var themeSelect = document.getElementById('hub-theme');
+
+      var $ = function (id) { return document.getElementById(id); };
+
+      var root = $('hub-root');
+      var iframe = $('hub-iframe');
+      var stage = $('hub-stage');
+      var crumbs = $('hub-crumbs');
+      var themeSelect = $('hub-theme');
+      var searchInput = $('hub-search');
+      var searchClear = $('hub-search-clear');
+      var openLink = $('hub-open');
+      var copyBtn = $('hub-copy');
+      var totalCount = $('hub-total-count');
+      var statusVp = $('hub-status-vp');
+      var statusTheme = $('hub-status-theme');
+      var statusCount = $('hub-status-count');
+      var kbd = $('hub-kbd');
+      var toast = $('hub-toast');
+      var toastMsg = $('hub-toast-msg');
+      var btnFull = $('hub-toggle-full');
+      var btnExit = $('hub-exit-full');
+      var btnUiTheme = $('hub-toggle-ui-theme');
+      var body = document.body;
+
+      var isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+      if (kbd) { kbd.textContent = isMac ? '⌘' : 'Ctrl'; }
+
+      var totalDemos = 0;
+      groups.forEach(function (g) { totalDemos += g.demos.length; });
+      totalCount.textContent = totalDemos;
+      statusCount.textContent = totalDemos;
+
       var activeThemeId = localStorage.getItem('hub-theme') || '';
       if (activeThemeId === 'supabase') {
         activeThemeId = '';
@@ -163,29 +273,16 @@
       }
 
       function getActiveTheme() {
-        return themes.find(function (theme) {
-          return theme.id === activeThemeId;
-        }) || themes[0];
-      }
-
-      function themeHrefForIframe(theme) {
-        if (!theme.href) {
-          return '';
-        }
-        return '../' + theme.href;
+        return themes.find(function (t) { return t.id === activeThemeId; }) || themes[0];
       }
 
       function applyThemeToIframe() {
         var doc = iframe.contentDocument;
-        if (!doc || !doc.head) {
-          return;
-        }
+        if (!doc || !doc.head) return;
         var existing = doc.getElementById('hub-theme-override');
         var theme = getActiveTheme();
         if (!theme.href) {
-          if (existing) {
-            existing.remove();
-          }
+          if (existing) existing.remove();
           return;
         }
         if (!existing) {
@@ -194,43 +291,43 @@
           existing.rel = 'stylesheet';
           doc.head.appendChild(existing);
         }
-        existing.href = themeHrefForIframe(theme);
+        existing.href = '../' + theme.href;
       }
 
       function setTheme(themeId) {
         activeThemeId = themeId;
         localStorage.setItem('hub-theme', activeThemeId);
         applyThemeToIframe();
+        statusTheme.textContent = getActiveTheme().label;
       }
 
       function allSrcPaths() {
         var out = [];
-        groups.forEach(function (g) {
-          g.demos.forEach(function (d) {
-            out.push(g.dir + d.file);
-          });
-        });
+        groups.forEach(function (g) { g.demos.forEach(function (d) { out.push(g.dir + d.file); }); });
         return out;
       }
 
-      function isValidSrc(src) {
-        return allSrcPaths().indexOf(src) !== -1;
-      }
+      function isValidSrc(src) { return allSrcPaths().indexOf(src) !== -1; }
 
-      /** Old hub used hash #file only (e.g. #collection.html). Resolve to full path. */
       function resolveFromLegacyFilename(decoded) {
-        if (!decoded || decoded.indexOf('/') !== -1) {
-          return null;
-        }
+        if (!decoded || decoded.indexOf('/') !== -1) return null;
         var found = null;
         groups.forEach(function (g) {
           g.demos.forEach(function (d) {
-            if (d.file === decoded) {
-              found = g.dir + d.file;
-            }
+            if (d.file === decoded) found = g.dir + d.file;
           });
         });
         return found;
+      }
+
+      function findInfo(src) {
+        var info = null;
+        groups.forEach(function (g) {
+          g.demos.forEach(function (d) {
+            if (g.dir + d.file === src) info = { group: g, demo: d };
+          });
+        });
+        return info;
       }
 
       function setActive(src) {
@@ -238,91 +335,207 @@
           if (a.getAttribute('data-src') === src) {
             a.setAttribute('aria-current', 'true');
             var folder = a.closest('.hub-folder');
-            if (folder) {
-              folder.open = true;
-            }
+            if (folder) folder.open = true;
           } else {
             a.removeAttribute('aria-current');
           }
         });
-        currentEl.innerHTML = 'Showing <code>' + src + '</code>';
+
+        var info = findInfo(src);
+        if (info) {
+          crumbs.innerHTML = '';
+          var grp = document.createElement('span');
+          grp.className = 'hub-crumb-group';
+          grp.textContent = info.group.title;
+          var sep = document.createElement('span');
+          sep.className = 'hub-crumb-sep';
+          sep.setAttribute('aria-hidden', 'true');
+          sep.textContent = '/';
+          var leaf = document.createElement('span');
+          leaf.className = 'hub-crumb-leaf';
+          leaf.textContent = info.demo.label;
+          var path = document.createElement('span');
+          path.className = 'hub-crumb-path';
+          path.textContent = src;
+          crumbs.appendChild(grp);
+          crumbs.appendChild(sep);
+          crumbs.appendChild(leaf);
+          crumbs.appendChild(path);
+        }
+
+        openLink.href = src;
         iframe.src = src;
       }
 
+      // Theme select
       themes.forEach(function (theme) {
-        if (!theme.id) {
-          return;
-        }
+        if (!theme.id) return;
         var option = document.createElement('option');
         option.value = theme.id;
         option.textContent = theme.label;
         themeSelect.appendChild(option);
       });
-      if (!getActiveTheme().id) {
-        activeThemeId = '';
-      }
       themeSelect.value = activeThemeId;
-      themeSelect.addEventListener('change', function () {
-        setTheme(themeSelect.value);
-      });
+      statusTheme.textContent = getActiveTheme().label;
+      themeSelect.addEventListener('change', function () { setTheme(themeSelect.value); });
       iframe.addEventListener('load', applyThemeToIframe);
 
+      // Build sidebar
+      var allLinks = [];
       groups.forEach(function (g) {
         var section = document.createElement('li');
         section.className = 'hub-section';
+        section.setAttribute('data-group', g.title.toLowerCase());
+
         var details = document.createElement('details');
         details.className = 'hub-folder';
-        details.open = false;
+        details.open = (g.dir === 'collection/' || g.dir === 'faq/');
+
         var summary = document.createElement('summary');
         summary.className = 'hub-folder__summary';
         summary.id = g.id;
+
+        var caret = document.createElement('span');
+        caret.className = 'hub-caret';
+        caret.setAttribute('aria-hidden', 'true');
+        caret.innerHTML = '<svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>';
+
         var label = document.createElement('span');
-        label.className = 'hub-section-title hub-folder__label';
+        label.className = 'hub-folder__label';
         label.textContent = g.title;
+
+        var count = document.createElement('span');
+        count.className = 'hub-folder__count';
+        count.textContent = g.demos.length;
+
+        summary.appendChild(caret);
         summary.appendChild(label);
+        summary.appendChild(count);
+
         var list = document.createElement('ul');
         list.className = 'hub-list--nested';
         list.setAttribute('aria-labelledby', g.id);
+
         g.demos.forEach(function (d) {
           var src = g.dir + d.file;
           var li = document.createElement('li');
+          li.setAttribute('data-search', (g.title + ' ' + d.label + ' ' + d.file).toLowerCase());
           var a = document.createElement('a');
           a.href = '#' + encodeURIComponent(src);
           a.textContent = d.label;
           a.setAttribute('data-src', src);
+          a.setAttribute('data-label', d.label);
           a.addEventListener('click', function (e) {
             e.preventDefault();
             setActive(src);
-            if (history.replaceState) {
-              history.replaceState(null, '', '#' + encodeURIComponent(src));
-            }
+            if (history.replaceState) history.replaceState(null, '', '#' + encodeURIComponent(src));
           });
           li.appendChild(a);
           list.appendChild(li);
+          allLinks.push({ el: li, anchor: a, label: d.label, src: src });
         });
+
         details.appendChild(summary);
         details.appendChild(list);
         section.appendChild(details);
         root.appendChild(section);
       });
 
+      // Search
+      function escapeRegExp(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+      function escapeHtml(s) { return s.replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+
+      function applySearch(q) {
+        q = (q || '').trim().toLowerCase();
+        body.classList.toggle('hub--searching', q.length > 0);
+        var anyVisible = false;
+        var rx = q ? new RegExp('(' + escapeRegExp(q) + ')', 'gi') : null;
+
+        allLinks.forEach(function (item) {
+          var hay = item.el.getAttribute('data-search') || '';
+          var visible = !q || hay.indexOf(q) !== -1;
+          item.el.style.display = visible ? '' : 'none';
+          if (visible && rx) {
+            item.anchor.innerHTML = escapeHtml(item.label).replace(rx, '<mark>$1</mark>');
+          } else {
+            item.anchor.textContent = item.label;
+          }
+          if (visible) anyVisible = true;
+        });
+
+        // Hide groups with no visible demos
+        document.querySelectorAll('.hub-section').forEach(function (sec) {
+          var anyShown = false;
+          sec.querySelectorAll('.hub-list--nested li').forEach(function (li) {
+            if (li.style.display !== 'none') anyShown = true;
+          });
+          sec.style.display = anyShown ? '' : 'none';
+          if (q && anyShown) {
+            var det = sec.querySelector('.hub-folder');
+            if (det) det.open = true;
+          }
+        });
+
+        body.classList.toggle('hub--no-results', !anyVisible);
+      }
+
+      searchInput.addEventListener('input', function () { applySearch(searchInput.value); });
+      searchClear.addEventListener('click', function () {
+        searchInput.value = '';
+        applySearch('');
+        searchInput.focus();
+      });
+
+      // Keyboard nav inside results
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          var first = root.querySelector('.hub-list--nested li:not([style*="display: none"]) a');
+          if (first) {
+            e.preventDefault();
+            first.click();
+            searchInput.blur();
+          }
+        } else if (e.key === 'Escape') {
+          if (searchInput.value) {
+            searchInput.value = '';
+            applySearch('');
+          } else {
+            searchInput.blur();
+          }
+        } else if (e.key === 'ArrowDown') {
+          var first = root.querySelector('.hub-list--nested li:not([style*="display: none"]) a');
+          if (first) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      // Global ⌘K
+      window.addEventListener('keydown', function (e) {
+        var meta = isMac ? e.metaKey : e.ctrlKey;
+        if (meta && (e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        } else if (e.key === '/' && document.activeElement !== searchInput && !/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || '')) {
+          e.preventDefault();
+          searchInput.focus();
+        } else if (e.key === 'Escape' && body.classList.contains('hub--max')) {
+          setMax(false);
+        } else if ((e.key === 'f' || e.key === 'F') && !meta && !e.altKey && !e.shiftKey && document.activeElement !== searchInput && !/INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || '')) {
+          e.preventDefault();
+          setMax(!body.classList.contains('hub--max'));
+        }
+      });
+
+      // Hash routing
       function applyHash() {
         var h = (location.hash || '').replace(/^#/, '');
-        if (!h) {
-          setActive(defaultSrc);
-          return;
-        }
+        if (!h) { setActive(defaultSrc); return; }
         var decoded = decodeURIComponent(h);
-        if (isValidSrc(decoded)) {
-          setActive(decoded);
-          return;
-        }
+        if (isValidSrc(decoded)) { setActive(decoded); return; }
         var legacy = resolveFromLegacyFilename(decoded);
         if (legacy && isValidSrc(legacy)) {
           setActive(legacy);
-          if (history.replaceState) {
-            history.replaceState(null, '', '#' + encodeURIComponent(legacy));
-          }
+          if (history.replaceState) history.replaceState(null, '', '#' + encodeURIComponent(legacy));
           return;
         }
         setActive(defaultSrc);
@@ -331,25 +544,61 @@
       window.addEventListener('hashchange', applyHash);
       applyHash();
 
-      var body = document.body;
-      var btnFull = document.getElementById('hub-toggle-full');
-      var btnExit = document.getElementById('hub-exit-full');
+      // Viewport simulator
+      var vpLabels = { desktop: 'Desktop', tablet: 'Tablet · 768px', mobile: 'Mobile · 390px' };
+      document.querySelectorAll('.hub-vp-btn').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute('data-vp');
+          stage.setAttribute('data-vp', v);
+          document.querySelectorAll('.hub-vp-btn').forEach(function (x) {
+            x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+          });
+          statusVp.textContent = vpLabels[v] || v;
+        });
+      });
+
+      // Copy link
+      function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+      }
+
+      copyBtn.addEventListener('click', function () {
+        var url = location.origin + location.pathname + location.hash;
+        if (!location.hash) url += '#' + encodeURIComponent(iframe.getAttribute('src') || defaultSrc);
+        try {
+          navigator.clipboard.writeText(url).then(function () { showToast('Link copied'); });
+        } catch (err) {
+          var ta = document.createElement('textarea');
+          ta.value = url;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); showToast('Link copied'); } catch (_) { showToast('Copy failed'); }
+          document.body.removeChild(ta);
+        }
+      });
+
+      // Full screen
       function setMax(on) {
         body.classList.toggle('hub--max', on);
-        if (btnFull) {
-          btnFull.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (btnFull) btnFull.setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+      btnFull.addEventListener('click', function () { setMax(!body.classList.contains('hub--max')); });
+      btnExit.addEventListener('click', function () { setMax(false); });
+
+      // UI theme toggle
+      btnUiTheme.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-hub-theme') === 'dark' ? 'dark' : 'light';
+        var next = current === 'dark' ? 'light' : 'dark';
+        if (next === 'dark') {
+          document.documentElement.setAttribute('data-hub-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-hub-theme');
         }
-      }
-      if (btnFull) {
-        btnFull.addEventListener('click', function () {
-          setMax(!body.classList.contains('hub--max'));
-        });
-      }
-      if (btnExit) {
-        btnExit.addEventListener('click', function () {
-          setMax(false);
-        });
-      }
+        localStorage.setItem('hub-ui-theme', next);
+      });
     })();
   </script>
 </body>
