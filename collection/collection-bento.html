@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="ab-coll-bn" aria-labelledby="ab-coll-bn-title">
+  <style>
+    #ab-coll-bn,
+    #ab-coll-bn *,
+    #ab-coll-bn *::before,
+    #ab-coll-bn *::after { box-sizing: border-box; }
+
+    #ab-coll-bn {
+      width: 100%;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+    #ab-coll-bn .ab-wrap { max-width: var(--container-max-width); margin: 0 auto; }
+    #ab-coll-bn .ab-head {
+      display: flex; align-items: end; justify-content: space-between; gap: var(--space-md);
+      margin-bottom: var(--space-lg); flex-wrap: wrap;
+      padding-bottom: var(--space-md); border-bottom: 1px solid var(--color-outline);
+    }
+    #ab-coll-bn .ab-eyebrow { display: inline-block; margin: 0 0 var(--space-xs); font-size: 0.6875rem; font-weight: var(--font-weight-bold); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-primary); }
+    #ab-coll-bn-title { margin: 0; font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: var(--font-weight-bold); letter-spacing: -0.02em; line-height: var(--line-height-tight); color: var(--color-on-background); }
+    #ab-coll-bn .ab-sub { margin: var(--space-xs) 0 0; max-width: 40rem; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); line-height: var(--line-height-body); }
+
+    /* Bento grid: 4 cols on desktop, mixed sizes */
+    #ab-coll-bn .ab-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 200px;
+      gap: var(--space-sm);
+    }
+    @media (min-width: 640px) {
+      #ab-coll-bn .ab-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 240px; gap: var(--space-md); }
+    }
+    @media (min-width: 1024px) {
+      #ab-coll-bn .ab-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 260px; }
+    }
+
+    #ab-coll-bn .ab-card {
+      position: relative;
+      grid-column: span 1; grid-row: span 1;
+      overflow: hidden;
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-container);
+      transition: border-color var(--duration-medium) var(--ease-standard);
+      isolation: isolate;
+    }
+    #ab-coll-bn .ab-card:hover { border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-outline)); }
+
+    @media (min-width: 1024px) {
+      #ab-coll-bn .ab-card:nth-child(7n+1) { grid-column: span 2; grid-row: span 2; }
+      #ab-coll-bn .ab-card:nth-child(7n+4) { grid-column: span 2; grid-row: span 1; }
+      #ab-coll-bn .ab-card:nth-child(7n+5) { grid-column: span 1; grid-row: span 2; }
+    }
+
+    #ab-coll-bn .ab-card a { display: block; width: 100%; height: 100%; position: relative; text-decoration: none; color: inherit; }
+    #ab-coll-bn .ab-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 800ms var(--ease-standard);
+    }
+    #ab-coll-bn .ab-card:hover img { transform: scale(1.05); }
+
+    #ab-coll-bn .ab-card::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.62) 100%);
+      pointer-events: none;
+    }
+
+    #ab-coll-bn .ab-info {
+      position: absolute; left: var(--space-md); right: var(--space-md); bottom: var(--space-md);
+      color: #fff; z-index: 1;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    #ab-coll-bn .ab-name {
+      font-size: 0.9375rem; font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+    #ab-coll-bn .ab-prices { display: flex; align-items: baseline; gap: var(--space-xs); font-variant-numeric: tabular-nums; }
+    #ab-coll-bn .ab-price { font-size: 0.8125rem; font-weight: var(--font-weight-bold); }
+    #ab-coll-bn .ab-old { font-size: 0.75rem; opacity: 0.75; text-decoration: line-through; }
+
+    #ab-coll-bn .ab-tag {
+      position: absolute; top: var(--space-sm); left: var(--space-sm); z-index: 1;
+      padding: 3px 7px; border-radius: var(--radius-sm);
+      background: var(--color-primary); color: var(--color-on-primary);
+      font-size: 0.625rem; font-weight: var(--font-weight-bold);
+      letter-spacing: 0.08em; text-transform: uppercase; line-height: 1;
+    }
+
+    #ab-coll-bn .ab-card.featured .ab-name { font-size: 1.5rem; line-height: 1.15; -webkit-line-clamp: 3; letter-spacing: -0.02em; font-family: var(--font-display); }
+    #ab-coll-bn .ab-card.featured .ab-price { font-size: 1rem; }
+    #ab-coll-bn .ab-card.featured::before {
+      content: "Featured";
+      position: absolute; top: var(--space-md); right: var(--space-md);
+      padding: 4px 10px; border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.18); backdrop-filter: blur(8px);
+      color: #fff; font-size: 0.625rem; font-weight: var(--font-weight-bold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.25);
+      z-index: 1;
+    }
+
+    #ab-coll-bn .ab-skeleton {
+      background: linear-gradient(90deg, var(--color-surface-container) 0%, var(--color-surface-container-high) 50%, var(--color-surface-container) 100%);
+      background-size: 200% 100%;
+      animation: ab-shimmer 1.4s linear infinite;
+      border-radius: var(--radius-lg);
+    }
+    @keyframes ab-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    #ab-coll-bn .ab-status { grid-column: 1 / -1; padding: var(--space-xl) var(--space-md); text-align: center; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); }
+  </style>
+
+  <div class="ab-wrap">
+    <header class="ab-head">
+      <div>
+        <span class="ab-eyebrow">Bento</span>
+        <h2 id="ab-coll-bn-title">Sale picks</h2>
+        <p class="ab-sub">A modular grid where headline pieces get more room.</p>
+      </div>
+    </header>
+    <div class="ab-grid" id="ab-coll-bn-grid"></div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('ab-coll-bn');
+      if (!root) return;
+      var grid = root.querySelector('#ab-coll-bn-grid');
+      var API = 'https://zigly.com/collections/sale/products.json';
+      var DOMAIN = 'zigly.com';
+
+      function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+      function fmt(v) { var n = typeof v === 'number' ? v : parseFloat(v); return Number.isFinite(n) ? '₹' + n.toLocaleString('en-IN') : ''; }
+      function skel(n) { var s=''; for (var i=0;i<n;i++) s += '<div class="ab-skeleton" aria-hidden="true"></div>'; return s; }
+
+      grid.innerHTML = skel(7);
+
+      function cardHTML(p, i) {
+        var v = p.variants && p.variants[0]; if (!v) return '';
+        var price = parseFloat(v.price);
+        var compare = v.compare_at_price ? parseFloat(v.compare_at_price) : null;
+        var img = p.images && p.images[0] ? (p.images[0].src || '') : '';
+        if (img && img.indexOf('//') === 0) img = 'https:' + img;
+        var title = esc(p.title || '');
+        var pUrl = 'https://' + DOMAIN + '/products/' + (p.handle || '');
+        var tag = '', oldHtml = '';
+        if (compare && compare > price) {
+          var d = Math.round(((compare - price) / compare) * 100);
+          tag = '<span class="ab-tag">−' + d + '%</span>';
+          oldHtml = '<span class="ab-old">' + fmt(compare) + '</span>';
+        }
+        var featured = (i % 7 === 0) ? ' featured' : '';
+        return ''
+          + '<article class="ab-card' + featured + '">'
+          +   tag
+          +   '<a href="' + pUrl + '" aria-label="View ' + title + '">'
+          +     (img ? '<img src="' + img + '" alt="' + title + '" loading="lazy" onerror="this.onerror=null;this.removeAttribute(\'src\');">' : '')
+          +     '<div class="ab-info">'
+          +       '<span class="ab-name">' + title + '</span>'
+          +       '<div class="ab-prices"><span class="ab-price">' + (fmt(price) || '₹—') + '</span>' + oldHtml + '</div>'
+          +     '</div>'
+          +   '</a>'
+          + '</article>';
+      }
+
+      fetch(API).then(function (r) { return r.json(); }).then(function (data) {
+        var products = (data && data.products) ? data.products : [];
+        if (!products.length) { grid.innerHTML = '<div class="ab-status">No products found</div>'; return; }
+        grid.innerHTML = products.map(cardHTML).join('');
+      }).catch(function () { grid.innerHTML = '<div class="ab-status">Couldn\'t load products.</div>'; });
+    })();
+  </script>
+</section>

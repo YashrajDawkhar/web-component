@@ -1,0 +1,198 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-compact" aria-labelledby="ab-faq-c-title">
+  <style>
+    #airboost-faq-compact,
+    #airboost-faq-compact * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-compact {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-lg) var(--space-md);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #airboost-faq-compact .ab-c-inner {
+      max-width: min(100%, 32rem);
+      margin: 0 auto;
+    }
+
+    #ab-faq-c-title {
+      margin: 0 0 var(--space-xs);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: var(--font-weight-bold);
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-on-surface-variant);
+    }
+
+    #ab-faq-c-sub {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.4;
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-compact .faq-item {
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-xs);
+      overflow: hidden;
+    }
+
+    #airboost-faq-compact .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      min-height: 2.1rem;
+      background: var(--color-surface-container-low);
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.25;
+      color: var(--color-on-surface);
+      border-radius: var(--radius-sm);
+    }
+
+    #airboost-faq-compact .faq-q:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-compact .faq-item.open .faq-q {
+      background: var(--color-surface-container-lowest);
+    }
+
+    #airboost-faq-compact .faqi {
+      color: var(--color-on-surface-variant);
+      width: 12px;
+      height: 12px;
+      display: flex;
+      align-items: center;
+      transition: transform var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-compact .faqi svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+    }
+
+    #airboost-faq-compact .faq-item.open .faqi {
+      transform: rotate(180deg);
+      color: var(--color-primary);
+    }
+
+    #airboost-faq-compact .faq-aw {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-compact .faq-item.open .faq-aw {
+      grid-template-rows: 1fr;
+    }
+
+    #airboost-faq-compact .faq-aw .i {
+      overflow: hidden;
+    }
+
+    #airboost-faq-compact .faq-ac {
+      padding: 0 var(--space-sm) var(--space-xs);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      line-height: 1.55;
+      color: var(--color-on-surface-variant);
+    }
+  </style>
+  <div class="ab-c-inner">
+    <h2 id="ab-faq-c-title">FAQ</h2>
+    <p id="ab-faq-c-sub">Tight for sidebars, footers, and mobile.</p>
+    <div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          Return policy
+          <span class="faqi" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-aw">
+          <div class="i">
+            <div class="faq-ac">
+              We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied, simply contact support for a full refund.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          Shipping time
+          <span class="faqi" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-aw">
+          <div class="i">
+            <div class="faq-ac">
+              Standard shipping typically takes 5-7 business days. We also offer expedited 2-day and overnight shipping options at checkout.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          International?
+          <span class="faqi" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-aw">
+          <div class="i">
+            <div class="faq-ac">
+              Yes! We ship to over 100 countries globally. International delivery times vary by destination, typically ranging from 7 to 21 business days.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById("airboost-faq-compact");
+      if (!s) return;
+      s.querySelectorAll(".faq-item").forEach(function (item) {
+        var btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          var o = item.classList.contains("open");
+          s.querySelectorAll(".faq-item").forEach(function (i) {
+            i.classList.remove("open");
+            i.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+          });
+          if (!o) {
+            item.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    })();
+  </script>
+</section>

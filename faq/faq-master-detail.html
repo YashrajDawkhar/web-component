@@ -1,0 +1,257 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-md" aria-labelledby="ab-faq-md-title">
+  <style>
+    #airboost-faq-md,
+    #airboost-faq-md * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-md {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #airboost-faq-md .ab-inner {
+      max-width: min(100%, var(--container-max-width));
+      margin: 0 auto;
+    }
+
+    #airboost-faq-md .ab-head {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    #ab-faq-md-title {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-md .ab-sub {
+      margin: 0 auto;
+      max-width: 32rem;
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-md .ab-shell {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-xl);
+      background: var(--color-surface-container-lowest);
+      overflow: hidden;
+    }
+
+    @media (min-width: 760px) {
+      #airboost-faq-md .ab-shell {
+        grid-template-columns: 16rem 1fr;
+        gap: 0;
+      }
+    }
+
+    #airboost-faq-md .ab-list {
+      list-style: none;
+      margin: 0;
+      padding: var(--space-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: var(--color-surface-container-low);
+      border-bottom: 1px solid var(--color-outline);
+    }
+
+    @media (min-width: 760px) {
+      #airboost-faq-md .ab-list {
+        border-bottom: 0;
+        border-right: 1px solid var(--color-outline);
+        max-height: 28rem;
+        overflow-y: auto;
+      }
+    }
+
+    #airboost-faq-md .ab-list button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-sm);
+      min-height: 2.5rem;
+      border: none;
+      background: transparent;
+      color: var(--color-on-surface-variant);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-medium);
+      line-height: var(--line-height-body);
+      border-radius: var(--radius-md);
+      transition:
+        background var(--duration-medium) var(--ease-standard),
+        color var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-md .ab-list button:hover {
+      background: color-mix(in srgb, var(--color-on-surface) 5%, transparent);
+      color: var(--color-on-surface);
+    }
+
+    #airboost-faq-md .ab-list button[aria-selected="true"] {
+      background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+      color: var(--color-on-surface);
+      font-weight: var(--font-weight-bold);
+    }
+
+    #airboost-faq-md .ab-list button[aria-selected="true"]::before {
+      content: "";
+      flex-shrink: 0;
+      width: 3px;
+      height: 1.25rem;
+      border-radius: var(--radius-full);
+      background: var(--color-primary);
+    }
+
+    #airboost-faq-md .ab-list button:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-md .ab-pane {
+      padding: var(--space-lg);
+      min-height: 14rem;
+    }
+
+    #airboost-faq-md .ab-panel {
+      display: none;
+      animation: ab-fade var(--duration-medium) var(--ease-standard) both;
+    }
+
+    #airboost-faq-md .ab-panel.active {
+      display: block;
+    }
+
+    @keyframes ab-fade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #airboost-faq-md .ab-panel h3 {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-md .ab-panel p {
+      margin: 0 0 var(--space-sm);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-md .ab-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    #airboost-faq-md .ab-panel a {
+      color: var(--color-link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    #airboost-faq-md .ab-meta {
+      margin-top: var(--space-md);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-outline);
+      display: flex;
+      gap: var(--space-md);
+      font-size: 0.75rem;
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-md .ab-meta strong {
+      color: var(--color-on-surface);
+      font-weight: var(--font-weight-bold);
+    }
+  </style>
+  <div class="ab-inner">
+    <div class="ab-head">
+      <h2 id="ab-faq-md-title">Browse the help library</h2>
+      <p class="ab-sub">Pick a question on the left, read the answer on the right.</p>
+    </div>
+    <div class="ab-shell">
+      <ul class="ab-list" role="tablist" aria-label="Questions">
+        <li><button type="button" role="tab" aria-selected="true" aria-controls="ab-md-p1">What is your return policy?</button></li>
+        <li><button type="button" role="tab" aria-selected="false" aria-controls="ab-md-p2">How long does shipping take?</button></li>
+        <li><button type="button" role="tab" aria-selected="false" aria-controls="ab-md-p3">Do you ship internationally?</button></li>
+        <li><button type="button" role="tab" aria-selected="false" aria-controls="ab-md-p4">How do I track my order?</button></li>
+        <li><button type="button" role="tab" aria-selected="false" aria-controls="ab-md-p5">Can I change or cancel?</button></li>
+        <li><button type="button" role="tab" aria-selected="false" aria-controls="ab-md-p6">What payment methods do you accept?</button></li>
+      </ul>
+      <div class="ab-pane">
+        <article class="ab-panel active" id="ab-md-p1" role="tabpanel">
+          <h3>What is your return policy?</h3>
+          <p>We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied, contact our support team and we'll process a full refund.</p>
+          <p>Items must be in original condition. Refunds appear on your original payment method within 5 business days.</p>
+          <div class="ab-meta"><span><strong>Updated</strong> Apr 12, 2026</span><span>Helpful? <a href="#yes">Yes</a> · <a href="#no">No</a></span></div>
+        </article>
+        <article class="ab-panel" id="ab-md-p2" role="tabpanel">
+          <h3>How long does shipping take?</h3>
+          <p>Standard shipping takes 5–7 business days within the contiguous US. Expedited 2-day and overnight options are available at checkout.</p>
+          <div class="ab-meta"><span><strong>Updated</strong> Mar 02, 2026</span><span>Helpful? <a href="#yes">Yes</a> · <a href="#no">No</a></span></div>
+        </article>
+        <article class="ab-panel" id="ab-md-p3" role="tabpanel">
+          <h3>Do you ship internationally?</h3>
+          <p>Yes — we ship to over 100 countries globally. Delivery times typically range from 7 to 21 business days. Customs fees may apply.</p>
+          <div class="ab-meta"><span><strong>Updated</strong> Feb 18, 2026</span><span>Helpful? <a href="#yes">Yes</a> · <a href="#no">No</a></span></div>
+        </article>
+        <article class="ab-panel" id="ab-md-p4" role="tabpanel">
+          <h3>How do I track my order?</h3>
+          <p>Once shipped, we'll email you a tracking link. You can also see live status under <a href="#orders">Orders</a> in your account.</p>
+          <div class="ab-meta"><span><strong>Updated</strong> Apr 04, 2026</span><span>Helpful? <a href="#yes">Yes</a> · <a href="#no">No</a></span></div>
+        </article>
+        <article class="ab-panel" id="ab-md-p5" role="tabpanel">
+          <h3>Can I change or cancel my order?</h3>
+          <p>Edits and cancellations are allowed within 60 minutes of checkout. After that the order is locked for fulfillment, but you can still return it.</p>
+          <div class="ab-meta"><span><strong>Updated</strong> Mar 22, 2026</span><span>Helpful? <a href="#yes">Yes</a> · <a href="#no">No</a></span></div>
+        </article>
+        <article class="ab-panel" id="ab-md-p6" role="tabpanel">
+          <h3>What payment methods do you accept?</h3>
+          <p>All major credit cards, Apple Pay, Google Pay, PayPal, and bank transfers (orders over $200). All transactions are processed securely.</p>
+          <div class="ab-meta"><span><strong>Updated</strong> Apr 18, 2026</span><span>Helpful? <a href="#yes">Yes</a> · <a href="#no">No</a></span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById('airboost-faq-md');
+      if (!s) return;
+      var tabs = s.querySelectorAll('.ab-list button');
+      var panels = s.querySelectorAll('.ab-panel');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+          tab.setAttribute('aria-selected', 'true');
+          var id = tab.getAttribute('aria-controls');
+          panels.forEach(function (p) { p.classList.toggle('active', p.id === id); });
+        });
+      });
+    })();
+  </script>
+</section>

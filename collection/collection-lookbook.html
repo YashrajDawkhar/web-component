@@ -1,0 +1,249 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="ab-coll-lk" aria-labelledby="ab-coll-lk-title">
+  <style>
+    #ab-coll-lk,
+    #ab-coll-lk *,
+    #ab-coll-lk *::before,
+    #ab-coll-lk *::after { box-sizing: border-box; }
+
+    #ab-coll-lk {
+      width: 100%;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+    #ab-coll-lk .ab-wrap { max-width: var(--container-max-width); margin: 0 auto; }
+
+    #ab-coll-lk .ab-head {
+      text-align: center; max-width: 36rem; margin: 0 auto var(--space-xl);
+    }
+    #ab-coll-lk .ab-eyebrow { display: inline-block; margin: 0 0 var(--space-sm); font-size: 0.6875rem; font-weight: var(--font-weight-bold); letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-primary); }
+    #ab-coll-lk-title { margin: 0 0 var(--space-sm); font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: var(--font-weight-bold); letter-spacing: -0.03em; line-height: 1; color: var(--color-on-background); }
+    #ab-coll-lk .ab-sub { margin: 0; color: var(--color-on-surface-variant); font-size: var(--font-size-body); line-height: var(--line-height-body); }
+
+    /* Hero scene */
+    #ab-coll-lk .ab-scenes { display: flex; flex-direction: column; gap: var(--space-2xl); }
+    #ab-coll-lk .ab-scene {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    @media (min-width: 760px) {
+      #ab-coll-lk .ab-scene { grid-template-columns: 1.4fr 1fr; gap: var(--space-xl); align-items: center; }
+      #ab-coll-lk .ab-scene.reverse { grid-template-columns: 1fr 1.4fr; }
+      #ab-coll-lk .ab-scene.reverse .ab-stage { order: 2; }
+    }
+
+    #ab-coll-lk .ab-stage {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-outline);
+    }
+    #ab-coll-lk .ab-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Hotspots */
+    #ab-coll-lk .ab-spot {
+      position: absolute;
+      width: 1.75rem; height: 1.75rem;
+      border-radius: var(--radius-full);
+      border: 2px solid #fff;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      transform: translate(-50%, -50%);
+      transition: transform var(--duration-medium) var(--ease-standard);
+      animation: ab-pulse 2.4s var(--ease-standard) infinite;
+    }
+    #ab-coll-lk .ab-spot:hover { transform: translate(-50%, -50%) scale(1.15); animation: none; }
+    #ab-coll-lk .ab-spot::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+    @keyframes ab-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+      50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+    }
+
+    #ab-coll-lk .ab-pop {
+      position: absolute;
+      bottom: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 14rem;
+      padding: var(--space-sm);
+      border-radius: var(--radius-md);
+      background: var(--color-surface-container-lowest);
+      border: 1px solid var(--color-outline);
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-medium) var(--ease-standard), transform var(--duration-medium) var(--ease-standard);
+      z-index: 2;
+    }
+    #ab-coll-lk .ab-spot:hover + .ab-pop, #ab-coll-lk .ab-pop:hover { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    #ab-coll-lk .ab-pop a { display: flex; gap: var(--space-sm); text-decoration: none; color: var(--color-on-surface); }
+    #ab-coll-lk .ab-pop img { width: 3rem; height: 3rem; object-fit: cover; border-radius: var(--radius-sm); flex-shrink: 0; }
+    #ab-coll-lk .ab-pop .pn { font-size: 0.8125rem; font-weight: var(--font-weight-bold); line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    #ab-coll-lk .ab-pop .pp { color: var(--color-primary); font-weight: var(--font-weight-bold); font-size: 0.75rem; margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+    /* Side product picks */
+    #ab-coll-lk .ab-picks { display: flex; flex-direction: column; gap: var(--space-md); }
+    #ab-coll-lk .ab-pick-eyebrow {
+      font-size: 0.6875rem; font-weight: var(--font-weight-bold);
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-primary);
+    }
+    #ab-coll-lk .ab-pick-title {
+      margin: 4px 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-on-background);
+    }
+    #ab-coll-lk .ab-pick-desc {
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      margin: 0 0 var(--space-md);
+    }
+
+    #ab-coll-lk .ab-list { display: flex; flex-direction: column; gap: var(--space-xs); }
+    #ab-coll-lk .ab-row {
+      display: grid;
+      grid-template-columns: 4rem 1fr auto;
+      gap: var(--space-sm);
+      padding: var(--space-xs);
+      align-items: center;
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-md);
+      background: var(--color-surface-container-lowest);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color var(--duration-medium) var(--ease-standard), background var(--duration-medium) var(--ease-standard);
+    }
+    #ab-coll-lk .ab-row:hover { border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-outline)); background: var(--color-surface-container); }
+    #ab-coll-lk .ab-row .pic { width: 4rem; height: 4rem; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-surface-container); }
+    #ab-coll-lk .ab-row .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #ab-coll-lk .ab-row .nm { font-size: var(--font-size-body-sm); font-weight: var(--font-weight-medium); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+    #ab-coll-lk .ab-row .pr { font-size: 0.8125rem; font-weight: var(--font-weight-bold); color: var(--color-on-surface); font-variant-numeric: tabular-nums; }
+    #ab-coll-lk .ab-row .num {
+      font-size: 0.625rem; color: var(--color-on-surface-variant);
+      letter-spacing: 0.08em; text-transform: uppercase; font-weight: var(--font-weight-bold);
+    }
+
+    #ab-coll-lk .ab-skeleton {
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(90deg, var(--color-surface-container) 0%, var(--color-surface-container-high) 50%, var(--color-surface-container) 100%);
+      background-size: 200% 100%;
+      animation: ab-shimmer 1.4s linear infinite;
+    }
+    @keyframes ab-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    #ab-coll-lk .ab-status { padding: var(--space-xl) var(--space-md); text-align: center; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); }
+  </style>
+
+  <div class="ab-wrap">
+    <header class="ab-head">
+      <span class="ab-eyebrow">Lookbook · Spring 2026</span>
+      <h2 id="ab-coll-lk-title">Wear the sale.</h2>
+      <p class="ab-sub">Three styled scenes — tap any dot on the image to shop that piece.</p>
+    </header>
+    <div class="ab-scenes" id="ab-coll-lk-scenes"></div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('ab-coll-lk');
+      if (!root) return;
+      var scenes = root.querySelector('#ab-coll-lk-scenes');
+      var API = 'https://zigly.com/collections/sale/products.json';
+      var DOMAIN = 'zigly.com';
+
+      function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+      function fmt(v) { var n = typeof v === 'number' ? v : parseFloat(v); return Number.isFinite(n) ? '₹' + n.toLocaleString('en-IN') : ''; }
+
+      scenes.innerHTML = '<div class="ab-scene"><div class="ab-skeleton"></div><div class="ab-skeleton" style="aspect-ratio:auto;height:14rem"></div></div>';
+
+      var scenePresets = [
+        { eyebrow: 'Scene 01', title: 'After‑hours uniform', desc: 'Tonal layering for nights that go wide. Heavier knit, softer light.', spots: [{x:35,y:30},{x:62,y:55},{x:48,y:78}] },
+        { eyebrow: 'Scene 02', title: 'Monday, soft', desc: 'A quiet rotation: easy denim, broken-in cotton, the right cup of coffee.', spots: [{x:42,y:25},{x:55,y:60},{x:30,y:80}], reverse: true },
+        { eyebrow: 'Scene 03', title: 'Weekend, somewhere green', desc: 'Pieces built to roll up, get dusty, and feel exactly right.', spots: [{x:50,y:28},{x:38,y:62},{x:62,y:82}] }
+      ];
+
+      function popHTML(p) {
+        if (!p) return '';
+        var v = p.variants && p.variants[0]; if (!v) return '';
+        var price = parseFloat(v.price);
+        var img = p.images && p.images[0] ? (p.images[0].src || '') : '';
+        if (img && img.indexOf('//') === 0) img = 'https:' + img;
+        var pUrl = 'https://' + DOMAIN + '/products/' + (p.handle || '');
+        return ''
+          + '<div class="ab-pop"><a href="' + pUrl + '">'
+          + (img ? '<img src="' + img + '" alt="">' : '')
+          + '<div><div class="pn">' + esc(p.title || '') + '</div><div class="pp">' + (fmt(price) || '₹—') + '</div></div>'
+          + '</a></div>';
+      }
+
+      function rowHTML(p, i) {
+        var v = p.variants && p.variants[0]; if (!v) return '';
+        var price = parseFloat(v.price);
+        var img = p.images && p.images[0] ? (p.images[0].src || '') : '';
+        if (img && img.indexOf('//') === 0) img = 'https:' + img;
+        var pUrl = 'https://' + DOMAIN + '/products/' + (p.handle || '');
+        var num = (i < 9 ? '0' : '') + (i + 1);
+        return ''
+          + '<a class="ab-row" href="' + pUrl + '">'
+          +   '<span class="pic">' + (img ? '<img src="' + img + '" alt="">' : '') + '</span>'
+          +   '<div><div class="num">N° ' + num + '</div><div class="nm">' + esc(p.title || '') + '</div></div>'
+          +   '<span class="pr">' + (fmt(price) || '₹—') + '</span>'
+          + '</a>';
+      }
+
+      function sceneHTML(preset, products) {
+        var heroP = products[0];
+        var heroImg = heroP && heroP.images && heroP.images[0] ? (heroP.images[0].src || '') : '';
+        if (heroImg && heroImg.indexOf('//') === 0) heroImg = 'https:' + heroImg;
+
+        var spotsHtml = preset.spots.map(function (s, i) {
+          var sp = products[i];
+          if (!sp) return '';
+          return ''
+            + '<div style="position:absolute;left:' + s.x + '%;top:' + s.y + '%">'
+            +   '<button class="ab-spot" type="button" aria-label="Shop product ' + (i + 1) + '"></button>'
+            +   popHTML(sp)
+            + '</div>';
+        }).join('');
+
+        return ''
+          + '<div class="ab-scene' + (preset.reverse ? ' reverse' : '') + '">'
+          +   '<div class="ab-stage">'
+          +     (heroImg ? '<img src="' + heroImg + '" alt="' + esc(heroP.title || '') + '">' : '')
+          +     spotsHtml
+          +   '</div>'
+          +   '<div class="ab-picks">'
+          +     '<span class="ab-pick-eyebrow">' + preset.eyebrow + '</span>'
+          +     '<h3 class="ab-pick-title">' + preset.title + '</h3>'
+          +     '<p class="ab-pick-desc">' + preset.desc + '</p>'
+          +     '<div class="ab-list">' + products.map(rowHTML).join('') + '</div>'
+          +   '</div>'
+          + '</div>';
+      }
+
+      fetch(API).then(function (r) { return r.json(); }).then(function (data) {
+        var products = (data && data.products) ? data.products : [];
+        if (!products.length) { scenes.innerHTML = '<div class="ab-status">No products found</div>'; return; }
+        var html = '';
+        for (var i = 0; i < scenePresets.length; i++) {
+          var slice = products.slice(i * 3, i * 3 + 3);
+          if (!slice.length) break;
+          html += sceneHTML(scenePresets[i], slice);
+        }
+        scenes.innerHTML = html;
+      }).catch(function () { scenes.innerHTML = '<div class="ab-status">Couldn\'t load products.</div>'; });
+    })();
+  </script>
+</section>

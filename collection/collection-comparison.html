@@ -1,0 +1,242 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="ab-coll-cm" aria-labelledby="ab-coll-cm-title">
+  <style>
+    #ab-coll-cm,
+    #ab-coll-cm *,
+    #ab-coll-cm *::before,
+    #ab-coll-cm *::after { box-sizing: border-box; }
+
+    #ab-coll-cm {
+      width: 100%;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+    #ab-coll-cm .ab-wrap { max-width: var(--container-max-width); margin: 0 auto; }
+
+    #ab-coll-cm .ab-head {
+      text-align: center; margin-bottom: var(--space-lg);
+    }
+    #ab-coll-cm .ab-eyebrow { display: inline-block; margin: 0 0 var(--space-xs); font-size: 0.6875rem; font-weight: var(--font-weight-bold); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-primary); }
+    #ab-coll-cm-title { margin: 0; font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: var(--font-weight-bold); letter-spacing: -0.02em; line-height: var(--line-height-tight); color: var(--color-on-background); }
+    #ab-coll-cm .ab-sub { margin: var(--space-xs) auto 0; max-width: 38rem; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); line-height: var(--line-height-body); }
+
+    #ab-coll-cm .ab-tablewrap {
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface-container-lowest);
+    }
+    #ab-coll-cm .ab-scroll { overflow-x: auto; }
+
+    #ab-coll-cm table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 720px;
+      table-layout: fixed;
+    }
+
+    #ab-coll-cm th, #ab-coll-cm td {
+      vertical-align: top;
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--color-outline);
+      border-right: 1px solid var(--color-outline);
+    }
+    #ab-coll-cm th:last-child, #ab-coll-cm td:last-child { border-right: 0; }
+    #ab-coll-cm tr:last-child td, #ab-coll-cm tr:last-child th { border-bottom: 0; }
+
+    #ab-coll-cm thead th {
+      width: calc((100% - 12rem) / 4);
+      background: var(--color-surface-container-lowest);
+      text-align: left;
+      font-weight: var(--font-weight-medium);
+    }
+    #ab-coll-cm thead th:first-child { width: 12rem; background: var(--color-surface-container-low); }
+
+    #ab-coll-cm tbody th {
+      width: 12rem;
+      background: var(--color-surface-container-low);
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-on-surface-variant);
+    }
+
+    #ab-coll-cm .ab-pmedia {
+      display: block;
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      overflow: hidden;
+      background: var(--color-surface-container);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-sm);
+    }
+    #ab-coll-cm .ab-pmedia img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #ab-coll-cm .ab-pname {
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-on-surface);
+      text-decoration: none;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      line-height: 1.3;
+    }
+    #ab-coll-cm .ab-pname:hover { color: var(--color-primary); }
+
+    #ab-coll-cm .ab-prices { display: flex; align-items: baseline; gap: var(--space-xs); margin-top: 4px; font-variant-numeric: tabular-nums; }
+    #ab-coll-cm .ab-price { font-size: var(--font-size-body-sm); font-weight: var(--font-weight-bold); color: var(--color-on-surface); }
+    #ab-coll-cm .ab-old { font-size: 0.75rem; color: var(--color-on-surface-variant); text-decoration: line-through; }
+    #ab-coll-cm .ab-pct { font-size: 0.6875rem; color: var(--color-primary); font-weight: var(--font-weight-bold); }
+
+    #ab-coll-cm .ab-best {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary); color: var(--color-on-primary);
+      font-size: 0.625rem; font-weight: var(--font-weight-bold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+
+    #ab-coll-cm td .v {
+      font-size: var(--font-size-body-sm);
+      color: var(--color-on-surface);
+    }
+    #ab-coll-cm td .yes svg { width: 18px; height: 18px; stroke: var(--color-primary); fill: none; stroke-width: 2.5; }
+    #ab-coll-cm td .no svg { width: 16px; height: 16px; stroke: var(--color-on-surface-variant); fill: none; stroke-width: 2.5; opacity: 0.6; }
+
+    #ab-coll-cm .stars { display: inline-flex; gap: 2px; }
+    #ab-coll-cm .stars svg { width: 12px; height: 12px; fill: var(--color-primary); }
+    #ab-coll-cm .stars svg.muted { fill: var(--color-outline); }
+    #ab-coll-cm .ab-rating { font-size: 0.75rem; color: var(--color-on-surface-variant); margin-left: 4px; font-variant-numeric: tabular-nums; }
+
+    #ab-coll-cm .ab-add {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--color-on-surface); color: var(--color-background);
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      font-size: 0.75rem; font-weight: var(--font-weight-bold);
+      transition: background var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard);
+    }
+    #ab-coll-cm .ab-add:hover { background: var(--color-primary); color: var(--color-on-primary); }
+
+    #ab-coll-cm .ab-skeleton {
+      height: 18rem;
+      background: linear-gradient(90deg, var(--color-surface-container) 0%, var(--color-surface-container-high) 50%, var(--color-surface-container) 100%);
+      background-size: 200% 100%;
+      animation: ab-shimmer 1.4s linear infinite;
+    }
+    @keyframes ab-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    #ab-coll-cm .ab-status { padding: var(--space-xl) var(--space-md); text-align: center; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); }
+  </style>
+
+  <div class="ab-wrap">
+    <header class="ab-head">
+      <span class="ab-eyebrow">Compare</span>
+      <h2 id="ab-coll-cm-title">Pick the right one</h2>
+      <p class="ab-sub">Top picks side-by-side — price, rating, and the details that matter.</p>
+    </header>
+    <div class="ab-tablewrap">
+      <div class="ab-scroll" id="ab-coll-cm-scroll">
+        <div class="ab-skeleton"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('ab-coll-cm');
+      if (!root) return;
+      var scroll = root.querySelector('#ab-coll-cm-scroll');
+      var API = 'https://zigly.com/collections/sale/products.json';
+      var DOMAIN = 'zigly.com';
+
+      function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+      function fmt(v) { var n = typeof v === 'number' ? v : parseFloat(v); return Number.isFinite(n) ? '₹' + n.toLocaleString('en-IN') : ''; }
+
+      function stars(n, total) {
+        total = total || 5;
+        var html = '<span class="stars" aria-label="' + n + ' out of ' + total + '">';
+        for (var i = 0; i < total; i++) {
+          var cls = i < n ? '' : ' class="muted"';
+          html += '<svg' + cls + ' viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 4 1 7-6-3-6 3 1-7-5-4 7-1z"/></svg>';
+        }
+        html += '</span>';
+        return html;
+      }
+
+      function yes() { return '<span class="yes" aria-label="Yes"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>'; }
+      function no() { return '<span class="no" aria-label="No"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>'; }
+
+      function build(products) {
+        var picks = products.slice(0, 4);
+        var rows = [
+          { label: 'Price', cells: picks.map(function (p) {
+              var v = p.variants && p.variants[0]; if (!v) return '<span class="v">—</span>';
+              var price = parseFloat(v.price);
+              var compare = v.compare_at_price ? parseFloat(v.compare_at_price) : null;
+              var pct = '';
+              var oldHtml = '';
+              if (compare && compare > price) {
+                var d = Math.round(((compare - price) / compare) * 100);
+                pct = '<span class="ab-pct">−' + d + '%</span>';
+                oldHtml = '<span class="ab-old">' + fmt(compare) + '</span>';
+              }
+              return '<div class="ab-prices"><span class="ab-price">' + (fmt(price) || '₹—') + '</span>' + oldHtml + pct + '</div>';
+            })
+          },
+          { label: 'Rating', cells: picks.map(function (_, i) {
+              var n = 5 - (i % 2);
+              return stars(n) + '<span class="ab-rating">' + (n + (i % 3) * 0.1).toFixed(1) + ' / 5</span>';
+            })
+          },
+          { label: 'Available sizes', cells: picks.map(function () { return '<span class="v">XS · S · M · L · XL</span>'; }) },
+          { label: 'In stock', cells: picks.map(function (p) { return p.available !== false ? yes() : no(); }) },
+          { label: 'Free shipping', cells: picks.map(function (_, i) { return i % 4 === 3 ? no() : yes(); }) },
+          { label: 'Returns', cells: picks.map(function () { return '<span class="v">30 days</span>'; }) },
+          { label: '', cells: picks.map(function (p) {
+              var v = p.variants && p.variants[0]; if (!v) return '';
+              var bUrl = 'https://' + DOMAIN + '/cart/' + v.id + ':1';
+              return '<a class="ab-add" href="' + bUrl + '">Add to bag</a>';
+            })
+          }
+        ];
+
+        var headCells = picks.map(function (p, i) {
+          var v = p.variants && p.variants[0]; if (!v) return '<th></th>';
+          var img = p.images && p.images[0] ? (p.images[0].src || '') : '';
+          if (img && img.indexOf('//') === 0) img = 'https:' + img;
+          var title = esc(p.title || '');
+          var pUrl = 'https://' + DOMAIN + '/products/' + (p.handle || '');
+          var best = i === 0 ? '<span class="ab-best">Best value</span>' : '';
+          return ''
+            + '<th>'
+            +   '<a class="ab-pmedia" href="' + pUrl + '">' + (img ? '<img src="' + img + '" alt="' + title + '" loading="lazy">' : '') + '</a>'
+            +   best
+            +   '<a class="ab-pname" href="' + pUrl + '">' + title + '</a>'
+            + '</th>';
+        });
+
+        var html = ''
+          + '<table>'
+          +   '<thead><tr><th></th>' + headCells.join('') + '</tr></thead>'
+          +   '<tbody>'
+          +     rows.map(function (r) {
+                  return '<tr><th>' + r.label + '</th>' + r.cells.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
+                }).join('')
+          +   '</tbody>'
+          + '</table>';
+        scroll.innerHTML = html;
+      }
+
+      fetch(API).then(function (r) { return r.json(); }).then(function (data) {
+        var products = (data && data.products) ? data.products : [];
+        if (!products.length) { scroll.innerHTML = '<div class="ab-status">No products found</div>'; return; }
+        build(products);
+      }).catch(function () { scroll.innerHTML = '<div class="ab-status">Couldn\'t load products.</div>'; });
+    })();
+  </script>
+</section>

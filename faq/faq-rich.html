@@ -1,0 +1,322 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-rich" aria-labelledby="ab-faq-rich-title">
+  <style>
+    #airboost-faq-rich,
+    #airboost-faq-rich * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-rich {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #airboost-faq-rich .ab-inner {
+      max-width: min(100%, 44rem);
+      margin: 0 auto;
+    }
+
+    #airboost-faq-rich .ab-head {
+      margin-bottom: var(--space-lg);
+      text-align: center;
+    }
+
+    #ab-faq-rich-title {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-rich .ab-sub {
+      margin: 0 auto;
+      max-width: 32rem;
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-rich .faq-item {
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-container-lowest);
+      overflow: hidden;
+      margin-bottom: var(--space-sm);
+      transition: border-color var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-rich .faq-item.open {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    #airboost-faq-rich .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      min-height: 3.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface);
+    }
+
+    #airboost-faq-rich .faq-q:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-rich .ic {
+      flex-shrink: 0;
+      color: var(--color-on-surface-variant);
+      transition: transform var(--duration-medium) var(--ease-standard), color var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-rich .faq-item.open .ic {
+      color: var(--color-primary);
+      transform: rotate(180deg);
+    }
+
+    #airboost-faq-rich .ic svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    #airboost-faq-rich .faq-aw {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-rich .faq-item.open .faq-aw {
+      grid-template-rows: 1fr;
+    }
+
+    #airboost-faq-rich .faq-aw .i {
+      overflow: hidden;
+    }
+
+    #airboost-faq-rich .faq-ac {
+      padding: 0 var(--space-md) var(--space-md);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-rich .faq-ac > * + * {
+      margin-top: var(--space-sm);
+    }
+
+    #airboost-faq-rich .faq-ac p {
+      margin: 0;
+    }
+
+    #airboost-faq-rich .faq-ac strong {
+      color: var(--color-on-surface);
+      font-weight: var(--font-weight-bold);
+    }
+
+    #airboost-faq-rich .faq-ac a {
+      color: var(--color-link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    #airboost-faq-rich .faq-ac ul,
+    #airboost-faq-rich .faq-ac ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    #airboost-faq-rich .faq-ac ul li,
+    #airboost-faq-rich .faq-ac ol li {
+      margin-bottom: 4px;
+    }
+
+    #airboost-faq-rich .faq-ac code {
+      font-family: var(--font-mono);
+      font-size: 0.8125em;
+      padding: 1px 6px;
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-container-high);
+      color: var(--color-on-surface);
+      border: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-rich .faq-ac pre {
+      margin: 0;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      background: var(--color-surface-container-high);
+      color: var(--color-on-surface);
+      border: 1px solid var(--color-outline);
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    #airboost-faq-rich .faq-ac pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    #airboost-faq-rich .faq-ac blockquote {
+      margin: 0;
+      padding: var(--space-sm) var(--space-md);
+      border-left: 3px solid var(--color-primary);
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      color: var(--color-on-surface);
+    }
+
+    #airboost-faq-rich .faq-ac .callout {
+      display: flex;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--color-info) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-info) 30%, transparent);
+      color: var(--color-on-surface);
+    }
+
+    #airboost-faq-rich .faq-ac .callout svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      stroke: var(--color-info);
+      fill: none;
+      stroke-width: 2;
+      margin-top: 2px;
+    }
+
+    #airboost-faq-rich .faq-ac .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xs);
+      padding: var(--space-sm);
+      border-radius: var(--radius-md);
+      background: var(--color-surface-container-low);
+      border: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-rich .faq-ac .grid div {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.8125rem;
+    }
+
+    #airboost-faq-rich .faq-ac .grid div:nth-child(odd) {
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-rich .faq-ac .grid div:nth-child(even) {
+      color: var(--color-on-surface);
+      font-weight: var(--font-weight-bold);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+  <div class="ab-inner">
+    <div class="ab-head">
+      <h2 id="ab-faq-rich-title">Developer FAQ</h2>
+      <p class="ab-sub">Detailed answers with code, lists, and callouts.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        How do I authenticate API requests?
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+      </button>
+      <div class="faq-aw"><div class="i"><div class="faq-ac">
+        <p>All endpoints require a bearer token in the <code>Authorization</code> header. Generate one in <a href="#settings">Settings → API keys</a>.</p>
+<pre><code>curl https://api.example.com/v1/orders \
+  -H "Authorization: Bearer sk_live_••••••" \
+  -H "Content-Type: application/json"</code></pre>
+        <div class="callout">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span><strong>Never expose secret keys</strong> in client-side code. Use restricted publishable keys for browser apps.</span>
+        </div>
+      </div></div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        What are the rate limits?
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+      </button>
+      <div class="faq-aw"><div class="i"><div class="faq-ac">
+        <p>Rate limits depend on your plan. Each response includes <code>X-RateLimit-Remaining</code> and <code>X-RateLimit-Reset</code> headers.</p>
+        <div class="grid" role="presentation">
+          <div>Free</div><div>60 / min</div>
+          <div>Pro</div><div>600 / min</div>
+          <div>Scale</div><div>6,000 / min</div>
+          <div>Enterprise</div><div>Custom</div>
+        </div>
+        <p>If you hit the limit, you'll get a <code>429 Too Many Requests</code> response. Back off using the <code>Retry-After</code> header.</p>
+      </div></div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        How do I handle webhook events?
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+      </button>
+      <div class="faq-aw"><div class="i"><div class="faq-ac">
+        <p>Webhooks are POST requests to your endpoint. Verify the signature, then handle the event:</p>
+        <ol>
+          <li>Read the <code>X-Webhook-Signature</code> header</li>
+          <li>Compute HMAC-SHA256 of the raw body using your signing secret</li>
+          <li>Compare in constant time</li>
+          <li>Return <code>200</code> within 5 seconds</li>
+        </ol>
+        <blockquote>Pro tip: respond <strong>200</strong> immediately, then process the event in a background job. Slow handlers get retried.</blockquote>
+      </div></div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        Which SDKs are officially supported?
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+      </button>
+      <div class="faq-aw"><div class="i"><div class="faq-ac">
+        <p>We maintain first-party SDKs for:</p>
+        <ul>
+          <li><strong>JavaScript / TypeScript</strong> — <code>npm i @example/sdk</code></li>
+          <li><strong>Python</strong> — <code>pip install example-sdk</code></li>
+          <li><strong>Go</strong> — <code>go get github.com/example/sdk-go</code></li>
+          <li><strong>Ruby</strong> — <code>gem install example</code></li>
+        </ul>
+        <p>Community libraries for Rust, PHP, and Elixir are listed on <a href="#libs">our libraries page</a>.</p>
+      </div></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById('airboost-faq-rich');
+      if (!s) return;
+      s.querySelectorAll('.faq-item').forEach(function (item) {
+        var btn = item.querySelector('.faq-q');
+        btn.addEventListener('click', function () {
+          var o = item.classList.contains('open');
+          item.classList.toggle('open', !o);
+          btn.setAttribute('aria-expanded', String(!o));
+        });
+      });
+    })();
+  </script>
+</section>

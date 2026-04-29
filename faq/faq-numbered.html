@@ -1,0 +1,234 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-num" aria-labelledby="ab-faq-n-title">
+  <style>
+    #airboost-faq-num,
+    #airboost-faq-num * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-num {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: linear-gradient(
+        180deg,
+        var(--color-surface-container) 0%,
+        var(--color-background) 36%
+      );
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #ab-faq-n-title {
+      margin: 0 0 var(--space-xs);
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #ab-faq-n-sub {
+      margin: 0 0 var(--space-lg);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-num .ab-c {
+      max-width: min(100%, 40rem);
+      margin: 0 auto;
+    }
+
+    #airboost-faq-num .faq-item {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+      align-items: stretch;
+    }
+
+    #airboost-faq-num .n {
+      width: 2.25rem;
+      min-height: 2.25rem;
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+      background: var(--color-primary-container);
+      color: var(--color-on-primary-container);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-outline));
+    }
+
+    #airboost-faq-num .faq-bod {
+      flex: 1;
+      min-width: 0;
+      background: var(--color-surface-container-lowest);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-num .faq-bod.open {
+      border-color: color-mix(in srgb, var(--color-primary) 45%, var(--color-outline));
+      box-shadow: var(--shadow-sm);
+    }
+
+    #airboost-faq-num .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-sm);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface);
+      border-radius: var(--radius-sm);
+    }
+
+    #airboost-faq-num .faq-q:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-num .i {
+      color: var(--color-on-surface-variant);
+      display: flex;
+      align-items: center;
+      transition: transform var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-num .faq-bod.open .i {
+      color: var(--color-primary);
+      transform: rotate(180deg);
+    }
+
+    #airboost-faq-num .faq-aw {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-num .faq-bod.open .faq-aw {
+      grid-template-rows: 1fr;
+    }
+
+    #airboost-faq-num .faq-aw .i2 {
+      overflow: hidden;
+    }
+
+    #airboost-faq-num .faq-ac {
+      padding: 0 var(--space-sm) var(--space-sm);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-num .i svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+    }
+  </style>
+  <div class="ab-c">
+    <h2 id="ab-faq-n-title">Step by step</h2>
+    <p id="ab-faq-n-sub">Numbered steps for guides and onboarding Q&amp;A.</p>
+    <div>
+      <div class="faq-item" data-idx="1">
+        <span class="n" aria-hidden="true">01</span>
+        <div class="faq-bod">
+          <button class="faq-q" type="button" aria-expanded="false">
+            What is your return policy?
+            <span class="i" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-aw">
+            <div class="i2">
+              <div class="faq-ac">
+                We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied, simply contact support for a full refund.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" data-idx="2">
+        <span class="n" aria-hidden="true">02</span>
+        <div class="faq-bod">
+          <button class="faq-q" type="button" aria-expanded="false">
+            How long does shipping normally take?
+            <span class="i" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-aw">
+            <div class="i2">
+              <div class="faq-ac">
+                Standard shipping typically takes 5-7 business days. We also offer expedited 2-day and overnight shipping options at checkout.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item" data-idx="3">
+        <span class="n" aria-hidden="true">03</span>
+        <div class="faq-bod">
+          <button class="faq-q" type="button" aria-expanded="false">
+            Do you ship internationally?
+            <span class="i" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-aw">
+            <div class="i2">
+              <div class="faq-ac">
+                Yes! We ship to over 100 countries globally. International delivery times vary by destination, typically ranging from 7 to 21 business days.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById("airboost-faq-num");
+      if (!s) return;
+      s.querySelectorAll(".faq-item").forEach(function (item) {
+        var bod = item.querySelector(".faq-bod");
+        var btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          var o = bod.classList.contains("open");
+          s.querySelectorAll(".faq-bod").forEach(function (b) {
+            b.classList.remove("open");
+          });
+          s.querySelectorAll(".faq-q").forEach(function (q) {
+            q.setAttribute("aria-expanded", "false");
+          });
+          if (!o) {
+            bod.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    })();
+  </script>
+</section>

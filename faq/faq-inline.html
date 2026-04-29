@@ -1,0 +1,188 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-inline" aria-labelledby="ab-faq-il-title">
+  <style>
+    #airboost-faq-inline,
+    #airboost-faq-inline * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-inline {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #airboost-faq-inline .ab-grid {
+      max-width: min(100%, var(--container-max-width));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    @media (min-width: 860px) {
+      #airboost-faq-inline .ab-grid {
+        grid-template-columns: 18rem minmax(0, 1fr);
+        gap: var(--space-xl);
+        align-items: start;
+      }
+    }
+
+    #airboost-faq-inline .ab-side {
+      position: sticky;
+      top: var(--space-md);
+    }
+
+    #ab-faq-il-title {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-inline .ab-sub {
+      margin: 0 0 var(--space-md);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-inline .ab-jump {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-inline .ab-jump li {
+      border-bottom: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-inline .ab-jump a {
+      display: block;
+      padding: var(--space-sm) 0;
+      color: var(--color-on-surface-variant);
+      text-decoration: none;
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-medium);
+      transition: color var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-inline .ab-jump a:hover,
+    #airboost-faq-inline .ab-jump a:focus-visible {
+      color: var(--color-primary);
+      outline: none;
+    }
+
+    #airboost-faq-inline .ab-jump a .num {
+      display: inline-block;
+      width: 1.75rem;
+      color: color-mix(in srgb, var(--color-on-surface-variant) 70%, transparent);
+      font-variant-numeric: tabular-nums;
+      font-weight: var(--font-weight-bold);
+    }
+
+    #airboost-faq-inline .ab-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    #airboost-faq-inline .qa {
+      scroll-margin-top: var(--space-md);
+      padding: 0 0 var(--space-lg);
+      border-bottom: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-inline .qa:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    #airboost-faq-inline .qa h3 {
+      margin: 0 0 var(--space-sm);
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-inline .qa h3 .num {
+      flex-shrink: 0;
+      color: var(--color-primary);
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+    }
+
+    #airboost-faq-inline .qa p {
+      margin: 0 0 var(--space-sm);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-inline .qa p:last-child {
+      margin-bottom: 0;
+    }
+
+    #airboost-faq-inline .qa a {
+      color: var(--color-link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    #airboost-faq-inline .qa a:hover {
+      color: var(--color-link-hover);
+    }
+  </style>
+  <div class="ab-grid">
+    <aside class="ab-side">
+      <h2 id="ab-faq-il-title">FAQ</h2>
+      <p class="ab-sub">Everything you need to know — laid out in plain text, indexable for search engines.</p>
+      <ol class="ab-jump">
+        <li><a href="#q-return"><span class="num">01</span>Returns</a></li>
+        <li><a href="#q-shipping"><span class="num">02</span>Shipping</a></li>
+        <li><a href="#q-international"><span class="num">03</span>International</a></li>
+        <li><a href="#q-tracking"><span class="num">04</span>Tracking</a></li>
+        <li><a href="#q-payment"><span class="num">05</span>Payments</a></li>
+      </ol>
+    </aside>
+    <div class="ab-list">
+      <article class="qa" id="q-return">
+        <h3><span class="num">01</span>What is your return policy?</h3>
+        <p>We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied with your purchase, simply contact our support team and we'll issue a full refund.</p>
+        <p>Items must be in their original condition. Refunds are processed within 5 business days of receiving the returned item.</p>
+      </article>
+      <article class="qa" id="q-shipping">
+        <h3><span class="num">02</span>How long does shipping take?</h3>
+        <p>Standard shipping typically takes 5–7 business days within the contiguous US. We also offer expedited 2-day and overnight shipping options at checkout.</p>
+      </article>
+      <article class="qa" id="q-international">
+        <h3><span class="num">03</span>Do you ship internationally?</h3>
+        <p>Yes — we ship to over 100 countries globally. International delivery times vary by destination, typically ranging from 7 to 21 business days. Customs fees may apply and are the buyer's responsibility.</p>
+      </article>
+      <article class="qa" id="q-tracking">
+        <h3><span class="num">04</span>How do I track my order?</h3>
+        <p>Once your order ships, we'll email you a tracking link. You can also view live status under <a href="#account">Orders</a> in your account dashboard.</p>
+      </article>
+      <article class="qa" id="q-payment">
+        <h3><span class="num">05</span>What payment methods do you accept?</h3>
+        <p>We accept all major credit cards, Apple Pay, Google Pay, PayPal, and bank transfers (for orders over $200). All transactions are processed securely.</p>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,321 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-car" aria-labelledby="ab-faq-car-title">
+  <style>
+    #airboost-faq-car,
+    #airboost-faq-car * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-car {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) 0;
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #airboost-faq-car .ab-head {
+      max-width: min(100%, var(--container-max-width));
+      margin: 0 auto var(--space-md);
+      padding: 0 var(--space-page-x);
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    #airboost-faq-car .ab-head-text {
+      max-width: 38rem;
+    }
+
+    #ab-faq-car-title {
+      margin: 0 0 var(--space-xs);
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-car .ab-sub {
+      margin: 0;
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-car .nav {
+      display: flex;
+      gap: var(--space-xs);
+    }
+
+    #airboost-faq-car .nav button {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-outline);
+      background: var(--color-surface-container-lowest);
+      color: var(--color-on-surface);
+      cursor: pointer;
+      transition:
+        background var(--duration-medium) var(--ease-standard),
+        border-color var(--duration-medium) var(--ease-standard),
+        color var(--duration-medium) var(--ease-standard),
+        opacity var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-car .nav button:hover {
+      border-color: color-mix(in srgb, var(--color-on-surface) 25%, var(--color-outline));
+      background: var(--color-surface-container);
+    }
+
+    #airboost-faq-car .nav button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    #airboost-faq-car .nav button:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-car .nav button svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    #airboost-faq-car .track-wrap {
+      position: relative;
+    }
+
+    #airboost-faq-car .track {
+      display: flex;
+      gap: var(--space-md);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: var(--space-xs) var(--space-page-x) var(--space-md);
+      scrollbar-width: none;
+    }
+
+    #airboost-faq-car .track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #airboost-faq-car .track::before,
+    #airboost-faq-car .track::after {
+      content: "";
+      flex-shrink: 0;
+      width: max(0px, calc((100% - var(--container-max-width)) / 2));
+    }
+
+    #airboost-faq-car .card {
+      flex: 0 0 auto;
+      width: min(86vw, 22rem);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-lg);
+      border-radius: var(--radius-xl);
+      background: var(--color-surface-container-lowest);
+      border: 1px solid var(--color-outline);
+      transition:
+        border-color var(--duration-medium) var(--ease-standard),
+        box-shadow var(--duration-medium) var(--ease-standard),
+        transform var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-car .card:hover {
+      border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-outline));
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    #airboost-faq-car .card .num {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    #airboost-faq-car .card .num::before {
+      content: "";
+      width: 1.5rem;
+      height: 1px;
+      background: var(--color-primary);
+    }
+
+    #airboost-faq-car .card h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-car .card p {
+      margin: 0;
+      flex: 1;
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-car .card .more {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-on-surface);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: var(--font-weight-bold);
+      transition: color var(--duration-medium) var(--ease-standard), gap var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-car .card .more:hover {
+      color: var(--color-primary);
+      gap: 0.6rem;
+    }
+
+    #airboost-faq-car .card .more svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    #airboost-faq-car .dots {
+      display: flex;
+      gap: var(--space-xs);
+      justify-content: center;
+      padding: 0 var(--space-page-x);
+    }
+
+    #airboost-faq-car .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--color-outline);
+      transition: background var(--duration-medium) var(--ease-standard), width var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-car .dot.active {
+      background: var(--color-primary);
+      width: 18px;
+    }
+  </style>
+  <header class="ab-head">
+    <div class="ab-head-text">
+      <h2 id="ab-faq-car-title">Quick answers</h2>
+      <p class="ab-sub">Swipe through common questions — tap any card to read more.</p>
+    </div>
+    <div class="nav" aria-label="Carousel navigation">
+      <button type="button" class="prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button type="button" class="next" aria-label="Next">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+  </header>
+  <div class="track-wrap">
+    <div class="track" tabindex="0" aria-label="FAQ cards" role="list">
+      <article class="card" role="listitem">
+        <span class="num">01 · Returns</span>
+        <h3>What is your return policy?</h3>
+        <p>30-day money-back guarantee. If you're not satisfied, we'll refund you in full — no questions asked.</p>
+        <a class="more" href="#returns">Read more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="num">02 · Shipping</span>
+        <h3>How long does shipping take?</h3>
+        <p>Standard 5–7 business days. Need it sooner? Pick 2-day or overnight at checkout.</p>
+        <a class="more" href="#shipping">Read more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="num">03 · International</span>
+        <h3>Do you ship globally?</h3>
+        <p>Yes — we ship to 100+ countries. Delivery typically takes 7–21 business days depending on destination.</p>
+        <a class="more" href="#international">Read more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="num">04 · Tracking</span>
+        <h3>How do I track my order?</h3>
+        <p>You'll get a tracking link by email when it ships. Live status is also available under Orders in your account.</p>
+        <a class="more" href="#tracking">Read more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="num">05 · Payments</span>
+        <h3>What payment methods do you accept?</h3>
+        <p>All major credit cards, Apple Pay, Google Pay, PayPal, and bank transfers (orders over $200).</p>
+        <a class="more" href="#payments">Read more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </article>
+      <article class="card" role="listitem">
+        <span class="num">06 · Account</span>
+        <h3>How do I reset my password?</h3>
+        <p>Use "Forgot password" on the sign-in page. We'll email a reset link valid for 30 minutes.</p>
+        <a class="more" href="#account">Read more <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </article>
+    </div>
+  </div>
+  <div class="dots" aria-hidden="true"></div>
+  <script>
+    (function () {
+      var s = document.getElementById('airboost-faq-car');
+      if (!s) return;
+      var track = s.querySelector('.track');
+      var prev = s.querySelector('.nav .prev');
+      var next = s.querySelector('.nav .next');
+      var cards = s.querySelectorAll('.card');
+      var dots = s.querySelector('.dots');
+
+      cards.forEach(function (_, i) {
+        var d = document.createElement('span');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        dots.appendChild(d);
+      });
+      var dotEls = dots.querySelectorAll('.dot');
+
+      function step() {
+        var first = cards[0];
+        if (!first) return 320;
+        var styles = getComputedStyle(track);
+        var gap = parseFloat(styles.columnGap || styles.gap) || 0;
+        return first.getBoundingClientRect().width + gap;
+      }
+
+      function update() {
+        var max = track.scrollWidth - track.clientWidth - 1;
+        prev.disabled = track.scrollLeft <= 0;
+        next.disabled = track.scrollLeft >= max;
+        var idx = Math.round(track.scrollLeft / step());
+        if (idx < 0) idx = 0;
+        if (idx >= dotEls.length) idx = dotEls.length - 1;
+        dotEls.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+      }
+
+      prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
+</section>

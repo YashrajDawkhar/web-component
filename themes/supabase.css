@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: dark;
+
+  --color-background: hsl(0 0% 7.1%);
+  --color-on-background: hsl(0 0% 98%);
+  --color-surface: hsl(0 0% 12.2%);
+  --color-on-surface: hsl(0 0% 98%);
+  --color-on-surface-variant: hsl(0 0% 70.6%);
+  --color-surface-container-lowest: hsl(0 0% 7.1%);
+  --color-surface-container-low: hsl(0 0% 9%);
+  --color-surface-container: hsl(0 0% 12.2%);
+  --color-surface-container-high: hsl(0 0% 14.1%);
+  --color-outline: hsl(0 0% 18%);
+  --color-outline-variant: hsl(0 0% 21.2%);
+
+  --color-primary: hsl(153.1 60.2% 52.7%);
+  --color-on-primary: hsl(0 0% 7.1%);
+  --color-primary-container: hsl(153.1 60.2% 14%);
+  --color-primary-container-dim: hsl(153.1 60.2% 20%);
+  --color-on-primary-container: hsl(153.1 60.2% 78%);
+  --color-primary-hover: hsl(152.9 56.1% 46.5%);
+
+  --color-secondary: hsl(247.8 100% 70%);
+  --color-on-secondary: hsl(0 0% 7.1%);
+  --color-secondary-container: hsl(247.8 58% 19%);
+  --color-on-secondary-container: hsl(247.8 100% 84%);
+
+  --color-tertiary: #79c0ff;
+  --color-on-tertiary: hsl(0 0% 7.1%);
+  --color-tertiary-container: #10243a;
+  --color-on-tertiary-container: #b8dcff;
+
+  --color-link: hsl(155 100% 38.6%);
+  --color-link-hover: hsl(153.1 60.2% 52.7%);
+
+  --color-error: hsl(10.2 77.9% 53.9%);
+  --color-on-error: #ffffff;
+  --color-success: hsl(153.1 60.2% 52.7%);
+  --color-on-success: hsl(0 0% 7.1%);
+  --color-warning: hsl(38.9 100% 42.9%);
+  --color-on-warning: hsl(0 0% 7.1%);
+  --color-info: #79c0ff;
+  --color-on-info: hsl(0 0% 7.1%);
+
+  --color-disabled: hsl(0 0% 18%);
+  --color-on-disabled: hsl(0 0% 30.2%);
+
+  --color-input-background: hsl(0 0% 14.1%);
+  --color-input-border: hsl(0 0% 22.4%);
+  --color-input-placeholder: hsl(0 0% 30.2%);
+
+  --color-inverse-surface: hsl(0 0% 98%);
+  --color-on-inverse-surface: hsl(0 0% 7.1%);
+
+  --font-sans: "Inter", "Circular", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Inter", "Circular", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Source Code Pro", "Office Code Pro", Menlo, monospace;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-title: 1.5rem;
+  --font-size-display: clamp(2rem, 4vw, 4rem);
+  --line-height-body: 1.5;
+  --line-height-tight: 1.2;
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  --space-unit: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+  --space-page-x: clamp(16px, 4vw, 32px);
+  --space-section-y: clamp(56px, 8vw, 112px);
+
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.24);
+  --shadow-md: 0 4px 14px rgb(0 0 0 / 0.28);
+  --shadow-lg: 0 18px 42px rgb(0 0 0 / 0.36);
+  --color-scrim: rgb(0 0 0 / 0.64);
+
+  --duration-short: 0.12s;
+  --duration-medium: 0.18s;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --focus-ring-color: rgb(147 197 253 / 0.5);
+  --focus-ring-width: 2px;
+
+  --container-max-width: 1128px;
+
+  --glass-surface: rgb(255 255 255 / 0.06);
+  --glass-border: rgb(255 255 255 / 0.12);
+}

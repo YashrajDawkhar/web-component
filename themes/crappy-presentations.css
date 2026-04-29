@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&display=swap");
+
+:root {
+  color-scheme: light;
+
+  --color-background: #fefff5;
+  --color-on-background: rgb(51, 51, 51);
+  --color-surface: #fefff5;
+  --color-on-surface: rgb(51, 51, 51);
+  --color-on-surface-variant: rgb(51, 51, 51);
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fff294;
+  --color-surface-container: #fff294;
+  --color-surface-container-high: #fd6801;
+  --color-outline: rgb(184, 185, 194);
+  --color-outline-variant: rgba(47, 46, 46, 0.8);
+
+  --color-primary: #fd6801;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #fff294;
+  --color-primary-container-dim: #ffe45d;
+  --color-on-primary-container: #000000;
+  --color-primary-hover: #dc5700;
+
+  --color-secondary: #007aff;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d8ebff;
+  --color-on-secondary-container: #00366f;
+
+  --color-tertiary: #fff294;
+  --color-on-tertiary: #000000;
+  --color-tertiary-container: #fefff5;
+  --color-on-tertiary-container: rgb(51, 51, 51);
+
+  --color-link: rgb(0, 0, 238);
+  --color-link-hover: #fd6801;
+
+  --color-error: #d92d20;
+  --color-on-error: #ffffff;
+  --color-success: #198754;
+  --color-on-success: #ffffff;
+  --color-warning: #fd6801;
+  --color-on-warning: #ffffff;
+  --color-info: #007aff;
+  --color-on-info: #ffffff;
+
+  --color-disabled: rgb(184, 185, 194);
+  --color-on-disabled: rgb(51, 51, 51);
+
+  --color-input-background: #ffffff;
+  --color-input-border: rgb(51, 51, 51);
+  --color-input-placeholder: rgb(100, 100, 100);
+
+  --color-inverse-surface: rgb(51, 51, 51);
+  --color-on-inverse-surface: #ffffff;
+
+  --font-sans: "acumin-pro", "Archivo", Arial, sans-serif;
+  --font-display: "Archivo", Arial, sans-serif;
+  --font-mono: "Source Code Pro", monospace;
+  --font-size-body: 1.5rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-title: 4rem;
+  --font-size-display: clamp(3rem, 9vw, 5.25rem);
+  --line-height-body: 1;
+  --line-height-tight: 0.94;
+  --font-weight-body: 700;
+  --font-weight-medium: 500;
+  --font-weight-bold: 800;
+
+  --space-unit: 8px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 65px;
+  --space-2xl: 96px;
+  --space-page-x: clamp(20px, 5vw, 65px);
+  --space-section-y: clamp(56px, 8vw, 96px);
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 25px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --color-scrim: rgb(51 51 51 / 0.5);
+
+  --duration-short: 0.2s;
+  --duration-medium: 0.35s;
+  --ease-standard: ease;
+  --focus-ring-color: #007aff;
+  --focus-ring-width: 5px;
+
+  --container-max-width: 940px;
+
+  --glass-surface: rgb(254 255 245 / 0.78);
+  --glass-border: rgba(47, 46, 46, 0.8);
+}

@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-banded" aria-labelledby="ab-faq-b-title">
+  <style>
+    #airboost-faq-banded,
+    #airboost-faq-banded * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-banded {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #ab-faq-b-title {
+      margin: 0 auto var(--space-md);
+      max-width: 36rem;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: var(--font-size-title);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #ab-faq-b-sub {
+      margin: var(--space-sm) auto 0;
+      color: var(--color-on-surface-variant);
+      max-width: 32rem;
+      text-align: center;
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-banded .ab-table {
+      max-width: min(100%, 40rem);
+      margin: 0 auto;
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    #airboost-faq-banded .faq-item:nth-child(odd) {
+      background: var(--color-surface-container-low);
+    }
+
+    #airboost-faq-banded .faq-item {
+      border-bottom: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-banded .faq-item:last-of-type {
+      border-bottom: 0;
+    }
+
+    #airboost-faq-banded .faq-item.open {
+      background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface-container-lowest));
+    }
+
+    #airboost-faq-banded .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: var(--space-md) calc(var(--space-md) + var(--space-xs));
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface);
+      border-radius: var(--radius-sm);
+    }
+
+    #airboost-faq-banded .faq-q:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: -2px;
+    }
+
+    #airboost-faq-banded .tgl {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
+      color: var(--color-on-surface-variant);
+      background: color-mix(in srgb, var(--color-on-surface) 6%, transparent);
+      transition:
+        transform var(--duration-medium) var(--ease-standard),
+        color var(--duration-medium) var(--ease-standard),
+        background var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-banded .tgl svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.25;
+    }
+
+    #airboost-faq-banded .faq-item.open .tgl {
+      color: var(--color-on-primary);
+      background: var(--color-primary);
+      transform: rotate(180deg);
+    }
+
+    #airboost-faq-banded .faq-aw {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-banded .faq-item.open .faq-aw {
+      grid-template-rows: 1fr;
+    }
+
+    #airboost-faq-banded .faq-aw .i {
+      overflow: hidden;
+    }
+
+    #airboost-faq-banded .faq-ac {
+      padding: 0 calc(var(--space-md) + var(--space-xs)) var(--space-md);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+  </style>
+  <h2 id="ab-faq-b-title">Banded rows</h2>
+  <p id="ab-faq-b-sub">Zebra + highlight on expand — scannable in long lists.</p>
+  <div class="ab-table">
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        What is your return policy?
+        <span class="tgl" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      </button>
+      <div class="faq-aw">
+        <div class="i">
+          <div class="faq-ac">
+            We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied, simply contact support for a full refund.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        How long does shipping normally take?
+        <span class="tgl" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      </button>
+      <div class="faq-aw">
+        <div class="i">
+          <div class="faq-ac">
+            Standard shipping typically takes 5-7 business days. We also offer expedited 2-day and overnight shipping options at checkout.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" type="button" aria-expanded="false">
+        Do you ship internationally?
+        <span class="tgl" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      </button>
+      <div class="faq-aw">
+        <div class="i">
+          <div class="faq-ac">
+            Yes! We ship to over 100 countries globally. International delivery times vary by destination, typically ranging from 7 to 21 business days.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById("airboost-faq-banded");
+      if (!s) return;
+      s.querySelectorAll(".faq-item").forEach(function (item) {
+        var btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          var o = item.classList.contains("open");
+          s.querySelectorAll(".faq-item").forEach(function (i) {
+            i.classList.remove("open");
+            i.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+          });
+          if (!o) {
+            item.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    })();
+  </script>
+</section>

@@ -1,0 +1,207 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-elev" aria-labelledby="ab-faq-e-title">
+  <style>
+    #airboost-faq-elev,
+    #airboost-faq-elev * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-elev {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: radial-gradient(
+        800px 400px at 50% 0%,
+        color-mix(in srgb, var(--color-primary) 14%, var(--color-background)),
+        var(--color-surface-container-low) 42%,
+        var(--color-surface-container) 100%
+      );
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #ab-faq-e-title {
+      margin: 0 0 var(--space-xs);
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #ab-faq-e-sub {
+      margin: 0 auto var(--space-lg);
+      text-align: center;
+      color: var(--color-on-surface-variant);
+      max-width: 30rem;
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-elev .ab-pad {
+      max-width: min(100%, 36rem);
+      margin: 0 auto;
+    }
+
+    #airboost-faq-elev .ab-card {
+      background: var(--color-surface-container-lowest);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xs) var(--space-sm) var(--space-sm);
+      border: 1px solid var(--color-outline);
+      box-shadow: var(--shadow-lg);
+    }
+
+    #airboost-faq-elev .faq-item {
+      border-radius: var(--radius-lg);
+      margin-bottom: 2px;
+      overflow: hidden;
+      transition: background var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-elev .faq-item.open {
+      background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface-container-lowest));
+    }
+
+    #airboost-faq-elev .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-sm);
+      min-height: 2.9rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface);
+      border-radius: var(--radius-md);
+    }
+
+    #airboost-faq-elev .faq-q:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-elev .d {
+      color: color-mix(in srgb, var(--color-primary) 55%, var(--color-on-surface-variant));
+      display: flex;
+      align-items: center;
+      transition: transform var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-elev .faq-item.open .d {
+      color: var(--color-primary);
+      transform: rotate(180deg);
+    }
+
+    #airboost-faq-elev .d svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    #airboost-faq-elev .faq-aw {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-elev .faq-item.open .faq-aw {
+      grid-template-rows: 1fr;
+    }
+
+    #airboost-faq-elev .faq-aw .w {
+      overflow: hidden;
+    }
+
+    #airboost-faq-elev .faq-ac {
+      padding: 0 var(--space-sm) var(--space-sm);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+  </style>
+  <h2 id="ab-faq-e-title">Floating card</h2>
+  <p id="ab-faq-e-sub">Soft hero background and one elevated surface — use for marketing pages.</p>
+  <div class="ab-pad">
+    <div class="ab-card">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          What is your return policy?
+          <span class="d" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-aw">
+          <div class="w">
+            <div class="faq-ac">
+              We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied, simply contact support for a full refund.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          How long does shipping normally take?
+          <span class="d" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-aw">
+          <div class="w">
+            <div class="faq-ac">
+              Standard shipping typically takes 5-7 business days. We also offer expedited 2-day and overnight shipping options at checkout.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          Do you ship internationally?
+          <span class="d" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-aw">
+          <div class="w">
+            <div class="faq-ac">
+              Yes! We ship to over 100 countries globally. International delivery times vary by destination, typically ranging from 7 to 21 business days.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById("airboost-faq-elev");
+      if (!s) return;
+      s.querySelectorAll(".faq-item").forEach(function (item) {
+        var btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          var o = item.classList.contains("open");
+          s.querySelectorAll(".faq-item").forEach(function (i) {
+            i.classList.remove("open");
+            i.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+          });
+          if (!o) {
+            item.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    })();
+  </script>
+</section>

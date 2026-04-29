@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: light;
+
+  --color-background: hsl(0 0% 100%);
+  --color-on-background: hsl(0 0% 3.9%);
+  --color-surface: hsl(0 0% 100%);
+  --color-on-surface: hsl(0 0% 3.9%);
+  --color-on-surface-variant: hsl(0 0% 18%);
+  --color-surface-container-lowest: hsl(0 0% 100%);
+  --color-surface-container-low: hsl(0 0% 97%);
+  --color-surface-container: hsl(0 0% 94%);
+  --color-surface-container-high: hsl(0 0% 88%);
+  --color-outline: hsl(0 0% 3.9%);
+  --color-outline-variant: hsl(0 0% 72%);
+
+  --color-primary: hsl(0 0% 3.9%);
+  --color-on-primary: hsl(0 0% 100%);
+  --color-primary-container: hsl(0 0% 94%);
+  --color-primary-container-dim: hsl(0 0% 88%);
+  --color-on-primary-container: hsl(0 0% 3.9%);
+  --color-primary-hover: hsl(0 0% 18%);
+
+  --color-secondary: hsl(0 0% 3.9%);
+  --color-on-secondary: hsl(0 0% 100%);
+  --color-secondary-container: hsl(0 0% 96%);
+  --color-on-secondary-container: hsl(0 0% 3.9%);
+
+  --color-tertiary: rgb(59 130 246);
+  --color-on-tertiary: hsl(0 0% 100%);
+  --color-tertiary-container: rgb(59 130 246 / 0.12);
+  --color-on-tertiary-container: rgb(29 78 216);
+
+  --color-link: hsl(0 0% 3.9%);
+  --color-link-hover: hsl(0 0% 3.9%);
+
+  --color-error: hsl(0 72% 45%);
+  --color-on-error: hsl(0 0% 100%);
+  --color-success: hsl(142 70% 32%);
+  --color-on-success: hsl(0 0% 100%);
+  --color-warning: hsl(38 92% 42%);
+  --color-on-warning: hsl(0 0% 3.9%);
+  --color-info: rgb(59 130 246);
+  --color-on-info: hsl(0 0% 100%);
+
+  --color-disabled: hsl(0 0% 88%);
+  --color-on-disabled: hsl(0 0% 45%);
+
+  --color-input-background: hsl(0 0% 100%);
+  --color-input-border: hsl(0 0% 3.9%);
+  --color-input-placeholder: hsl(0 0% 45%);
+
+  --color-inverse-surface: hsl(0 0% 3.9%);
+  --color-on-inverse-surface: hsl(0 0% 100%);
+
+  --font-sans: "Diatype Regular", Inter, system-ui, sans-serif;
+  --font-display: "Walter Neue Bold", Archivo, Inter, system-ui, sans-serif;
+  --font-mono: "Diatype Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --font-size-body: clamp(13px, 0.15vw + 0.75rem, 16px);
+  --font-size-body-sm: clamp(9px, 0.75vw, 30px);
+  --font-size-title: clamp(16px, 1vw + 1.5rem, 32px);
+  --font-size-display: clamp(12px, 1.6vw + 1.25rem, 40px);
+  --line-height-body: 1.5;
+  --line-height-tight: 1;
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 800;
+
+  --space-unit: 4px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 64px;
+  --space-page-x: clamp(16px, 4vw, 64px);
+  --space-section-y: clamp(48px, 8vw, 96px);
+
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 0 #0000;
+  --shadow-md: 0 0 #0000;
+  --shadow-lg: 0 0 #0000;
+  --color-scrim: rgb(0 0 0 / 0.55);
+
+  --duration-short: 0.12s;
+  --duration-medium: 0.18s;
+  --ease-standard: ease;
+  --focus-ring-color: rgb(59 130 246 / 0.5);
+  --focus-ring-width: 2px;
+
+  --container-max-width: 1280px;
+
+  --glass-surface: rgb(255 255 255 / 0.82);
+  --glass-border: hsl(0 0% 3.9%);
+}

@@ -1,0 +1,309 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="ab-coll-car" aria-labelledby="ab-coll-car-title">
+  <style>
+    #ab-coll-car,
+    #ab-coll-car *,
+    #ab-coll-car *::before,
+    #ab-coll-car *::after { box-sizing: border-box; }
+
+    #ab-coll-car {
+      width: 100%;
+      padding: var(--space-section-y) 0;
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #ab-coll-car .ab-head {
+      max-width: var(--container-max-width);
+      margin: 0 auto var(--space-md);
+      padding: 0 var(--space-page-x) var(--space-md);
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--color-outline);
+    }
+
+    #ab-coll-car .ab-eyebrow {
+      display: inline-block;
+      margin: 0 0 var(--space-xs);
+      font-size: 0.6875rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    #ab-coll-car-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #ab-coll-car .ab-sub {
+      margin: var(--space-xs) 0 0;
+      max-width: 40rem;
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #ab-coll-car .ab-nav {
+      display: flex;
+      gap: var(--space-xs);
+    }
+
+    #ab-coll-car .ab-nav button {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-outline);
+      background: var(--color-surface-container-lowest);
+      color: var(--color-on-surface);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: background var(--duration-medium) var(--ease-standard), border-color var(--duration-medium) var(--ease-standard), opacity var(--duration-medium) var(--ease-standard);
+    }
+
+    #ab-coll-car .ab-nav button:hover { background: var(--color-surface-container); border-color: color-mix(in srgb, var(--color-on-surface) 25%, var(--color-outline)); }
+    #ab-coll-car .ab-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+    #ab-coll-car .ab-nav button:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring-color); outline-offset: 2px; }
+    #ab-coll-car .ab-nav svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    #ab-coll-car .ab-track {
+      display: flex;
+      gap: var(--space-md);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: var(--space-xs) var(--space-page-x) var(--space-md);
+      scrollbar-width: none;
+    }
+    #ab-coll-car .ab-track::-webkit-scrollbar { display: none; }
+    #ab-coll-car .ab-track::before,
+    #ab-coll-car .ab-track::after {
+      content: "";
+      flex-shrink: 0;
+      width: max(0px, calc((100% - var(--container-max-width)) / 2));
+    }
+
+    #ab-coll-car .ab-card {
+      flex: 0 0 auto;
+      width: clamp(13rem, 22vw, 17rem);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    #ab-coll-car .ab-media {
+      position: relative;
+      display: block;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      transition: border-color var(--duration-medium) var(--ease-standard);
+    }
+
+    #ab-coll-car .ab-media img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 600ms var(--ease-standard);
+    }
+
+    #ab-coll-car .ab-card:hover .ab-media { border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-outline)); }
+    #ab-coll-car .ab-card:hover .ab-media img { transform: scale(1.04); }
+
+    #ab-coll-car .ab-tags { position: absolute; top: var(--space-sm); left: var(--space-sm); display: flex; gap: 4px; flex-wrap: wrap; }
+    #ab-coll-car .ab-tag { display: inline-flex; align-items: center; padding: 3px 7px; border-radius: var(--radius-sm); font-size: 0.625rem; font-weight: var(--font-weight-bold); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1; }
+    #ab-coll-car .ab-tag--sale { background: var(--color-primary); color: var(--color-on-primary); }
+    #ab-coll-car .ab-tag--soldout { background: var(--color-surface-container-high); color: var(--color-on-surface-variant); border: 1px solid var(--color-outline); }
+
+    #ab-coll-car .ab-fav {
+      position: absolute; top: var(--space-sm); right: var(--space-sm);
+      width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-full); border: 1px solid var(--color-outline);
+      background: color-mix(in srgb, var(--color-background) 75%, transparent);
+      backdrop-filter: blur(8px); color: var(--color-on-surface); cursor: pointer;
+      transition: color var(--duration-medium) var(--ease-standard);
+    }
+    #ab-coll-car .ab-fav:hover, #ab-coll-car .ab-fav.on { color: var(--color-primary); }
+    #ab-coll-car .ab-fav.on svg { fill: currentColor; }
+    #ab-coll-car .ab-fav svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    #ab-coll-car .ab-body { padding-top: var(--space-sm); display: flex; flex-direction: column; gap: 4px; }
+    #ab-coll-car .ab-name {
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      color: var(--color-on-surface); text-decoration: none; font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-medium); line-height: 1.35;
+    }
+    #ab-coll-car .ab-name:hover { color: var(--color-primary); }
+    #ab-coll-car .ab-prices { display: flex; align-items: baseline; gap: var(--space-xs); margin-top: 2px; font-variant-numeric: tabular-nums; }
+    #ab-coll-car .ab-price { color: var(--color-on-surface); font-size: var(--font-size-body-sm); font-weight: var(--font-weight-bold); }
+    #ab-coll-car .ab-old { color: var(--color-on-surface-variant); font-size: 0.75rem; text-decoration: line-through; }
+    #ab-coll-car .ab-pct { color: var(--color-primary); font-size: 0.6875rem; font-weight: var(--font-weight-bold); letter-spacing: 0.04em; }
+
+    #ab-coll-car .ab-progress {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-page-x);
+      height: 2px;
+      background: var(--color-outline);
+      position: relative;
+      overflow: hidden;
+    }
+    #ab-coll-car .ab-progress::after {
+      content: "";
+      position: absolute;
+      left: var(--space-page-x);
+      top: 0;
+      height: 100%;
+      width: var(--ab-progress, 12%);
+      max-width: calc(100% - var(--space-page-x) * 2);
+      background: var(--color-primary);
+      transition: width var(--duration-medium) var(--ease-standard);
+    }
+
+    #ab-coll-car .ab-skeleton {
+      flex: 0 0 auto;
+      width: clamp(13rem, 22vw, 17rem);
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(90deg, var(--color-surface-container) 0%, var(--color-surface-container-high) 50%, var(--color-surface-container) 100%);
+      background-size: 200% 100%;
+      animation: ab-shimmer 1.4s linear infinite;
+    }
+
+    @keyframes ab-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    #ab-coll-car .ab-status {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-page-x);
+      text-align: center;
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+    }
+  </style>
+
+  <header class="ab-head">
+    <div>
+      <span class="ab-eyebrow">Editor's picks</span>
+      <h2 id="ab-coll-car-title">Sale picks</h2>
+      <p class="ab-sub">Swipe through this season's best deals — handpicked from the live collection.</p>
+    </div>
+    <div class="ab-nav" aria-label="Carousel navigation">
+      <button type="button" class="ab-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button type="button" class="ab-next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </header>
+
+  <div class="ab-track" id="ab-coll-car-track" tabindex="0" aria-label="Products"></div>
+  <div class="ab-progress" aria-hidden="true"></div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('ab-coll-car');
+      if (!root) return;
+      var track = root.querySelector('#ab-coll-car-track');
+      var progress = root.querySelector('.ab-progress');
+      var prev = root.querySelector('.ab-prev');
+      var next = root.querySelector('.ab-next');
+
+      var API = 'https://zigly.com/collections/sale/products.json';
+      var DOMAIN = 'zigly.com';
+
+      function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+      function fmt(v) { var n = typeof v === 'number' ? v : parseFloat(v); return Number.isFinite(n) ? '₹' + n.toLocaleString('en-IN') : ''; }
+      function skel(n) { var s=''; for (var i=0;i<n;i++) s += '<div class="ab-skeleton" aria-hidden="true"></div>'; return s; }
+
+      track.innerHTML = skel(6);
+
+      function cardHTML(product) {
+        var v = product.variants && product.variants[0];
+        if (!v) return '';
+        var price = parseFloat(v.price);
+        var compare = v.compare_at_price ? parseFloat(v.compare_at_price) : null;
+        var img = product.images && product.images[0] ? (product.images[0].src || '') : '';
+        if (img && img.indexOf('//') === 0) img = 'https:' + img;
+        var title = esc(product.title || '');
+        var handle = product.handle || '';
+        var available = product.available !== false;
+        var pUrl = 'https://' + DOMAIN + '/products/' + handle;
+
+        var tags = '', oldHtml = '', pct = '';
+        if (compare && compare > price) {
+          var d = Math.round(((compare - price) / compare) * 100);
+          tags += '<span class="ab-tag ab-tag--sale">−' + d + '%</span>';
+          oldHtml = '<span class="ab-old">' + fmt(compare) + '</span>';
+          pct = '<span class="ab-pct">Save ' + d + '%</span>';
+        }
+        if (!available) tags += '<span class="ab-tag ab-tag--soldout">Sold out</span>';
+
+        return ''
+          + '<article class="ab-card">'
+          +   '<a class="ab-media" href="' + pUrl + '" aria-label="View ' + title + '">'
+          +     '<div class="ab-tags">' + tags + '</div>'
+          +     '<button class="ab-fav" type="button" aria-label="Save for later" onclick="event.preventDefault();this.classList.toggle(\'on\');">'
+          +       '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
+          +     '</button>'
+          +     (img ? '<img src="' + img + '" alt="' + title + '" loading="lazy" onerror="this.onerror=null;this.removeAttribute(\'src\');">' : '')
+          +   '</a>'
+          +   '<div class="ab-body">'
+          +     '<a class="ab-name" href="' + pUrl + '">' + title + '</a>'
+          +     '<div class="ab-prices">'
+          +       '<span class="ab-price">' + (fmt(price) || '₹—') + '</span>'
+          +       oldHtml + pct
+          +     '</div>'
+          +   '</div>'
+          + '</article>';
+      }
+
+      function step() {
+        var card = track.querySelector('.ab-card');
+        if (!card) return 280;
+        var styles = getComputedStyle(track);
+        var gap = parseFloat(styles.columnGap || styles.gap) || 0;
+        return card.getBoundingClientRect().width + gap;
+      }
+
+      function update() {
+        var max = track.scrollWidth - track.clientWidth;
+        prev.disabled = track.scrollLeft <= 0;
+        next.disabled = track.scrollLeft >= max - 1;
+        var pct = max > 0 ? Math.min(100, Math.max(0, (track.scrollLeft / max) * 100)) : 0;
+        progress.style.setProperty('--ab-progress', (pct || 8) + '%');
+      }
+
+      prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+
+      fetch(API).then(function (r) { return r.json(); }).then(function (data) {
+        var products = (data && data.products) ? data.products : [];
+        if (!products.length) {
+          track.innerHTML = '';
+          var s = document.createElement('div'); s.className = 'ab-status'; s.textContent = 'No products found';
+          root.insertBefore(s, progress);
+          return;
+        }
+        track.innerHTML = products.map(cardHTML).join('');
+        update();
+      }).catch(function () {
+        track.innerHTML = '';
+        var s = document.createElement('div'); s.className = 'ab-status'; s.textContent = "Couldn't load products. Please try again.";
+        root.insertBefore(s, progress);
+      });
+    })();
+  </script>
+</section>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./base.css" />
+</head>
+
+<body>
+  <header class="hub-top">
+    <div>
+      <h1>Web components</h1>
+      <p>Pick a component and layout. Serve this folder with a static server for the best iframe experience.</p>
+    </div>
+    <div class="hub-top-actions">
+      <label class="hub-theme-field" for="hub-theme">
+        Theme
+        <select id="hub-theme">
+          <option value="">Supabase</option>
+        </select>
+      </label>
+      <button type="button" class="hub-btn-full" id="hub-toggle-full" aria-pressed="false"
+        aria-label="Full screen preview">Full screen</button>
+    </div>
+  </header>
+  <div class="hub-layout">
+    <nav class="hub-nav" aria-label="Component demos">
+      <ul class="hub-root" id="hub-root"></ul>
+    </nav>
+    <div class="hub-frame-wrap">
+      <div class="hub-frame-header" id="hub-current">Loading…</div>
+      <iframe class="hub-iframe" id="hub-iframe" title="Layout preview" src="collection/collection.html"></iframe>
+    </div>
+  </div>
+  <button type="button" class="hub-exit-full" id="hub-exit-full" aria-label="Exit full screen preview">Exit full
+    screen</button>
+  <script>
+    (function () {
+      var groups = [
+        {
+          id: 'hub-group-collection',
+          title: 'Collection',
+          dir: 'collection/',
+          demos: [
+            { file: 'collection.html', label: 'Default grid' },
+            { file: 'collection-compact.html', label: 'Compact' },
+            { file: 'collection-list.html', label: 'List view' },
+            { file: 'collection-masonry.html', label: 'Masonry' },
+            { file: 'collection-bento.html', label: 'Bento grid' },
+            { file: 'collection-editorial.html', label: 'Editorial' },
+            { file: 'collection-hero.html', label: 'Hero + grid' },
+            { file: 'collection-feature-3up.html', label: 'Feature 3-up' },
+            { file: 'collection-lookbook.html', label: 'Lookbook' },
+            { file: 'collection-comparison.html', label: 'Comparison' },
+            { file: 'collection-carousel.html', label: 'Carousel' },
+            { file: 'collection-tabs.html', label: 'Tabs' },
+            { file: 'collection-filter-sort.html', label: 'Filter & sort' },
+            { file: 'collection-loadmore.html', label: 'Load more' },
+            { file: 'collection-infinite.html', label: 'Infinite scroll' },
+            { file: 'collection-quickview.html', label: 'Quick view (modal)' },
+            { file: 'collection-drawer.html', label: 'Quick view (drawer)' }
+          ]
+        },
+        {
+          id: 'hub-group-video',
+          title: 'Video showcase',
+          dir: 'video-showcase/',
+          demos: [
+            { file: 'video-showcase.html', label: 'Default' }
+          ]
+        },
+        {
+          id: 'hub-group-review',
+          title: 'Review',
+          dir: 'review/',
+          demos: [
+            { file: 'review.html', label: 'Default' }
+          ]
+        },
+        {
+          id: 'hub-group-chat',
+          title: 'Chat',
+          dir: 'chat/',
+          demos: [
+            { file: 'chat.html', label: 'Default' }
+          ]
+        },
+        {
+          id: 'hub-group-faq',
+          title: 'FAQ',
+          dir: 'faq/',
+          demos: [
+            { file: 'faq.html', label: 'Default' },
+            { file: 'faq-minimal.html', label: 'Minimal' },
+            { file: 'faq-split.html', label: 'Split layout' },
+            { file: 'faq-two-column.html', label: 'Two-column grid' },
+            { file: 'faq-compact.html', label: 'Compact' },
+            { file: 'faq-banded.html', label: 'Banded rows' },
+            { file: 'faq-numbered.html', label: 'Numbered' },
+            { file: 'faq-elevated.html', label: 'Floating card' },
+            { file: 'faq-outline.html', label: 'Left accent' },
+            { file: 'faq-master-detail.html', label: 'Master-detail' },
+            { file: 'faq-carousel.html', label: 'Carousel' },
+            { file: 'faq-conversational.html', label: 'Conversational' },
+            { file: 'faq-cta.html', label: 'With contact CTA' },
+            { file: 'faq-rich.html', label: 'Rich content' },
+            { file: 'faq-search.html', label: 'Searchable' },
+            { file: 'faq-categories.html', label: 'Categories' },
+            { file: 'faq-inline.html', label: 'Inline (SEO)' }
+          ]
+        }
+      ];
+      var defaultSrc = 'collection/collection.html';
+      var themes = [
+        { id: '', label: 'Supabase', href: '' },
+        {
+          id: 'crappy-presentations',
+          label: 'Crappy Presentations',
+          href: 'themes/crappy-presentations.css'
+        },
+        {
+          id: 'huey-light-shop',
+          label: 'Huey Light Shop',
+          href: 'themes/huey-light-shop.css'
+        },
+        {
+          id: 'maps-music',
+          label: 'Maps Music',
+          href: 'themes/maps-music.css'
+        },
+        {
+          id: 'rollups',
+          label: 'Rollups',
+          href: 'themes/rollups.css'
+        },
+        {
+          id: 'talgh',
+          label: 'Talgh',
+          href: 'themes/talgh.css'
+        },
+        {
+          id: 'ava-protocol',
+          label: 'Ava Protocol',
+          href: 'themes/ava-protocol.css'
+        }
+      ];
+      var root = document.getElementById('hub-root');
+      var iframe = document.getElementById('hub-iframe');
+      var currentEl = document.getElementById('hub-current');
+      var themeSelect = document.getElementById('hub-theme');
+      var activeThemeId = localStorage.getItem('hub-theme') || '';
+      if (activeThemeId === 'supabase') {
+        activeThemeId = '';
+        localStorage.setItem('hub-theme', '');
+      }
+
+      function getActiveTheme() {
+        return themes.find(function (theme) {
+          return theme.id === activeThemeId;
+        }) || themes[0];
+      }
+
+      function themeHrefForIframe(theme) {
+        if (!theme.href) {
+          return '';
+        }
+        return '../' + theme.href;
+      }
+
+      function applyThemeToIframe() {
+        var doc = iframe.contentDocument;
+        if (!doc || !doc.head) {
+          return;
+        }
+        var existing = doc.getElementById('hub-theme-override');
+        var theme = getActiveTheme();
+        if (!theme.href) {
+          if (existing) {
+            existing.remove();
+          }
+          return;
+        }
+        if (!existing) {
+          existing = doc.createElement('link');
+          existing.id = 'hub-theme-override';
+          existing.rel = 'stylesheet';
+          doc.head.appendChild(existing);
+        }
+        existing.href = themeHrefForIframe(theme);
+      }
+
+      function setTheme(themeId) {
+        activeThemeId = themeId;
+        localStorage.setItem('hub-theme', activeThemeId);
+        applyThemeToIframe();
+      }
+
+      function allSrcPaths() {
+        var out = [];
+        groups.forEach(function (g) {
+          g.demos.forEach(function (d) {
+            out.push(g.dir + d.file);
+          });
+        });
+        return out;
+      }
+
+      function isValidSrc(src) {
+        return allSrcPaths().indexOf(src) !== -1;
+      }
+
+      /** Old hub used hash #file only (e.g. #collection.html). Resolve to full path. */
+      function resolveFromLegacyFilename(decoded) {
+        if (!decoded || decoded.indexOf('/') !== -1) {
+          return null;
+        }
+        var found = null;
+        groups.forEach(function (g) {
+          g.demos.forEach(function (d) {
+            if (d.file === decoded) {
+              found = g.dir + d.file;
+            }
+          });
+        });
+        return found;
+      }
+
+      function setActive(src) {
+        root.querySelectorAll('a').forEach(function (a) {
+          if (a.getAttribute('data-src') === src) {
+            a.setAttribute('aria-current', 'true');
+            var folder = a.closest('.hub-folder');
+            if (folder) {
+              folder.open = true;
+            }
+          } else {
+            a.removeAttribute('aria-current');
+          }
+        });
+        currentEl.innerHTML = 'Showing <code>' + src + '</code>';
+        iframe.src = src;
+      }
+
+      themes.forEach(function (theme) {
+        if (!theme.id) {
+          return;
+        }
+        var option = document.createElement('option');
+        option.value = theme.id;
+        option.textContent = theme.label;
+        themeSelect.appendChild(option);
+      });
+      if (!getActiveTheme().id) {
+        activeThemeId = '';
+      }
+      themeSelect.value = activeThemeId;
+      themeSelect.addEventListener('change', function () {
+        setTheme(themeSelect.value);
+      });
+      iframe.addEventListener('load', applyThemeToIframe);
+
+      groups.forEach(function (g) {
+        var section = document.createElement('li');
+        section.className = 'hub-section';
+        var details = document.createElement('details');
+        details.className = 'hub-folder';
+        details.open = false;
+        var summary = document.createElement('summary');
+        summary.className = 'hub-folder__summary';
+        summary.id = g.id;
+        var label = document.createElement('span');
+        label.className = 'hub-section-title hub-folder__label';
+        label.textContent = g.title;
+        summary.appendChild(label);
+        var list = document.createElement('ul');
+        list.className = 'hub-list--nested';
+        list.setAttribute('aria-labelledby', g.id);
+        g.demos.forEach(function (d) {
+          var src = g.dir + d.file;
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = '#' + encodeURIComponent(src);
+          a.textContent = d.label;
+          a.setAttribute('data-src', src);
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            setActive(src);
+            if (history.replaceState) {
+              history.replaceState(null, '', '#' + encodeURIComponent(src));
+            }
+          });
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+        details.appendChild(summary);
+        details.appendChild(list);
+        section.appendChild(details);
+        root.appendChild(section);
+      });
+
+      function applyHash() {
+        var h = (location.hash || '').replace(/^#/, '');
+        if (!h) {
+          setActive(defaultSrc);
+          return;
+        }
+        var decoded = decodeURIComponent(h);
+        if (isValidSrc(decoded)) {
+          setActive(decoded);
+          return;
+        }
+        var legacy = resolveFromLegacyFilename(decoded);
+        if (legacy && isValidSrc(legacy)) {
+          setActive(legacy);
+          if (history.replaceState) {
+            history.replaceState(null, '', '#' + encodeURIComponent(legacy));
+          }
+          return;
+        }
+        setActive(defaultSrc);
+      }
+
+      window.addEventListener('hashchange', applyHash);
+      applyHash();
+
+      var body = document.body;
+      var btnFull = document.getElementById('hub-toggle-full');
+      var btnExit = document.getElementById('hub-exit-full');
+      function setMax(on) {
+        body.classList.toggle('hub--max', on);
+        if (btnFull) {
+          btnFull.setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+      }
+      if (btnFull) {
+        btnFull.addEventListener('click', function () {
+          setMax(!body.classList.contains('hub--max'));
+        });
+      }
+      if (btnExit) {
+        btnExit.addEventListener('click', function () {
+          setMax(false);
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

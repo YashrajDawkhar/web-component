@@ -1,0 +1,276 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-2col" aria-labelledby="ab-faq-2col-title">
+  <style>
+    #airboost-faq-2col,
+    #airboost-faq-2col * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-2col {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #airboost-faq-2col .ab-inner {
+      max-width: min(100%, var(--container-max-width));
+      margin: 0 auto;
+    }
+
+    #airboost-faq-2col .ab-head {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    #ab-faq-2col-title {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-2col .ab-sub {
+      margin: 0 auto;
+      max-width: 32rem;
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-2col .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    @media (min-width: 720px) {
+      #airboost-faq-2col .faq-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md);
+      }
+    }
+
+    #airboost-faq-2col .faq-item {
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface-container-lowest);
+      overflow: hidden;
+      transition:
+        border-color var(--duration-medium) var(--ease-standard),
+        box-shadow var(--duration-medium) var(--ease-standard),
+        transform var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-2col .faq-item:hover {
+      border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-outline));
+    }
+
+    #airboost-faq-2col .faq-item.open {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    #airboost-faq-2col .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      min-height: 3.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface);
+      border-radius: var(--radius-md);
+    }
+
+    #airboost-faq-2col .faq-q:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-2col .qrow {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      min-width: 0;
+    }
+
+    #airboost-faq-2col .qicon {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+      color: var(--color-primary);
+    }
+
+    #airboost-faq-2col .qicon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    #airboost-faq-2col .ic {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
+      color: var(--color-on-surface-variant);
+      background: color-mix(in srgb, var(--color-on-surface) 5%, transparent);
+      transition:
+        transform var(--duration-medium) var(--ease-standard),
+        color var(--duration-medium) var(--ease-standard),
+        background var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-2col .faq-item.open .ic {
+      color: var(--color-on-primary);
+      background: var(--color-primary);
+      transform: rotate(45deg);
+    }
+
+    #airboost-faq-2col .ic svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    #airboost-faq-2col .faq-aw {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-2col .faq-item.open .faq-aw {
+      grid-template-rows: 1fr;
+    }
+
+    #airboost-faq-2col .faq-aw .i {
+      overflow: hidden;
+    }
+
+    #airboost-faq-2col .faq-ac {
+      padding: 0 var(--space-md) var(--space-md) calc(var(--space-md) + 2rem + var(--space-sm));
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+  </style>
+  <div class="ab-inner">
+    <div class="ab-head">
+      <h2 id="ab-faq-2col-title">Common questions</h2>
+      <p class="ab-sub">Open as many as you like — they expand independently.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qrow">
+            <span class="qicon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 3h18l-2 13H5L3 3z"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="17" cy="20" r="1.5"></circle></svg>
+            </span>
+            <span>What is your return policy?</span>
+          </span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-aw"><div class="i"><div class="faq-ac">We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied, simply contact support for a full refund.</div></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qrow">
+            <span class="qicon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="14" height="10" rx="1"></rect><path d="M16 10h4l2 3v4h-6"></path><circle cx="6" cy="19" r="1.5"></circle><circle cx="18" cy="19" r="1.5"></circle></svg>
+            </span>
+            <span>How long does shipping take?</span>
+          </span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-aw"><div class="i"><div class="faq-ac">Standard shipping typically takes 5-7 business days. We also offer expedited 2-day and overnight shipping options at checkout.</div></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qrow">
+            <span class="qicon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>
+            </span>
+            <span>Do you ship internationally?</span>
+          </span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-aw"><div class="i"><div class="faq-ac">Yes! We ship to over 100 countries globally. International delivery times vary by destination, typically ranging from 7 to 21 business days.</div></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qrow">
+            <span class="qicon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
+            </span>
+            <span>How do I track my order?</span>
+          </span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-aw"><div class="i"><div class="faq-ac">Once your order ships, we'll email you a tracking link. You can also view live status under "Orders" in your account.</div></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qrow">
+            <span class="qicon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </span>
+            <span>What payment methods do you accept?</span>
+          </span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-aw"><div class="i"><div class="faq-ac">All major credit cards, Apple Pay, Google Pay, PayPal, and bank transfers (for orders over $200).</div></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="qrow">
+            <span class="qicon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 4 1 7-6-3-6 3 1-7-5-4 7-1z"></path></svg>
+            </span>
+            <span>Do you offer gift cards?</span>
+          </span>
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-aw"><div class="i"><div class="faq-ac">Yes — digital gift cards from $10 to $500 are emailed instantly and never expire.</div></div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById('airboost-faq-2col');
+      if (!s) return;
+      s.querySelectorAll('.faq-item').forEach(function (item) {
+        var btn = item.querySelector('.faq-q');
+        btn.addEventListener('click', function () {
+          var o = item.classList.contains('open');
+          item.classList.toggle('open', !o);
+          btn.setAttribute('aria-expanded', String(!o));
+        });
+      });
+    })();
+  </script>
+</section>

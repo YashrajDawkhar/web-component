@@ -1,0 +1,202 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-minimal" aria-labelledby="ab-faq-m-title">
+  <style>
+    #airboost-faq-minimal,
+    #airboost-faq-minimal * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-minimal {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      font-family: var(--font-sans);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+    }
+
+    #airboost-faq-minimal .ab-inner {
+      max-width: min(100%, 42rem);
+      margin: 0 auto;
+    }
+
+    #ab-faq-m-title {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--font-size-title);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #ab-faq-m-sub {
+      margin: 0 0 var(--space-xl);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+    }
+
+    #airboost-faq-minimal .faq-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-minimal .faq-item {
+      border-bottom: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-minimal .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    #airboost-faq-minimal .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      min-height: 3.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body-sm);
+      font-weight: var(--font-weight-medium);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface);
+      border-radius: var(--radius-sm);
+    }
+
+    #airboost-faq-minimal .faq-q:focus-visible {
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+
+    #airboost-faq-minimal .faq-q:hover {
+      color: var(--color-primary);
+    }
+
+    #airboost-faq-minimal .faq-icon {
+      color: var(--color-on-surface-variant);
+      flex-shrink: 0;
+      transition:
+        transform var(--duration-medium) var(--ease-standard),
+        color var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-minimal .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+      color: var(--color-primary);
+    }
+
+    #airboost-faq-minimal .faq-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    #airboost-faq-minimal .faq-a-w {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-minimal .faq-item.open .faq-a-w {
+      grid-template-rows: 1fr;
+    }
+
+    #airboost-faq-minimal .faq-a-w > .faq-a-in {
+      overflow: hidden;
+    }
+
+    #airboost-faq-minimal .faq-a {
+      padding: 0 0 var(--space-md);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+  </style>
+  <div class="ab-inner">
+    <h2 id="ab-faq-m-title">FAQ</h2>
+    <p id="ab-faq-m-sub">Short answers, no extra chrome.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          What is your return policy?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a-w">
+          <div class="faq-a-in">
+            <div class="faq-a">
+              We offer a no-questions-asked 30-day money-back guarantee. If you are not completely satisfied, simply contact support for a full refund.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          How long does shipping normally take?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a-w">
+          <div class="faq-a-in">
+            <div class="faq-a">
+              Standard shipping typically takes 5-7 business days. We also offer expedited 2-day and overnight shipping options at checkout.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          Do you ship internationally?
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-a-w">
+          <div class="faq-a-in">
+            <div class="faq-a">
+              Yes! We ship to over 100 countries globally. International delivery times vary by destination, typically ranging from 7 to 21 business days.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var s = document.getElementById("airboost-faq-minimal");
+      if (!s) return;
+      s.querySelectorAll(".faq-item").forEach(function (item) {
+        var btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          var o = item.classList.contains("open");
+          s.querySelectorAll(".faq-item").forEach(function (i) {
+            i.classList.remove("open");
+            i.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+          });
+          if (!o) {
+            item.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+    })();
+  </script>
+</section>

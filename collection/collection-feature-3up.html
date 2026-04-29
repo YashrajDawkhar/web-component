@@ -1,0 +1,196 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="ab-coll-3up" aria-labelledby="ab-coll-3up-title">
+  <style>
+    #ab-coll-3up,
+    #ab-coll-3up *,
+    #ab-coll-3up *::before,
+    #ab-coll-3up *::after { box-sizing: border-box; }
+
+    #ab-coll-3up {
+      width: 100%;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+    #ab-coll-3up .ab-wrap { max-width: var(--container-max-width); margin: 0 auto; }
+
+    #ab-coll-3up .ab-head { text-align: center; max-width: 36rem; margin: 0 auto var(--space-xl); }
+    #ab-coll-3up .ab-eyebrow { display: inline-block; margin: 0 0 var(--space-sm); font-size: 0.6875rem; font-weight: var(--font-weight-bold); letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-primary); }
+    #ab-coll-3up-title { margin: 0 0 var(--space-sm); font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: var(--font-weight-bold); letter-spacing: -0.02em; line-height: var(--line-height-tight); color: var(--color-on-background); }
+    #ab-coll-3up .ab-sub { margin: 0; color: var(--color-on-surface-variant); font-size: var(--font-size-body); line-height: var(--line-height-body); }
+
+    #ab-coll-3up .ab-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    @media (min-width: 720px) {
+      #ab-coll-3up .ab-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-lg); }
+    }
+
+    #ab-coll-3up .ab-feat {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--color-surface-container-lowest);
+      transition: border-color var(--duration-medium) var(--ease-standard), transform var(--duration-medium) var(--ease-standard);
+    }
+    #ab-coll-3up .ab-feat:hover { border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-outline)); transform: translateY(-2px); }
+
+    #ab-coll-3up .ab-media {
+      position: relative;
+      display: block;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--color-surface-container);
+    }
+    #ab-coll-3up .ab-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 800ms var(--ease-standard); }
+    #ab-coll-3up .ab-feat:hover .ab-media img { transform: scale(1.04); }
+
+    #ab-coll-3up .ab-tag {
+      position: absolute; top: var(--space-md); left: var(--space-md);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.6875rem; font-weight: var(--font-weight-bold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    #ab-coll-3up .ab-body {
+      padding: var(--space-md) var(--space-lg) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      flex: 1;
+    }
+    #ab-coll-3up .ab-num {
+      font-size: 0.6875rem; font-weight: var(--font-weight-bold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-on-surface-variant);
+      font-variant-numeric: tabular-nums;
+    }
+    #ab-coll-3up .ab-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--color-on-background);
+      text-decoration: none;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    #ab-coll-3up .ab-name:hover { color: var(--color-primary); }
+    #ab-coll-3up .ab-desc {
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      margin: 0;
+    }
+
+    #ab-coll-3up .ab-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-sm);
+      margin-top: auto;
+      border-top: 1px solid var(--color-outline);
+      gap: var(--space-md);
+    }
+    #ab-coll-3up .ab-prices { display: flex; align-items: baseline; gap: var(--space-xs); font-variant-numeric: tabular-nums; flex-wrap: wrap; }
+    #ab-coll-3up .ab-price { color: var(--color-on-surface); font-size: var(--font-size-body); font-weight: var(--font-weight-bold); }
+    #ab-coll-3up .ab-old { color: var(--color-on-surface-variant); font-size: 0.8125rem; text-decoration: line-through; }
+    #ab-coll-3up .ab-pct { color: var(--color-primary); font-size: 0.75rem; font-weight: var(--font-weight-bold); }
+
+    #ab-coll-3up .ab-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--color-on-surface);
+      font-size: 0.8125rem; font-weight: var(--font-weight-bold);
+      text-decoration: none;
+      transition: color var(--duration-medium) var(--ease-standard), gap var(--duration-medium) var(--ease-standard);
+    }
+    #ab-coll-3up .ab-link:hover { color: var(--color-primary); gap: 10px; }
+    #ab-coll-3up .ab-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    #ab-coll-3up .ab-skel {
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(90deg, var(--color-surface-container) 0%, var(--color-surface-container-high) 50%, var(--color-surface-container) 100%);
+      background-size: 200% 100%;
+      animation: ab-shimmer 1.4s linear infinite;
+      border-radius: var(--radius-xl);
+    }
+    @keyframes ab-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    #ab-coll-3up .ab-status { padding: var(--space-xl) var(--space-md); text-align: center; color: var(--color-on-surface-variant); font-size: var(--font-size-body-sm); grid-column: 1 / -1; }
+  </style>
+
+  <div class="ab-wrap">
+    <header class="ab-head">
+      <span class="ab-eyebrow">Three to know</span>
+      <h2 id="ab-coll-3up-title">This week's picks</h2>
+      <p class="ab-sub">A focused trio — handpicked from the live sale, with a story behind each.</p>
+    </header>
+    <div class="ab-grid" id="ab-coll-3up-grid"></div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('ab-coll-3up');
+      if (!root) return;
+      var grid = root.querySelector('#ab-coll-3up-grid');
+      var API = 'https://zigly.com/collections/sale/products.json';
+      var DOMAIN = 'zigly.com';
+      var labels = ['Editor\'s pick', 'Crowd favorite', 'Hidden gem'];
+
+      function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+      function fmt(v) { var n = typeof v === 'number' ? v : parseFloat(v); return Number.isFinite(n) ? '₹' + n.toLocaleString('en-IN') : ''; }
+
+      grid.innerHTML = '<div class="ab-skel"></div><div class="ab-skel"></div><div class="ab-skel"></div>';
+
+      function cardHTML(p, i) {
+        var v = p.variants && p.variants[0]; if (!v) return '';
+        var price = parseFloat(v.price);
+        var compare = v.compare_at_price ? parseFloat(v.compare_at_price) : null;
+        var img = p.images && p.images[0] ? (p.images[0].src || '') : '';
+        if (img && img.indexOf('//') === 0) img = 'https:' + img;
+        var title = esc(p.title || '');
+        var pUrl = 'https://' + DOMAIN + '/products/' + (p.handle || '');
+        var oldHtml = '', pct = '';
+        if (compare && compare > price) {
+          var d = Math.round(((compare - price) / compare) * 100);
+          oldHtml = '<span class="ab-old">' + fmt(compare) + '</span>';
+          pct = '<span class="ab-pct">−' + d + '%</span>';
+        }
+        var desc = (p.body_html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        desc = desc ? esc(desc.slice(0, 140) + (desc.length > 140 ? '…' : '')) : 'Quietly considered, generously discounted.';
+
+        return ''
+          + '<article class="ab-feat">'
+          +   '<a class="ab-media" href="' + pUrl + '" aria-label="View ' + title + '">'
+          +     '<span class="ab-tag">' + (labels[i] || labels[0]) + '</span>'
+          +     (img ? '<img src="' + img + '" alt="' + title + '" loading="lazy" onerror="this.onerror=null;this.removeAttribute(\'src\');">' : '')
+          +   '</a>'
+          +   '<div class="ab-body">'
+          +     '<span class="ab-num">N° 0' + (i + 1) + '</span>'
+          +     '<a class="ab-name" href="' + pUrl + '">' + title + '</a>'
+          +     '<p class="ab-desc">' + desc + '</p>'
+          +     '<div class="ab-foot">'
+          +       '<div class="ab-prices"><span class="ab-price">' + (fmt(price) || '₹—') + '</span>' + oldHtml + pct + '</div>'
+          +       '<a class="ab-link" href="' + pUrl + '">Shop <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>'
+          +     '</div>'
+          +   '</div>'
+          + '</article>';
+      }
+
+      fetch(API).then(function (r) { return r.json(); }).then(function (data) {
+        var products = (data && data.products) ? data.products : [];
+        if (!products.length) { grid.innerHTML = '<div class="ab-status">No products found</div>'; return; }
+        grid.innerHTML = products.slice(0, 3).map(cardHTML).join('');
+      }).catch(function () { grid.innerHTML = '<div class="ab-status">Couldn\'t load products.</div>'; });
+    })();
+  </script>
+</section>

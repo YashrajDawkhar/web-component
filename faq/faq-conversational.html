@@ -1,0 +1,249 @@
+<link rel="stylesheet" href="../themes/supabase.css">
+<section id="airboost-faq-conv" aria-labelledby="ab-faq-conv-title">
+  <style>
+    #airboost-faq-conv,
+    #airboost-faq-conv * {
+      box-sizing: border-box;
+    }
+
+    #airboost-faq-conv {
+      width: 100%;
+      margin: 0;
+      padding: var(--space-section-y) var(--space-page-x);
+      background: var(--color-background);
+      color: var(--color-on-surface);
+      font-family: var(--font-sans);
+    }
+
+    #airboost-faq-conv .ab-inner {
+      max-width: min(100%, 40rem);
+      margin: 0 auto;
+    }
+
+    #airboost-faq-conv .ab-head {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    #ab-faq-conv-title {
+      margin: 0 0 var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--font-size-display);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: -0.02em;
+      line-height: var(--line-height-tight);
+      color: var(--color-on-background);
+    }
+
+    #airboost-faq-conv .ab-sub {
+      margin: 0 auto;
+      max-width: 32rem;
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--color-on-surface-variant);
+    }
+
+    #airboost-faq-conv .ab-thread {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--color-surface-container-low);
+      border: 1px solid var(--color-outline);
+      border-radius: var(--radius-xl);
+    }
+
+    #airboost-faq-conv .row {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: flex-end;
+    }
+
+    #airboost-faq-conv .row.q {
+      flex-direction: row-reverse;
+    }
+
+    #airboost-faq-conv .av {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-bold);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    #airboost-faq-conv .row.q .av {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+    }
+
+    #airboost-faq-conv .row.a .av {
+      background: var(--color-surface-container-high);
+      color: var(--color-on-surface);
+      border: 1px solid var(--color-outline);
+    }
+
+    #airboost-faq-conv .av svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    #airboost-faq-conv .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 80%;
+      min-width: 0;
+    }
+
+    #airboost-faq-conv .row.q .stack {
+      align-items: flex-end;
+    }
+
+    #airboost-faq-conv .row.a .stack {
+      align-items: flex-start;
+    }
+
+    #airboost-faq-conv .who {
+      font-size: 0.6875rem;
+      color: var(--color-on-surface-variant);
+      padding: 0 var(--space-xs);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: var(--font-weight-bold);
+    }
+
+    #airboost-faq-conv .bubble {
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      word-break: break-word;
+    }
+
+    #airboost-faq-conv .row.q .bubble {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-bottom-right-radius: var(--radius-sm);
+      font-weight: var(--font-weight-medium);
+    }
+
+    #airboost-faq-conv .row.a .bubble {
+      background: var(--color-surface-container-lowest);
+      color: var(--color-on-surface);
+      border: 1px solid var(--color-outline);
+      border-bottom-left-radius: var(--radius-sm);
+    }
+
+    #airboost-faq-conv .ab-foot {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border: 1px dashed var(--color-outline);
+      border-radius: var(--radius-lg);
+      color: var(--color-on-surface-variant);
+      font-size: var(--font-size-body-sm);
+      flex-wrap: wrap;
+    }
+
+    #airboost-faq-conv .ab-foot a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-bold);
+      font-size: 0.8125rem;
+      border-radius: var(--radius-full);
+      transition: background var(--duration-medium) var(--ease-standard);
+    }
+
+    #airboost-faq-conv .ab-foot a:hover {
+      background: var(--color-primary-hover);
+    }
+
+    #airboost-faq-conv .ab-foot a svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+  </style>
+  <div class="ab-inner">
+    <div class="ab-head">
+      <h2 id="ab-faq-conv-title">Just ask</h2>
+      <p class="ab-sub">Common questions, answered like a real conversation.</p>
+    </div>
+    <div class="ab-thread" role="log" aria-label="Conversation transcript">
+      <div class="row q">
+        <span class="av" aria-hidden="true">YOU</span>
+        <div class="stack">
+          <span class="who">You</span>
+          <div class="bubble">What's your return policy?</div>
+        </div>
+      </div>
+      <div class="row a">
+        <span class="av" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </span>
+        <div class="stack">
+          <span class="who">Support</span>
+          <div class="bubble">No-questions-asked, 30 days. If you're not happy, ping us and we'll refund you in full — usually within 5 business days. 👍</div>
+        </div>
+      </div>
+      <div class="row q">
+        <span class="av" aria-hidden="true">YOU</span>
+        <div class="stack">
+          <span class="who">You</span>
+          <div class="bubble">Cool. How fast does shipping go out?</div>
+        </div>
+      </div>
+      <div class="row a">
+        <span class="av" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </span>
+        <div class="stack">
+          <span class="who">Support</span>
+          <div class="bubble">Standard is 5–7 business days. Need it faster? Pick 2-day or overnight at checkout.</div>
+        </div>
+      </div>
+      <div class="row q">
+        <span class="av" aria-hidden="true">YOU</span>
+        <div class="stack">
+          <span class="who">You</span>
+          <div class="bubble">Do you ship outside the US?</div>
+        </div>
+      </div>
+      <div class="row a">
+        <span class="av" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </span>
+        <div class="stack">
+          <span class="who">Support</span>
+          <div class="bubble">Yep — 100+ countries. Expect 7–21 business days depending on where you are. Customs fees may apply on your end.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ab-foot">
+      <span>Have a different question?</span>
+      <a href="#contact">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        Chat with us
+      </a>
+    </div>
+  </div>
+</section>
